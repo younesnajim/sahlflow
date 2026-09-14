@@ -9,7 +9,7 @@ Next.js 15 (App Router) · TypeScript · Tailwind v4 (CSS-first, no config file)
 | `/`    | 307 redirect to `/ar`                              |
 | `/ar`  | Arabic, RTL, primary. Its own page and own copy.   |
 | `/en`  | English, LTR. Its own page and own copy.           |
-| `/api/demo` | Live demo endpoint — **currently a stub**.    |
+| `/api/demo` | Live demo endpoint (gpt-4o-mini).             |
 
 `/ar` and `/en` are separate root layouts (route groups `(ar)` and `(en)`), so each
 owns its `<html lang>` and `dir`. They are two pages, not one page with a toggle.
@@ -29,7 +29,8 @@ npm run build
 
 | Variable              | Required | Purpose                                       |
 | --------------------- | -------- | --------------------------------------------- |
-| `OPENAI_API_KEY`      | yes\*    | Live demo widget. \*Not read by the stub yet. |
+| `OPENAI_API_KEY`      | yes      | Live demo widget. Without it the widget shows its error line. |
+| `OPENAI_BASE_URL`     | no       | Point the demo at a gateway, proxy, or the local mock. |
 | `NEXT_PUBLIC_SITE_URL`| no       | Absolute origin for hreflang/OG. Defaults to `https://sahlflow.com`. |
 
 Copy `.env.example` to `.env.local` to work locally.
@@ -48,9 +49,31 @@ use the Dockerfile builder, expose port `3000`, and set `OPENAI_API_KEY` and
   service messages billable per message, with 1,000 free per phone number per
   month (`PRICING_EFFECTIVE_FROM`). Before that date service messages are free
   outright, so the table would be wrong if the launch slipped much earlier.
-- **`src/app/api/demo/route.ts`** — returns canned replies. Session handling and
-  the rate limits around it are final; only reply generation is fake.
 - **Video** — `VideoBlock` renders a 16:9 placeholder awaiting the real file.
+
+## The demo endpoint
+
+`POST /api/demo` → gpt-4o-mini, `max_tokens` 300. Limits are 5 messages per
+session and 20 per hour per IP, in memory, no database. The last 10 messages of
+the session transcript are replayed so the agent can follow a multi-question
+flow; with a 5-message session cap the transcript can never exceed that anyway,
+so the cap is a guard rather than a limit that bites.
+
+Whatever the model returns goes through `parseReply` unchanged — nothing edits
+the model's words. A failed turn is refunded rather than charged: a visitor
+should not lose one of their five messages to a reply that never arrived.
+
+Every failure — no API key, upstream 5xx, timeout, empty completion, network
+error — logs its cause server-side and returns one neutral `demo_unavailable`
+body. The widget shows a single calm line and stays usable.
+
+### A note on the 5-message limit
+
+The brokerage prompt asks six qualification questions before summarising, which
+does not fit in five messages. In practice the model compresses and reaches the
+card around turn four, which is what you want — but it is the model's choice,
+not something the design guarantees. Raising the session cap to 7, or trimming a
+question, would make it reliable.
 
 ## The demo agents
 
@@ -106,6 +129,15 @@ scripts/             Dev-only CDP helpers (screenshots, demo lifecycle tests)
 node scripts/screenshot.cjs http://localhost:3000/ar 390 out.png
 node scripts/demo-test.cjs  http://localhost:3000/ar 1280 ./shots 1 ar
 node scripts/language-check.cjs http://localhost:3000
+
+# Endpoint behaviour without spending tokens: a mock that records what was sent
+node scripts/mock-openai.cjs 4010 capture.json ok    # or http500 | empty | slow
+OPENAI_API_KEY=x OPENAI_BASE_URL=http://localhost:4010 npm start
+node scripts/endpoint-check.cjs  http://localhost:3000 capture.json
+node scripts/failure-check.cjs   http://localhost:3000
+
+# Real conversations against the live model
+node scripts/live-check.cjs http://localhost:3000 brokerage "hi" "investment, 1m"
 node scripts/demo-error-test.cjs http://localhost:3000/ar reject
 ```
 

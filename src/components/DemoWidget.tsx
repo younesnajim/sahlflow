@@ -110,6 +110,7 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
       const payload = (data ?? {}) as {
         reply?: string;
         card?: LeadCardData | null;
+        trailing?: string;
         remaining?: number;
         limited?: boolean;
       };
@@ -122,6 +123,8 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
 
       const replyText = typeof payload.reply === "string" ? payload.reply.trim() : "";
       const card = payload.card ?? null;
+      // Text the agent wrote after the card, too long to sit in its footer.
+      const trailing = typeof payload.trailing === "string" ? payload.trailing.trim() : "";
 
       // A turn may be text, a card, or text followed by a card — but never
       // nothing at all.
@@ -142,6 +145,14 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
         }
         if (card) {
           next.push({ id: nextId.current++, kind: "card", role: "assistant", card });
+        }
+        if (trailing) {
+          next.push({
+            id: nextId.current++,
+            kind: "text",
+            role: "assistant",
+            content: trailing,
+          });
         }
         return next;
       });
@@ -322,7 +333,7 @@ function LeadCardBlock({
       <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5 px-4 py-3">
         {card.rows.map((row) => (
           <div key={row.label} className="min-w-0">
-            <dt className="truncate text-label text-muted">{row.label}</dt>
+            <dt className="truncate text-label text-muted capitalize">{row.label}</dt>
             <dd className="text-body leading-snug font-bold">{row.value}</dd>
           </div>
         ))}

@@ -3,9 +3,10 @@
  *  DEMO SYSTEM PROMPTS
  * ────────────────────────────────────────────────────────────────────────────
  *  The two prompt bodies below are the real ones, kept verbatim. The app adds
- *  two short appendices — LANGUAGE_MIRROR and LEAD_CARD_PROTOCOL — each defined
- *  as its own constant and composed only at the point of use, so the prompt
- *  bodies stay exactly as written. See the comment on each for why it exists.
+ *  three short appendices — LANGUAGE_MIRROR, OUTPUT_HYGIENE and
+ *  LEAD_CARD_PROTOCOL — each its own constant, composed only at the point of
+ *  use, so the prompt bodies stay exactly as written. Each carries a comment
+ *  explaining the live-model behaviour that made it necessary.
  * ────────────────────────────────────────────────────────────────────────────
  */
 
@@ -95,6 +96,29 @@ export const LANGUAGE_MIRROR = `
 اللغة:
 رد دائماً بنفس لغة رسالة العميل. إذا كتب بالإنجليزية، رد بالإنجليزية وحدها. وإذا كتب بالعربية — خليجي أو فصحى أو عربي بأحرف إنجليزية — رد بالعربية.
 لا تخلط اللغتين في رد واحد، ولا تترجم كلام العميل، ولا تعلّق على اختيار اللغة. وكل القواعد الأخرى تنطبق كما هي في اللغتين.
+كل ما هو مكتوب في التعليمات أعلاه — العبارات الجاهزة، وأسماء الخدمات والمشاريع ومواصفاتها، وأسماء المناطق، وعناوين حقول البطاقة — مكتوب بالعربية لأنها لغة التعليمات، وليس نصاً يُنسخ حرفياً. إذا كان الحوار بالإنجليزية فاكتبها كلها بالإنجليزية.
+احتفظ بالأرقام والرموز كما هي (مثل Q4 2028 و JVC و AED)، واكتب الأعداد بأرقام لغة الحوار: عربية-هندية في الحوار العربي، ولاتينية في الحوار الإنجليزي.
+لا ترسل رداً فيه سطر بالعربية وسطر بالإنجليزية. راجع ردك قبل إرساله: إن وجدت فيه لغة غير لغة العميل فأعد كتابته كاملاً.
+`.trim();
+
+/* ───────────────────────────── output hygiene ──────────────────────────── */
+
+/**
+ * Two things the live model did that look broken to a visitor:
+ *
+ *   - It echoed the numbering from the prompt's question list, replying with
+ *     "1. Is it for investment or personal use?" and then jumping to "3." and
+ *     "5." as it skipped ahead.
+ *   - It copied the literal "..." out of the card example for a field it had
+ *     never asked about, producing a row reading "الاسم: ...".
+ *
+ * Both are artefacts of the instructions leaking into the output rather than
+ * anything wrong with the prompts themselves, so they are corrected here.
+ */
+export const OUTPUT_HYGIENE = `
+شكل الرد:
+التعليمات أعلاه مكتوبة كقوائم مرقّمة لتنظيمها فقط. لا تكتب أرقام القوائم ولا عناوينها في ردك، واطرح السؤال بصياغة طبيعية كأنك تتحدث مع العميل.
+ولا تكتب قيمة لم يخبرك بها العميل: إذا لم تعرف معلومة، اترك سطرها كاملاً بدلاً من كتابة نقاط أو علامات مكانها.
 `.trim();
 
 /* ─────────────────────────── lead card protocol ─────────────────────────── */
@@ -125,16 +149,28 @@ export const LEAD_CARD_PROTOCOL = `
 الموقع: داخل الإمارات أو خارجها
 </lead>
 
-اكتب جملة الـ CRM بعد الوسم مباشرة كنص عادي. لا تستخدم هذا التنسيق في أي رسالة أخرى.
-إذا كان الحوار بالإنجليزية، اكتب عناوين الحقول وقيمها بالإنجليزية أيضاً.
+اكتب جملة الـ CRM بعد الوسم مباشرة كنص عادي، ولا تكتب بعدها شيئاً آخر. لا تستخدم هذا التنسيق في أي رسالة أخرى.
+لغة البطاقة تتبع لغة الحوار: إذا كان الحوار بالإنجليزية فاكتب عناوين الحقول وقيمها بالإنجليزية، وإذا كان بالعربية فاكتبها بالعربية. العناوين أعلاه نموذج للمعنى لا نص يُنسخ.
+احذف أي سطر لا تعرف قيمته بدلاً من كتابة نقاط مكانها.
 `.trim();
 
+/**
+ * Appendix order matters: the language rule goes last. Sitting in the middle
+ * it lost to the Arabic service and project data above it, and the agent
+ * pasted Arabic specs into English replies.
+ */
 export const SYSTEM_PROMPTS: Record<DemoScenario, string> = {
-  clinic: `${CLINIC_SYSTEM_PROMPT}\n\n${LANGUAGE_MIRROR}`,
-  brokerage: `${BROKERAGE_SYSTEM_PROMPT}\n\n${LANGUAGE_MIRROR}\n\n${LEAD_CARD_PROTOCOL}`,
+  clinic: [CLINIC_SYSTEM_PROMPT, OUTPUT_HYGIENE, LANGUAGE_MIRROR].join("\n\n"),
+  brokerage: [
+    BROKERAGE_SYSTEM_PROMPT,
+    OUTPUT_HYGIENE,
+    LEAD_CARD_PROTOCOL,
+    LANGUAGE_MIRROR,
+  ].join("\n\n"),
 };
 
 /* ─────────────────────────── model configuration ────────────────────────── */
 
+/** The only model the demo may call. */
 export const DEMO_MODEL = "gpt-4o-mini";
 export const DEMO_MAX_TOKENS = 300;

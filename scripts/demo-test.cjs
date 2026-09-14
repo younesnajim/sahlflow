@@ -18,7 +18,11 @@ function req(method, path) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
-  const [url, width, shotDir, tabIndex, msgLang] = process.argv.slice(2);
+  const [url, width, shotDir, tabIndex, msgLang, scripted] = process.argv.slice(2);
+  // A real qualification flow needs real answers; pass them as "a|b|c".
+  const scriptedMessages = scripted ? scripted.split("|") : null;
+  // A live model takes seconds, not milliseconds; the stub was fine at 900ms.
+  const replyWait = scriptedMessages ? 9000 : 900;
   // The agent mirrors the visitor's language, so the test has to choose one.
   const probe = msgLang === "en" ? "test message" : "رسالة اختبار";
   const target = await req("PUT", "/json/new?about:blank");
@@ -72,7 +76,7 @@ async function main() {
       input.closest('form').requestSubmit();
       return true;
     })()`);
-    await sleep(900);
+    await sleep(replyWait);
   };
 
   const state = () =>
@@ -96,10 +100,11 @@ async function main() {
     console.log("after tab switch:", await state());
   }
 
-  for (let i = 1; i <= 6; i++) {
+  const turns = scriptedMessages ? scriptedMessages.length : 6;
+  for (let i = 1; i <= turns; i++) {
     const st = JSON.parse(await state());
     if (!st.hasComposer) break; // limit reached; composer is gone
-    await typeAndSend(probe + " " + i);
+    await typeAndSend(scriptedMessages ? scriptedMessages[i - 1] : probe + " " + i);
     console.log(`after msg ${i}:`, await state());
   }
   await shot("demo-limited");
