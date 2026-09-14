@@ -43,7 +43,14 @@ export function Hero({ copy }: { copy: SiteCopy }) {
             </ul>
           </div>
 
-          <DemoWidget copy={copy} />
+          <div>
+            {copy.demo.languageNote && (
+              <p className="mb-2.5 text-label font-medium text-muted">
+                {copy.demo.languageNote}
+              </p>
+            )}
+            <DemoWidget copy={copy} />
+          </div>
         </div>
       </Container>
     </section>

@@ -2,10 +2,10 @@
  * ────────────────────────────────────────────────────────────────────────────
  *  DEMO SYSTEM PROMPTS
  * ────────────────────────────────────────────────────────────────────────────
- *  The two prompt bodies below are the real ones, kept verbatim. The only thing
- *  the app adds is LEAD_CARD_PROTOCOL — a short output-format appendix, defined
- *  separately so the prompt itself stays exactly as written. See the comment on
- *  that constant for why it is needed.
+ *  The two prompt bodies below are the real ones, kept verbatim. The app adds
+ *  two short appendices — LANGUAGE_MIRROR and LEAD_CARD_PROTOCOL — each defined
+ *  as its own constant and composed only at the point of use, so the prompt
+ *  bodies stay exactly as written. See the comment on each for why it exists.
  * ────────────────────────────────────────────────────────────────────────────
  */
 
@@ -77,6 +77,26 @@ export const BROKERAGE_SYSTEM_PROMPT = `
 - أسئلة قانونية → "أحوّلك لوسيط مرخص"
 `.trim();
 
+/* ──────────────────────────── language mirroring ───────────────────────── */
+
+/**
+ * The agent answers in whatever language the visitor writes in.
+ *
+ * This matters most on /en: an English-speaking owner in Dubai is working out
+ * whether the agent handles their Arabic-speaking customers, and replying to
+ * them in Arabic they cannot read is opaque rather than reassuring. Answering
+ * English in English and Arabic in Arabic demonstrates the bilingual handling
+ * directly.
+ *
+ * Applied to both prompts: it is a property of the agent, not of the page. The
+ * clinic prompt already mirrors the Arabic variants; this extends it to English.
+ */
+export const LANGUAGE_MIRROR = `
+اللغة:
+رد دائماً بنفس لغة رسالة العميل. إذا كتب بالإنجليزية، رد بالإنجليزية وحدها. وإذا كتب بالعربية — خليجي أو فصحى أو عربي بأحرف إنجليزية — رد بالعربية.
+لا تخلط اللغتين في رد واحد، ولا تترجم كلام العميل، ولا تعلّق على اختيار اللغة. وكل القواعد الأخرى تنطبق كما هي في اللغتين.
+`.trim();
+
 /* ─────────────────────────── lead card protocol ─────────────────────────── */
 
 /**
@@ -106,11 +126,12 @@ export const LEAD_CARD_PROTOCOL = `
 </lead>
 
 اكتب جملة الـ CRM بعد الوسم مباشرة كنص عادي. لا تستخدم هذا التنسيق في أي رسالة أخرى.
+إذا كان الحوار بالإنجليزية، اكتب عناوين الحقول وقيمها بالإنجليزية أيضاً.
 `.trim();
 
 export const SYSTEM_PROMPTS: Record<DemoScenario, string> = {
-  clinic: CLINIC_SYSTEM_PROMPT,
-  brokerage: `${BROKERAGE_SYSTEM_PROMPT}\n\n${LEAD_CARD_PROTOCOL}`,
+  clinic: `${CLINIC_SYSTEM_PROMPT}\n\n${LANGUAGE_MIRROR}`,
+  brokerage: `${BROKERAGE_SYSTEM_PROMPT}\n\n${LANGUAGE_MIRROR}\n\n${LEAD_CARD_PROTOCOL}`,
 };
 
 /* ─────────────────────────── model configuration ────────────────────────── */

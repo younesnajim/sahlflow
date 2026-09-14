@@ -18,7 +18,9 @@ function req(method, path) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
-  const [url, width, shotDir, tabIndex] = process.argv.slice(2);
+  const [url, width, shotDir, tabIndex, msgLang] = process.argv.slice(2);
+  // The agent mirrors the visitor's language, so the test has to choose one.
+  const probe = msgLang === "en" ? "test message" : "رسالة اختبار";
   const target = await req("PUT", "/json/new?about:blank");
   const ws = new WebSocket(target.webSocketDebuggerUrl);
   let id = 0;
@@ -97,7 +99,7 @@ async function main() {
   for (let i = 1; i <= 6; i++) {
     const st = JSON.parse(await state());
     if (!st.hasComposer) break; // limit reached; composer is gone
-    await typeAndSend(`رسالة اختبار ${i}`);
+    await typeAndSend(probe + " " + i);
     console.log(`after msg ${i}:`, await state());
   }
   await shot("demo-limited");

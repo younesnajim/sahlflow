@@ -44,6 +44,10 @@ use the Dockerfile builder, expose port `3000`, and set `OPENAI_API_KEY` and
 
 - **`src/lib/meta-rates.ts`** — every rate figure is an unverified placeholder;
   check each against Meta's official pricing page. Each row carries `verified: false`.
+  The table is built for the rules that take effect on **1 October 2026**:
+  service messages billable per message, with 1,000 free per phone number per
+  month (`PRICING_EFFECTIVE_FROM`). Before that date service messages are free
+  outright, so the table would be wrong if the launch slipped much earlier.
 - **`src/app/api/demo/route.ts`** — returns canned replies. Session handling and
   the rate limits around it are final; only reply generation is fake.
 - **Video** — `VideoBlock` renders a 16:9 placeholder awaiting the real file.
@@ -54,6 +58,11 @@ Two scenarios, `clinic` and `brokerage`, with their system prompts in
 `src/lib/prompts.ts`. The brokerage agent closes by qualifying the lead and
 summarising it — that summary renders as a **card**, not a chat bubble, because
 it is the moment the demo has to land.
+
+The agent answers in whatever language the visitor writes in — English in
+English, Arabic in Arabic. `/en` says so above the widget, because an
+English-speaking owner needs telling; an Arabic reader does not. That behaviour
+comes from `LANGUAGE_MIRROR`, appended to both prompts.
 
 To make the summary recognisable the app appends `LEAD_CARD_PROTOCOL` to the
 brokerage prompt: wrap the card in `<lead>…</lead>`, one `label: value` per
@@ -95,9 +104,17 @@ scripts/             Dev-only CDP helpers (screenshots, demo lifecycle tests)
 ```bash
 # Chrome with remote debugging on 9222, then:
 node scripts/screenshot.cjs http://localhost:3000/ar 390 out.png
-node scripts/demo-test.cjs  http://localhost:3000/ar 1280 ./shots
+node scripts/demo-test.cjs  http://localhost:3000/ar 1280 ./shots 1 ar
+node scripts/language-check.cjs http://localhost:3000
 node scripts/demo-error-test.cjs http://localhost:3000/ar reject
 ```
+
+`demo-test.cjs` takes a tab index and the language to type in — the agent
+mirrors the visitor, so typing Arabic at `/en` correctly gets Arabic back.
+
+Note when testing the API by hand: a shell will quietly mangle Arabic in a curl
+payload and make language mirroring look broken. Send the request from Node, as
+`language-check.cjs` does.
 
 These force an exact viewport through CDP — a plain `chrome --screenshot` cannot
 render below Windows' minimum window width and will silently crop an RTL page.

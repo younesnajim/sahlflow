@@ -114,5 +114,10 @@ export interface SiteCopy {
     opener: Record<"clinic" | "brokerage", string>;
     /** Heading on the closing lead-summary card. */
     leadCardTitle: string;
+    /**
+     * Shown above the widget. Only /en sets it: an English reader needs telling
+     * that the agent mirrors their language, an Arabic reader does not.
+     */
+    languageNote?: string;
   };
 }
