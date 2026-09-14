@@ -53,11 +53,10 @@ use the Dockerfile builder, expose port `3000`, and set `OPENAI_API_KEY` and
 
 ## The demo endpoint
 
-`POST /api/demo` → gpt-4o-mini, `max_tokens` 300. Limits are 5 messages per
+`POST /api/demo` → gpt-4o-mini, `max_tokens` 300. Limits are 8 messages per
 session and 20 per hour per IP, in memory, no database. The last 10 messages of
 the session transcript are replayed so the agent can follow a multi-question
-flow; with a 5-message session cap the transcript can never exceed that anyway,
-so the cap is a guard rather than a limit that bites.
+flow.
 
 Whatever the model returns goes through `parseReply` unchanged — nothing edits
 the model's words. A failed turn is refunded rather than charged: a visitor
@@ -67,13 +66,23 @@ Every failure — no API key, upstream 5xx, timeout, empty completion, network
 error — logs its cause server-side and returns one neutral `demo_unavailable`
 body. The widget shows a single calm line and stays usable.
 
-### A note on the 5-message limit
+### Two limits worth understanding
 
-The brokerage prompt asks six qualification questions before summarising, which
-does not fit in five messages. In practice the model compresses and reaches the
-card around turn four, which is what you want — but it is the model's choice,
-not something the design guarantees. Raising the session cap to 7, or trimming a
-question, would make it reliable.
+**8 messages per session.** The brokerage prompt asks six qualification
+questions and a visitor usually opens with something off-script, so five did not
+leave room to reach the lead card — and that card is the point of the demo.
+
+**The replay window truncates near the end of a long session.** At 8 messages
+the transcript reaches 16 entries while only the last 10 are replayed, so by the
+final turns the model no longer sees the opening exchanges. It still produces a
+complete card, because it restates the qualification answers in its own replies
+and those stay inside the window — but that is the model's habit, not a
+guarantee. If a card ever comes back missing an early field, raise
+`MAX_REPLAYED_MESSAGES` to 16 so a whole session always fits.
+
+**20 messages per hour per IP** is unchanged, which is now 2 full sessions per
+IP per hour rather than 4. That is the intended throttle, but it is worth
+knowing before a demo to a room of people on one office connection.
 
 ## The demo agents
 

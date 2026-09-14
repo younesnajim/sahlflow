@@ -6,13 +6,16 @@
  * Limits: 5 messages per session, 20 messages per hour per IP.
  */
 
-export const MAX_MESSAGES_PER_SESSION = 5;
+export const MAX_MESSAGES_PER_SESSION = 8;
 export const MAX_MESSAGES_PER_IP_PER_HOUR = 20;
 
 /**
- * How many past messages are replayed to the model. With a 5-message session
- * limit the transcript can never exceed 10 entries anyway, so this is a guard
- * rather than a limit that bites in normal use.
+ * How many past messages are replayed to the model.
+ *
+ * At 8 messages per session the transcript reaches 16 entries, so this window
+ * does truncate: by the last turn the model sees roughly the last five
+ * exchanges. That matters because the brokerage agent builds its summary card
+ * from answers given early in the conversation — see the note in the README.
  */
 export const MAX_REPLAYED_MESSAGES = 10;
 
