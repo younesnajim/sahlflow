@@ -9,6 +9,13 @@
 export const MAX_MESSAGES_PER_SESSION = 5;
 export const MAX_MESSAGES_PER_IP_PER_HOUR = 20;
 
+/**
+ * How many past messages are replayed to the model. With a 5-message session
+ * limit the transcript can never exceed 10 entries anyway, so this is a guard
+ * rather than a limit that bites in normal use.
+ */
+export const MAX_REPLAYED_MESSAGES = 10;
+
 const SESSION_TTL_MS = 2 * 60 * 60 * 1000; // 2 hours
 const IP_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
@@ -115,6 +122,28 @@ export function consume(
 /** Server-held transcript for a session. */
 export function history(sessionId: string): DemoMessage[] {
   return store.sessions.get(sessionId)?.history ?? [];
+}
+
+/** The tail of the transcript, oldest first, capped for replay to the model. */
+export function recentHistory(sessionId: string): DemoMessage[] {
+  return history(sessionId).slice(-MAX_REPLAYED_MESSAGES);
+}
+
+/**
+ * Gives back one message's allowance after a failure that was ours, so a
+ * visitor is not charged a turn for a reply they never received. The IP window
+ * is refunded too; the visitor did not get to use it either.
+ */
+export function refund(sessionId: string, ip: string): void {
+  const session = store.sessions.get(sessionId);
+  if (session && session.used > 0) session.used -= 1;
+
+  const hits = store.ipHits.get(ip);
+  if (hits && hits.length > 0) {
+    hits.pop();
+    if (hits.length === 0) store.ipHits.delete(ip);
+    else store.ipHits.set(ip, hits);
+  }
 }
 
 export function appendHistory(sessionId: string, ...messages: DemoMessage[]): void {
