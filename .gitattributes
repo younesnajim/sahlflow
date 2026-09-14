@@ -1,0 +1,5 @@
+# Keep LF in the repo and in the working tree. Prompt text lives inside
+# template literals, so a CRLF would end up inside the string sent to the model.
+* text=auto eol=lf
+*.png binary
+*.woff2 binary
