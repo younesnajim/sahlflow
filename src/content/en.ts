@@ -127,10 +127,10 @@ export const en: SiteCopy = {
         note: "When the customer starts the chat",
       },
     ],
-    freeTier: "The first 1,000 service messages each month are free.",
+    freeTier: "The first 1,000 service messages per number each month are free.",
     freeLabel: "Free",
     footnote:
-      "AED figures are an approximate conversion from USD. Check Meta's official pricing page for current rates.",
+      "These follow Meta's pricing as it applies from 1 October 2026. AED figures are an approximate conversion from USD. Check Meta's official pricing page for current rates.",
   },
 
   pricing: {
@@ -222,9 +222,13 @@ export const en: SiteCopy = {
       "Couldn't reply just now. Try again shortly, or message us on WhatsApp directly.",
     remaining: "Messages left in this demo: {n}",
     leadCardTitle: "Lead summary",
+    languageNote:
+      "Type in English or العربية — it replies in the same language.",
+    // English on /en: the agent mirrors the visitor's language, and an English
+    // reader should be met in English rather than in script they can't read.
     opener: {
-      clinic: "هلا والله، عيادتنا في خدمتك. كيف أقدر أساعدك اليوم؟",
-      brokerage: "هلا والله، تفضل — تدوّر على شقة أو فيلا؟ وفي أي منطقة؟",
+      clinic: "Hi! Lamsa Aesthetics in Jumeirah. How can I help you today?",
+      brokerage: "Hi there — are you buying as an investment, or to live in?",
     },
   },
 };
