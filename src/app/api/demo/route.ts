@@ -6,6 +6,7 @@ import {
   consume,
   resetConversation,
 } from "@/lib/demo-limits";
+import { parseReply } from "@/lib/lead-card";
 import { DEMO_SCENARIOS, type DemoScenario } from "@/lib/prompts";
 
 /**
@@ -13,12 +14,13 @@ import { DEMO_SCENARIOS, type DemoScenario } from "@/lib/prompts";
  *  STUB ENDPOINT — no model call yet.
  * ══════════════════════════════════════════════════════════════════════════
  *  Returns canned Arabic replies so the chat interaction can be reviewed end
- *  to end. Session handling, the 5-per-session / 20-per-hour limits, and the
- *  error contract below are final — only the reply generation is fake.
+ *  to end. Session handling, the 5-per-session / 20-per-hour limits, the lead
+ *  card parsing and the response contract below are all final — only the reply
+ *  generation is fake.
  *
  *  To finish: replace `cannedReply()` with a gpt-4o-mini call (max_tokens 300,
- *  OPENAI_API_KEY, system prompt from SYSTEM_PROMPTS[scenario]) and keep the
- *  surrounding response shapes exactly as they are.
+ *  OPENAI_API_KEY, system prompt from SYSTEM_PROMPTS[scenario]) and feed its
+ *  raw output through `parseReply` exactly as below. Nothing else changes.
  * ══════════════════════════════════════════════════════════════════════════
  */
 
@@ -28,20 +30,40 @@ export const dynamic = "force-dynamic";
 
 /* ───────────────────────────── canned replies ───────────────────────────── */
 
+/**
+ * The brokerage script walks the qualification questions and closes on the
+ * summary card, so the card can be seen rendering without a live model. The
+ * <lead> block is written exactly as the real agent is instructed to write it.
+ */
 const CANNED: Record<DemoScenario, string[]> = {
   clinic: [
-    "أكيد، عندنا موعد بكرة الساعة ٥ العصر وموعد ثاني الساعة ٧. أيهما يناسبك؟",
-    "الكشف الأول ٢٥٠ درهم ويشمل الاستشارة. التنظيف ٣٥٠ درهم.",
-    "دوامنا من ١٠ الصباح إلى ٩ مساءً، والجمعة من ٤ إلى ٩.",
-    "تمام، سجّلت لك الموعد. بنرسل لك تأكيد قبلها بيوم.",
-    "نعم، نستقبل التأمين. أرسل لي صورة البطاقة وأتأكد لك.",
+    "أكيد، الاستشارة ٣٠ دقيقة بـ ٢٠٠ درهم وتُخصم من أي علاج خلال ٣٠ يوم. عندي بكرة ٥:٣٠ العصر أو الخميس ٧ مساءً — أيهما أقرب لك؟",
+    "الهايدرافيشل من ٦٥٠ درهم وتاخذ ٤٥ دقيقة. السعر النهائي يتحدد في الاستشارة حسب حالة البشرة.",
+    "البوتوكس من ٧٠٠ درهم للمنطقة الواحدة. هذا يحتاج تقييم من الطبيبة — أحجز لك استشارة؟",
+    "دوامنا السبت إلى الخميس ١٠ص–٩م، والجمعة ٢م–٩م. أقدر أثبت لك موعد الخميس ٧ مساءً؟",
+    "تمام، بس أحتاج الاسم عشان أثبّت الحجز.",
   ],
-  realestate: [
-    "تمام، في مارينا عندنا غرفة وصالة من ٧٥ ألف سنوياً. تبي أرسل لك الصور؟",
-    "الميزانية تحدد كثير — كم تفكر تخصص للإيجار السنوي؟",
-    "عندنا وحدات جاهزة للسكن الفوري، وأخرى تسليم بعد شهرين.",
-    "أقدر أرتب لك معاينة نهاية الأسبوع. السبت يناسبك؟",
-    "العمولة ٥٪ من قيمة الإيجار السنوي، وتُدفع مرة واحدة.",
+  brokerage: [
+    "هلا فيك. أول شي — استثمار أم سكن؟",
+    "ممتاز. كم الميزانية اللي تفكر فيها؟",
+    "تمام. منطقة معينة تفضلها أم مفتوح على الخيارات؟",
+    "واضح. كم متوفر نقداً عند الحجز؟",
+    `على أساس كلامك، أنسب خيارين:
+
+• JVC — غرفة وصالة، ٩٥٠,٠٠٠ درهم، خطة ٦٠/٤٠، تسليم Q4 2028
+• دبي الجنوب — استوديو، ٦٥٠,٠٠٠ درهم، ١٪ شهرياً، تسليم Q1 2028
+
+<lead>
+الاسم: أبو محمد
+الغرض: استثمار
+الميزانية: حتى ١,٠٠٠,٠٠٠ درهم
+المنطقة: مفتوح — يفضل JVC
+الدفعة الأولى: ٢٠٠,٠٠٠ درهم نقداً
+التسليم: تسليم بعد سنتين مقبول
+الموقع: داخل الإمارات
+</lead>
+
+هذا ما سيصل للفريق في الـ CRM خلال ثوانٍ.`,
   ],
 };
 
@@ -94,15 +116,18 @@ export async function POST(request: Request) {
     }
 
     const turn = MAX_MESSAGES_PER_SESSION - decision.remaining - 1;
-    const reply = cannedReply(scenario, turn);
+    const raw = cannedReply(scenario, turn);
+
+    // Split the conversational text from the closing lead card, if any.
+    const { text, card } = parseReply(raw);
 
     appendHistory(
       sessionId,
       { role: "user", content: message },
-      { role: "assistant", content: reply },
+      { role: "assistant", content: raw },
     );
 
-    return NextResponse.json({ reply, remaining: decision.remaining });
+    return NextResponse.json({ reply: text, card, remaining: decision.remaining });
   } catch {
     // Anything unexpected becomes one neutral JSON body. A visitor must never
     // see a stack trace.

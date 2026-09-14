@@ -211,7 +211,7 @@ export const en: SiteCopy = {
     sub: "Write as if you were a customer. The agent replies the way it would to yours.",
     tabs: [
       { id: "clinic", label: "Clinic" },
-      { id: "realestate", label: "Real estate" },
+      { id: "brokerage", label: "Real estate" },
     ],
     placeholder: "Type your message…",
     send: "Send",
@@ -221,9 +221,10 @@ export const en: SiteCopy = {
     error:
       "Couldn't reply just now. Try again shortly, or message us on WhatsApp directly.",
     remaining: "Messages left in this demo: {n}",
+    leadCardTitle: "Lead summary",
     opener: {
       clinic: "هلا والله، عيادتنا في خدمتك. كيف أقدر أساعدك اليوم؟",
-      realestate: "هلا والله، تفضل — تدوّر على شقة أو فيلا؟ وفي أي منطقة؟",
+      brokerage: "هلا والله، تفضل — تدوّر على شقة أو فيلا؟ وفي أي منطقة؟",
     },
   },
 };

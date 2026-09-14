@@ -18,7 +18,7 @@ function req(method, path) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
-  const [url, width, shotDir] = process.argv.slice(2);
+  const [url, width, shotDir, tabIndex] = process.argv.slice(2);
   const target = await req("PUT", "/json/new?about:blank");
   const ws = new WebSocket(target.webSocketDebuggerUrl);
   let id = 0;
@@ -75,7 +75,8 @@ async function main() {
 
   const state = () =>
     evalJs(`(() => {
-      const bubbles = [...document.querySelectorAll('[aria-live=polite] > div')].map(d => d.textContent.trim());
+      const nodes = [...document.querySelectorAll('[aria-live=polite] > div')];
+      const bubbles = nodes.map(d => (d.querySelector('dl') ? 'LEADCARD[' + [...d.querySelectorAll('dt')].map(t => t.textContent.trim()).join(',') + ']' : d.textContent.trim()));
       const composer = document.querySelector('input[type=text], input:not([type])');
       const limitHeading = [...document.querySelectorAll('p')].map(p => p.textContent.trim())
         .find(t => t.includes('خلّنا نبني') || t.includes("Let's build you one"));
@@ -86,12 +87,12 @@ async function main() {
 
   console.log("initial:", await state());
 
-  // Tab switch must reset the transcript.
-  await evalJs(`[...document.querySelectorAll('[role=tab]')][1].click(); true`);
-  await sleep(600);
-  console.log("after tab switch:", await state());
-  await evalJs(`[...document.querySelectorAll('[role=tab]')][0].click(); true`);
-  await sleep(600);
+  const tab = tabIndex ? +tabIndex : 0;
+  if (tab !== 0) {
+    await evalJs("[...document.querySelectorAll('[role=tab]')][" + tab + "].click(); true");
+    await sleep(700);
+    console.log("after tab switch:", await state());
+  }
 
   for (let i = 1; i <= 6; i++) {
     const st = JSON.parse(await state());

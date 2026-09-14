@@ -102,7 +102,7 @@ export interface SiteCopy {
     badge: string;
     title: string;
     sub: string;
-    tabs: { id: "clinic" | "realestate"; label: string }[];
+    tabs: { id: "clinic" | "brokerage"; label: string }[];
     placeholder: string;
     send: string;
     thinking: string;
@@ -111,6 +111,8 @@ export interface SiteCopy {
     error: string;
     /** Contains the token {n}, replaced with the remaining message count. */
     remaining: string;
-    opener: Record<"clinic" | "realestate", string>;
+    opener: Record<"clinic" | "brokerage", string>;
+    /** Heading on the closing lead-summary card. */
+    leadCardTitle: string;
   };
 }

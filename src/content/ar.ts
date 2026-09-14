@@ -182,7 +182,7 @@ export const ar: SiteCopy = {
     sub: "اكتب كأنك عميل. الوكيل يرد كما سيرد على عملائك.",
     tabs: [
       { id: "clinic", label: "عيادة" },
-      { id: "realestate", label: "وساطة عقارية" },
+      { id: "brokerage", label: "وساطة عقارية" },
     ],
     placeholder: "اكتب رسالتك…",
     send: "إرسال",
@@ -191,9 +191,10 @@ export const ar: SiteCopy = {
     limitCta: { label: "تواصل على واتساب", source: "demo-limit" },
     error: "تعذّر الرد الآن. جرّب بعد قليل، أو راسلنا على واتساب مباشرة.",
     remaining: "الرسائل المتبقية في هذه التجربة: {n}",
+    leadCardTitle: "ملخّص الطلب",
     opener: {
       clinic: "هلا والله، عيادتنا في خدمتك. كيف أقدر أساعدك اليوم؟",
-      realestate: "هلا والله، تفضل — تدوّر على شقة أو فيلا؟ وفي أي منطقة؟",
+      brokerage: "هلا والله، تفضل — تدوّر على شقة أو فيلا؟ وفي أي منطقة؟",
     },
   },
 };

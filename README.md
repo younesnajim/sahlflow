@@ -42,12 +42,28 @@ use the Dockerfile builder, expose port `3000`, and set `OPENAI_API_KEY` and
 
 ## Things a person still owns
 
-- **`src/lib/prompts.ts`** — both demo system prompts are placeholders.
 - **`src/lib/meta-rates.ts`** — every rate figure is an unverified placeholder;
   check each against Meta's official pricing page. Each row carries `verified: false`.
 - **`src/app/api/demo/route.ts`** — returns canned replies. Session handling and
   the rate limits around it are final; only reply generation is fake.
 - **Video** — `VideoBlock` renders a 16:9 placeholder awaiting the real file.
+
+## The demo agents
+
+Two scenarios, `clinic` and `brokerage`, with their system prompts in
+`src/lib/prompts.ts`. The brokerage agent closes by qualifying the lead and
+summarising it — that summary renders as a **card**, not a chat bubble, because
+it is the moment the demo has to land.
+
+To make the summary recognisable the app appends `LEAD_CARD_PROTOCOL` to the
+brokerage prompt: wrap the card in `<lead>…</lead>`, one `label: value` per
+line. The prompt body itself is untouched, and the CRM sentence the agent writes
+after the block becomes the card's footer. `src/lib/lead-card.ts` does the
+parsing and degrades to plain text if a block is malformed or truncated.
+
+Note for anyone editing the transcript: its children need `shrink-0`. It is a
+flex column, so a tall child is silently compressed rather than scrolled — the
+lead card rendered at 4px instead of 296px until that was set.
 
 ## Where things live
 

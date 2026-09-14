@@ -5,12 +5,16 @@ import { WhatsAppCta } from "./ui";
 import { formatNumber } from "@/lib/format";
 import type { SiteCopy } from "@/content/types";
 import type { DemoScenario } from "@/lib/prompts";
+import type { LeadCard as LeadCardData } from "@/lib/lead-card";
 
-interface ChatMessage {
-  id: number;
-  role: "user" | "assistant";
-  content: string;
-}
+/**
+ * A turn is either ordinary chat text or the closing lead-summary card. The
+ * card is a separate kind rather than a formatted bubble because it is the
+ * moment the demo has to land — it gets its own block in the transcript.
+ */
+type ChatMessage =
+  | { id: number; kind: "text"; role: "user" | "assistant"; content: string }
+  | { id: number; kind: "card"; role: "assistant"; card: LeadCardData };
 
 type Status = "idle" | "sending" | "limited" | "error";
 
@@ -24,7 +28,7 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
   const { demo } = copy;
   const [scenario, setScenario] = useState<DemoScenario>("clinic");
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { id: 0, role: "assistant", content: demo.opener.clinic },
+    { id: 0, kind: "text", role: "assistant", content: demo.opener.clinic },
   ]);
   const [draft, setDraft] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -32,13 +36,25 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
 
   const sessionRef = useRef<string>("");
   const scrollRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const nextId = useRef(1);
 
   if (sessionRef.current === "") sessionRef.current = newSessionId();
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    if (!el) return;
+
+    const card = cardRef.current;
+    if (card) {
+      // Align the card's top edge, not the transcript's bottom: a card with
+      // long values can be taller than the viewport, and the header is the
+      // part that must never be cut off.
+      el.scrollTop +=
+        card.getBoundingClientRect().top - el.getBoundingClientRect().top - 12;
+      return;
+    }
+    el.scrollTop = el.scrollHeight;
   }, [messages, status]);
 
   /** Switching tabs starts the conversation over. */
@@ -47,7 +63,9 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
       if (next === scenario) return;
       setScenario(next);
       nextId.current = 1;
-      setMessages([{ id: 0, role: "assistant", content: demo.opener[next] }]);
+      setMessages([
+        { id: 0, kind: "text", role: "assistant", content: demo.opener[next] },
+      ]);
       setDraft("");
       setStatus("idle");
       setRemaining(null);
@@ -74,7 +92,7 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
     setStatus("sending");
     setMessages((prev) => [
       ...prev,
-      { id: nextId.current++, role: "user", content: text },
+      { id: nextId.current++, kind: "text", role: "user", content: text },
     ]);
 
     try {
@@ -91,6 +109,7 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
       const data: unknown = await res.json().catch(() => null);
       const payload = (data ?? {}) as {
         reply?: string;
+        card?: LeadCardData | null;
         remaining?: number;
         limited?: boolean;
       };
@@ -101,15 +120,31 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
         return;
       }
 
-      if (!res.ok || typeof payload.reply !== "string") {
+      const replyText = typeof payload.reply === "string" ? payload.reply.trim() : "";
+      const card = payload.card ?? null;
+
+      // A turn may be text, a card, or text followed by a card — but never
+      // nothing at all.
+      if (!res.ok || (!replyText && !card)) {
         setStatus("error");
         return;
       }
 
-      setMessages((prev) => [
-        ...prev,
-        { id: nextId.current++, role: "assistant", content: payload.reply! },
-      ]);
+      setMessages((prev) => {
+        const next = [...prev];
+        if (replyText) {
+          next.push({
+            id: nextId.current++,
+            kind: "text",
+            role: "assistant",
+            content: replyText,
+          });
+        }
+        if (card) {
+          next.push({ id: nextId.current++, kind: "card", role: "assistant", card });
+        }
+        return next;
+      });
 
       if (typeof payload.remaining === "number") {
         setRemaining(payload.remaining);
@@ -166,30 +201,39 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
       {/* transcript --------------------------------------------------- */}
       <div
         ref={scrollRef}
-        className="flex h-64 flex-col gap-2.5 overflow-y-auto bg-surface-muted px-4 py-4 sm:h-80"
+        className="flex h-88 flex-col gap-2.5 overflow-y-auto bg-surface-muted px-4 py-4"
         aria-live="polite"
       >
-        {messages.map((m) => (
-          <div
-            key={m.id}
-            className={`max-w-[85%] rounded-2xl px-3.5 py-2 text-body ${
-              m.role === "user"
-                ? "self-end bg-primary text-on-primary"
-                : "self-start bg-surface text-ink shadow-sm"
-            }`}
-          >
-            {m.content}
-          </div>
-        ))}
+        {messages.map((m, i) =>
+          m.kind === "card" ? (
+            <LeadCardBlock
+              key={m.id}
+              card={m.card}
+              title={demo.leadCardTitle}
+              ref={i === messages.length - 1 ? cardRef : undefined}
+            />
+          ) : (
+            <div
+              key={m.id}
+              className={`max-w-[85%] shrink-0 rounded-2xl px-3.5 py-2 text-body whitespace-pre-line ${
+                m.role === "user"
+                  ? "self-end bg-primary text-on-primary"
+                  : "self-start bg-surface text-ink shadow-sm"
+              }`}
+            >
+              {m.content}
+            </div>
+          ),
+        )}
 
         {status === "sending" && (
-          <div className="self-start rounded-2xl bg-surface px-3.5 py-2 text-body text-muted shadow-sm">
+          <div className="shrink-0 self-start rounded-2xl bg-surface px-3.5 py-2 text-body text-muted shadow-sm">
             {demo.thinking}
           </div>
         )}
 
         {status === "error" && (
-          <div className="self-start rounded-2xl bg-amber/15 px-3.5 py-2 text-body text-ink">
+          <div className="shrink-0 self-start rounded-2xl bg-amber/15 px-3.5 py-2 text-body text-ink">
             {demo.error}
           </div>
         )}
@@ -245,3 +289,68 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
 }
 
 export default DemoWidget;
+
+/* ───────────────────────── closing lead-summary card ───────────────────── */
+
+/**
+ * Deliberately not a chat bubble: full width, squared to the transcript, with
+ * a labelled header and a footer strip. This is the artefact a broker is being
+ * shown — it should read like a record, not like the agent talking.
+ */
+function LeadCardBlock({
+  card,
+  title,
+  ref,
+}: {
+  card: LeadCardData;
+  title: string;
+  ref?: React.Ref<HTMLDivElement>;
+}) {
+  return (
+    <div
+      ref={ref}
+      className="w-full shrink-0 overflow-hidden rounded-card border-2 border-primary bg-surface shadow-sm"
+    >
+      <div className="flex items-center gap-2 border-b border-line bg-primary px-4 py-2.5 text-on-primary">
+        <CardGlyph />
+        <p className="text-label font-extrabold">{title}</p>
+      </div>
+
+      {/* Two columns, label stacked over value: seven fields land in four
+          rows, so the whole card is visible inside the transcript without
+          scrolling — which is the entire point of it being a card. */}
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5 px-4 py-3">
+        {card.rows.map((row) => (
+          <div key={row.label} className="min-w-0">
+            <dt className="truncate text-label text-muted">{row.label}</dt>
+            <dd className="text-body leading-snug font-bold">{row.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {card.footer && (
+        <p className="border-t border-line bg-tint/40 px-4 py-2.5 text-label font-bold text-on-tint">
+          {card.footer}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function CardGlyph() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="size-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="2.5" y="4" width="15" height="12" rx="2" />
+      <path d="M6 8.5h3M6 12h6" />
+    </svg>
+  );
+}
