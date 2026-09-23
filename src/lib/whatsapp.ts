@@ -16,6 +16,7 @@ export type LeadSource =
   | "how-it-works"
   | "pricing"
   | "faq"
+  | "fit"
   | "demo-limit"
   | "final-cta"
   | "footer";
@@ -27,11 +28,7 @@ const OPENING: Record<Locale, string> = {
   en: "Hi, I came from the Sahl Flow website and I'd like to see how Sahl Flow could work for my business.",
 };
 
-/**
- * Both locales open the same Arabic message on purpose: the number is read in
- * Arabic, and one consistent opening line makes website leads instantly
- * recognisable. The marker still records which page the visitor came from.
- */
+/** Build a locale-aware WhatsApp opening message with a source marker. */
 export function whatsappLink(source: LeadSource, locale: Locale = "ar"): string {
   const text = `${OPENING[locale]}\n\n[web:${locale}:${source}]`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
