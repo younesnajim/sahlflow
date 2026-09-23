@@ -11,41 +11,37 @@ export function Hero({ copy }: { copy: SiteCopy }) {
   const { hero } = copy;
   const ar = copy.locale === "ar";
   const flow = ar
-    ? [["01", "رسالة جديدة"], ["02", "تم التأهيل"], ["03", "فرصة بيع"], ["04", "متابعة تلقائية"]]
-    : [["01", "New message"], ["02", "Qualified"], ["03", "Sales opportunity"], ["04", "Follow-up"]];
+    ? [["01", "يفهم الرسالة"], ["02", "يؤهل العميل"], ["03", "يسجل في CRM"], ["04", "ينشئ فرصة"], ["05", "يتابع أو يحوّل للفريق"]]
+    : [["01", "Understand"], ["02", "Qualify"], ["03", "Update CRM"], ["04", "Create opportunity"], ["05", "Follow up / handoff"]];
+  const outcomes = ar
+    ? [["12", "قدرة مترابطة"], ["7", "مراحل من الرسالة للفرصة"], ["1", "نظام للمحادثة والـCRM والمتابعة"]]
+    : [["12", "connected capabilities"], ["7", "stages from message to opportunity"], ["1", "system for chat, CRM & follow-up"]];
   return (
-    <section id="top" className="scroll-target overflow-hidden bg-surface py-12 sm:py-18">
+    <section id="top" className="scroll-target overflow-hidden bg-surface py-12 sm:py-20">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
           <div>
             <p className="mb-4 inline-flex rounded-full border border-line bg-surface-muted px-4 py-2 text-label font-bold text-primary">
-              {ar ? "نظام مبيعات واتساب — ننفّذه ونشغّله عنك" : "Done-for-you WhatsApp sales system"}
+              {ar ? "Done-for-you · WhatsApp + AI + CRM + Automation" : "Done-for-you · WhatsApp + AI + CRM + Automation"}
             </p>
             <h1 className="text-h1 font-extrabold text-balance">{hero.h1}</h1>
-            <p className="mt-5 max-w-prose text-lead text-muted">{hero.sub}</p>
+            <p className="mt-5 max-w-2xl text-lead text-muted">{hero.sub}</p>
+            <p className="mt-4 max-w-2xl text-body font-bold">{ar ? "بدل أن يضيع وقت فريقك في الرد والفرز والتسجيل والتذكّر، يصل إليه العميل ومعه البيانات والسياق والخطوة التالية." : "Instead of spending team time answering, sorting, recording and remembering, the lead reaches your team with data, context and a clear next action."}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">
-                {hero.cta.label}
-              </a>
-              <a href="#system" className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-body font-bold text-primary transition-colors hover:bg-surface-sunken">
-                {ar ? "شاهد كيف يعمل" : "See how it works"}
-              </a>
+              <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">{hero.cta.label}</a>
+              <a href="#demo" className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-body font-bold text-primary transition-colors hover:bg-surface-sunken">{ar ? "جرّب المحادثة مباشرة" : "Try the live conversation"}</a>
             </div>
-            <ul className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-label text-muted">
-              {hero.trust.map((item, i) => <li key={item} className="flex items-center gap-3"><span>{item}</span>{i < hero.trust.length - 1 && <span aria-hidden="true">·</span>}</li>)}
-            </ul>
+            <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
+              {outcomes.map(([n,l])=><div key={l} className="rounded-card border border-line bg-surface-muted p-3"><p className="numeric text-h3 font-extrabold text-primary">{n}</p><p className="mt-1 text-label font-medium text-muted">{l}</p></div>)}
+            </div>
           </div>
           <div className="relative rounded-card border border-line bg-surface-muted p-5 shadow-sm sm:p-7">
-            <div className="absolute -top-3 end-5 rounded-full bg-primary px-3 py-1 text-label font-bold text-on-primary">{ar ? "يعمل مع فريقك" : "Works with your team"}</div>
-            <p className="text-label font-bold text-muted">{ar ? "رحلة العميل داخل Sahl Flow" : "A lead inside Sahl Flow"}</p>
+            <div className="absolute -top-3 end-5 rounded-full bg-primary px-3 py-1 text-label font-bold text-on-primary">{ar ? "من رسالة إلى عملية مبيعات" : "From message to sales process"}</div>
+            <p className="text-label font-bold text-muted">{ar ? "ما يحدث خلف محادثة واحدة" : "What happens behind one conversation"}</p>
             <div className="mt-5 space-y-3">
-              {flow.map(([n,label],i) => <div key={label} className="flex items-center gap-3 rounded-card border border-line bg-surface p-4">
-                <span className="numeric flex size-8 shrink-0 items-center justify-center rounded-full bg-tint text-label font-extrabold text-on-tint">{n}</span>
-                <span className="text-body font-bold">{label}</span>
-                {i < flow.length - 1 && <span className="ms-auto text-primary" aria-hidden="true">✓</span>}
-              </div>)}
+              {flow.map(([n,label]) => <div key={label} className="flex items-center gap-3 rounded-card border border-line bg-surface p-4"><span className="numeric flex size-8 shrink-0 items-center justify-center rounded-full bg-tint text-label font-extrabold text-on-tint">{n}</span><span className="text-body font-bold">{label}</span><span className="ms-auto text-primary" aria-hidden="true">✓</span></div>)}
             </div>
-            <p className="mt-5 rounded-card bg-ink px-4 py-3 text-body font-bold text-on-ink">{ar ? "النتيجة: فريقك يرى من هو العميل، ماذا يريد، وما الخطوة التالية." : "Result: your team sees who the lead is, what they want, and what happens next."}</p>
+            <p className="mt-5 rounded-card bg-ink px-4 py-3 text-body font-bold text-on-ink">{ar ? "فريقك لا يبدأ من الصفر: يرى من هو العميل، ماذا يريد، أين وصل، وما المطلوب الآن." : "Your team doesn't start from zero: they see who the lead is, what they want, where they stand and what happens next."}</p>
           </div>
         </div>
       </Container>
