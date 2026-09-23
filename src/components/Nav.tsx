@@ -15,7 +15,7 @@ export function Nav({ copy }: { copy: SiteCopy }) {
   const { nav } = copy;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-surface/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line/80 bg-surface/80 shadow-[0_8px_30px_rgba(14,26,20,0.04)] backdrop-blur-xl">
       <Container>
         <div className="flex h-16 items-center justify-between gap-3">
           <Link
@@ -46,7 +46,7 @@ export function Nav({ copy }: { copy: SiteCopy }) {
             >
               {nav.switchTo.label}
             </Link>
-            <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-body font-bold text-on-primary whitespace-nowrap transition-colors hover:bg-primary-deep">
+            <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-body font-bold text-on-primary shadow-sm whitespace-nowrap transition-all hover:-translate-y-0.5 hover:bg-primary-deep hover:shadow-md">
               {nav.cta.label}
             </a>
           </div>
