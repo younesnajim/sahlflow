@@ -1,5 +1,5 @@
 import { Nav } from "./Nav";
-import { BusinessImpact, Capabilities, CostOfManualWork, CrmAutomation, CustomAutomation, Faq, FitVsNotFit, FinalCta, Footer, Hero, HowItWorks, LiveDemo, Pricing, Qualification, SalesJourney, TrustAndData, UseCases } from "./sections";
+import { BusinessImpact, Capabilities, CostOfManualWork, CrmAutomation, CustomAutomation, Faq, FitVsNotFit, FinalCta, Footer, Hero, HowItWorks, LiveDemo, Qualification, SalesJourney, TrustAndData, UseCases } from "./sections";
 import type { SiteCopy } from "@/content/types";
 
 export function LandingPage({ copy }: { copy: SiteCopy }) {
