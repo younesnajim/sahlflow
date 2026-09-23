@@ -4,7 +4,7 @@ export const en: SiteCopy = {
   locale: "en", dir: "ltr",
   meta: { title: "Sahl Flow — a done-for-you WhatsApp sales system", description: "Turn WhatsApp conversations into qualified sales opportunities. We build, connect, test and run the system for you." },
   nav: {
-    links: [{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#pricing",label:"Pricing"}],
+    links: [{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#fit",label:"Is it a fit?"}],
     cta:{label:"Try Sahl Flow",source:"nav"}, switchTo:{href:"/ar",label:"العربية",hrefLang:"ar"}, skipToContent:"Skip to content"
   },
   hero:{
@@ -54,7 +54,7 @@ export const en: SiteCopy = {
       {q:"Can you build automation outside WhatsApp?",a:"Yes. Custom Automation covers projects that connect systems, APIs, databases or multi-stage internal workflows and is priced by scope."}
     ]
   },
-  finalCta:{line:"Your customer messages already exist. Give every one a clear sales path.",cta:{label:"Discuss your system",source:"final-cta"}},
+  finalCta:{line:"Every customer message can be an opportunity. The key is not losing it between reply and follow-up.",cta:{label:"Discuss your system",source:"final-cta"}},
   footer:{
     tagline:"A done-for-you WhatsApp sales system.",
     links:[{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#pricing",label:"Pricing"}],
