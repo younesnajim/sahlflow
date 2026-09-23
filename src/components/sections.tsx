@@ -9,41 +9,43 @@ import type { SiteCopy } from "@/content/types";
 
 export function Hero({ copy }: { copy: SiteCopy }) {
   const { hero } = copy;
+  const ar = copy.locale === "ar";
+  const flow = ar
+    ? [["01", "رسالة جديدة"], ["02", "تم التأهيل"], ["03", "فرصة بيع"], ["04", "متابعة تلقائية"]]
+    : [["01", "New message"], ["02", "Qualified"], ["03", "Sales opportunity"], ["04", "Follow-up"]];
   return (
-    <section id="top" className="scroll-target bg-surface py-12 sm:py-16">
+    <section id="top" className="scroll-target overflow-hidden bg-surface py-12 sm:py-18">
       <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
           <div>
+            <p className="mb-4 inline-flex rounded-full border border-line bg-surface-muted px-4 py-2 text-label font-bold text-primary">
+              {ar ? "نظام مبيعات واتساب — ننفّذه ونشغّله عنك" : "Done-for-you WhatsApp sales system"}
+            </p>
             <h1 className="text-h1 font-extrabold text-balance">{hero.h1}</h1>
             <p className="mt-5 max-w-prose text-lead text-muted">{hero.sub}</p>
-
-            <div className="mt-7">
-              <WhatsAppCta
-                label={hero.cta.label}
-                source={hero.cta.source}
-                locale={copy.locale}
-              />
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">
+                {hero.cta.label}
+              </a>
+              <a href="#system" className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-body font-bold text-primary transition-colors hover:bg-surface-sunken">
+                {ar ? "شاهد كيف يعمل" : "See how it works"}
+              </a>
             </div>
-
             <ul className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-label text-muted">
-              {/* Separator trails its item so a wrapped line never starts
-                  with a stray dot. */}
-              {hero.trust.map((item, i) => (
-                <li key={item} className="flex items-center gap-3">
-                  <span>{item}</span>
-                  {i < hero.trust.length - 1 && <span aria-hidden="true">·</span>}
-                </li>
-              ))}
+              {hero.trust.map((item, i) => <li key={item} className="flex items-center gap-3"><span>{item}</span>{i < hero.trust.length - 1 && <span aria-hidden="true">·</span>}</li>)}
             </ul>
           </div>
-
-          <div>
-            {copy.demo.languageNote && (
-              <p className="mb-2.5 text-label font-medium text-muted">
-                {copy.demo.languageNote}
-              </p>
-            )}
-            <DemoWidget copy={copy} />
+          <div className="relative rounded-card border border-line bg-surface-muted p-5 shadow-sm sm:p-7">
+            <div className="absolute -top-3 end-5 rounded-full bg-primary px-3 py-1 text-label font-bold text-on-primary">{ar ? "يعمل مع فريقك" : "Works with your team"}</div>
+            <p className="text-label font-bold text-muted">{ar ? "رحلة العميل داخل Sahl Flow" : "A lead inside Sahl Flow"}</p>
+            <div className="mt-5 space-y-3">
+              {flow.map(([n,label],i) => <div key={label} className="flex items-center gap-3 rounded-card border border-line bg-surface p-4">
+                <span className="numeric flex size-8 shrink-0 items-center justify-center rounded-full bg-tint text-label font-extrabold text-on-tint">{n}</span>
+                <span className="text-body font-bold">{label}</span>
+                {i < flow.length - 1 && <span className="ms-auto text-primary" aria-hidden="true">✓</span>}
+              </div>)}
+            </div>
+            <p className="mt-5 rounded-card bg-ink px-4 py-3 text-body font-bold text-on-ink">{ar ? "النتيجة: فريقك يرى من هو العميل، ماذا يريد، وما الخطوة التالية." : "Result: your team sees who the lead is, what they want, and what happens next."}</p>
           </div>
         </div>
       </Container>
@@ -72,7 +74,24 @@ export function SalesJourney({ copy }: { copy: SiteCopy }) {
           </div>
         ))}
       </div>
-      <div className="mt-8"><DemoWidget copy={copy} /></div>
+      
+    </Section>
+  );
+}
+
+export function LiveDemo({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  return (
+    <Section id="demo">
+      <div className="mx-auto max-w-4xl text-center">
+        <Eyebrow>{ar ? "جرّبه بنفسك" : "Try it yourself"}</Eyebrow>
+        <SectionTitle>{ar ? "لا نريدك أن تصدقنا — اختبر المحادثة" : "Don't take our word for it — test the conversation"}</SectionTitle>
+        <p className="mx-auto mt-4 max-w-2xl text-body text-muted">{ar ? "اختر عيادة أو عقارات، واكتب كأنك عميل حقيقي. في سيناريو العقارات سترى كيف تتحول الإجابات إلى بطاقة Lead واضحة للفريق." : "Choose a clinic or real estate scenario and write like a real customer. In real estate, watch the answers become a structured lead card for the team."}</p>
+      </div>
+      <div className="mx-auto mt-8 max-w-3xl">
+        {copy.demo.languageNote && <p className="mb-2.5 text-label font-medium text-muted">{copy.demo.languageNote}</p>}
+        <DemoWidget copy={copy} />
+      </div>
     </Section>
   );
 }
