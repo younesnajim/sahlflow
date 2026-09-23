@@ -559,6 +559,48 @@ export function CustomAutomation({ copy }: { copy: SiteCopy }) {
   );
 }
 
+
+/* ──────────────────────────── deliverables ──────────────────────────── */
+
+export function Deliverables({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const groups = ar ? [
+    ["المبيعات","Inbox مشترك","Contacts + Custom Fields + Tags","Pipeline + Opportunities","Human Handoff"],
+    ["الذكاء والأتمتة","AI Agent + Knowledge Base","Arabic Voice Notes","Qualification Logic","Follow-up + Flows"],
+    ["الإدارة والقياس","Dashboard","نشاط المحادثات والفرص","Broadcasts","تحديث وتحسين مستمر"],
+  ] : [
+    ["Sales","Shared inbox","Contacts + custom fields + tags","Pipeline + opportunities","Human handoff"],
+    ["AI & automation","AI agent + knowledge base","Arabic voice notes","Qualification logic","Follow-up + flows"],
+    ["Management & visibility","Dashboard","Conversation & opportunity activity","Broadcasts","Ongoing tuning"],
+  ];
+  return (
+    <Section id="deliverables" tone="muted">
+      <Eyebrow>{ar ? "ماذا تستلم فعلياً؟" : "What do you actually get?"}</Eyebrow>
+      <SectionTitle>{ar ? "ليس ملف إعدادات ولا Chatbot — بيئة عمل يستخدمها فريقك" : "Not a configuration file or chatbot — a workspace your team can use"}</SectionTitle>
+      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+        {groups.map(([title,...items])=><article key={title} className="rounded-card border border-line bg-surface p-6"><h3 className="text-h3 font-extrabold text-primary">{title}</h3><ul className="mt-4 space-y-3">{items.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></article>)}
+      </div>
+      <p className="mt-6 text-body font-bold">{ar ? "نضبط هذه المكونات على طريقة عمل شركتك، ثم نختبر الرحلة معك قبل الإطلاق." : "We configure these components around how your company works, then test the journey with you before launch."}</p>
+    </Section>
+  );
+}
+
+export function FitVsNotFit({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const yes = ar ? ["لديك حجم محادثات واتساب متكرر","تحتاج تأهيل العملاء قبل وصولهم للمبيعات","تريد CRM وPipeline بدل بقاء البيانات داخل الشات","تحتاج Follow-up منظم لا يعتمد على ذاكرة الموظف","تريد فريقاً ينفذ النظام بدلاً من بناء الأتمتة بنفسك"] : ["You have recurring WhatsApp lead volume","You need qualification before sales handoff","You want CRM and pipeline instead of data buried in chat","You need structured follow-up instead of staff memory","You want a team to implement the system for you"];
+  const no = ar ? ["تبحث فقط عن أرخص Chatbot للرد على FAQ","لديك عدد قليل جداً من المحادثات ولا توجد عملية بيع واضحة","تريد أداة DIY وتفضّل بناء كل شيء بنفسك","تريد إرسال رسائل جماعية فقط بدون CRM أو تأهيل أو متابعة"] : ["You only want the cheapest FAQ chatbot","You have very little message volume and no clear sales process","You want a DIY tool and prefer building everything yourself","You only need bulk messaging without CRM, qualification or follow-up"];
+  return (
+    <Section id="who">
+      <Eyebrow>{ar ? "قبل أن تدفع" : "Before you pay"}</Eyebrow>
+      <SectionTitle>{ar ? "Sahl Flow مناسب لشركات معيّنة — وليس للجميع" : "Sahl Flow is built for a specific kind of business — not everyone"}</SectionTitle>
+      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        <article className="rounded-card border-2 border-primary bg-surface p-6"><h3 className="text-h3 font-extrabold text-primary">{ar ? "غالباً مناسب لك إذا" : "Likely a fit if"}</h3><ul className="mt-4 space-y-3">{yes.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></article>
+        <article className="rounded-card border border-line bg-surface-muted p-6"><h3 className="text-h3 font-extrabold">{ar ? "غالباً ليس مناسباً إذا" : "Probably not a fit if"}</h3><ul className="mt-4 space-y-3">{no.map(x=><li key={x} className="text-body text-muted">— {x}</li>)}</ul></article>
+      </div>
+    </Section>
+  );
+}
+
 /* ───────────────────────── qualification ───────────────────────── */
 
 export function Qualification({ copy }: { copy: SiteCopy }) {
