@@ -10,7 +10,8 @@ export const ar: SiteCopy = {
   nav: {
     links: [
       { href: "#system", label: "كيف يعمل" },
-      { href: "#done-for-you", label: "ماذا ننفّذ" },
+      { href: "#capabilities", label: "القدرات" },
+      { href: "#crm", label: "CRM والأتمتة" },
       { href: "#pricing", label: "الأسعار" },
       { href: "#faq", label: "أسئلة" },
     ],
