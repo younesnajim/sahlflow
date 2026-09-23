@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { Container, WhatsAppCta } from "./ui";
+import { Container } from "./ui";
 import type { SiteCopy } from "@/content/types";
 
 /**
@@ -46,12 +46,9 @@ export function Nav({ copy }: { copy: SiteCopy }) {
             >
               {nav.switchTo.label}
             </Link>
-            <WhatsAppCta
-              label={nav.cta.label}
-              source={nav.cta.source}
-              locale={copy.locale}
-              className="px-4 py-2"
-            />
+            <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-body font-bold text-on-primary whitespace-nowrap transition-colors hover:bg-primary-deep">
+              {nav.cta.label}
+            </a>
           </div>
         </div>
 
