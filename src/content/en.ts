@@ -1,236 +1,70 @@
 import type { SiteCopy } from "./types";
 
-/**
- * The English page is its own page, not a translation layer over the Arabic
- * one. The pitch is the same; the wording is written for an English reader.
- */
 export const en: SiteCopy = {
-  locale: "en",
-  dir: "ltr",
-
-  meta: {
-    title:
-      "Sahl Flow — a WhatsApp agent that answers your customers in the UAE and the Gulf",
-    description:
-      "We connect your number, train the agent on your services and prices, test it on your real messages, and hand it over working. Official WhatsApp from Meta.",
-  },
-
+  locale: "en", dir: "ltr",
+  meta: { title: "Sahl Flow — a done-for-you WhatsApp sales system", description: "Turn WhatsApp conversations into qualified sales opportunities. We build, connect, test and run the system for you." },
   nav: {
-    links: [
-      { href: "#how", label: "How it works" },
-      { href: "#pricing", label: "Pricing" },
-      { href: "#faq", label: "FAQ" },
-      { href: "#contact", label: "Contact" },
+    links: [{href:"#system",label:"How it works"},{href:"#done-for-you",label:"What we build"},{href:"#pricing",label:"Pricing"},{href:"#faq",label:"FAQ"}],
+    cta:{label:"Try Sahl Flow",source:"nav"}, switchTo:{href:"/ar",label:"العربية",hrefLang:"ar"}, skipToContent:"Skip to content"
+  },
+  hero:{
+    h1:"Turn WhatsApp conversations into sales opportunities — automatically",
+    sub:"Sahl Flow receives your leads, understands text and voice notes, qualifies them, organizes customer data and opportunities, and follows up — while we build, configure and run the system for you.",
+    cta:{label:"Try Sahl Flow for your business",source:"hero"},
+    trust:["Done for you","Built for Arabic","Ongoing management & improvement"]
+  },
+  video:{eyebrow:"From message to opportunity",title:"A fast reply is only the beginning",placeholder:"The Sahl Flow customer journey will appear here"},
+  problem:{title:"The problem isn't only response speed",lines:["A lead gets a reply — but nobody determines whether they're serious.","The chat ends — and the customer's context and intent disappear with it.","They don't buy today — and there is no structured follow-up to bring them back."]},
+  whatYouGet:{
+    eyebrow:"A sales system, not just a bot",title:"We do the work — we don't hand you a tool",
+    intro:"We don't give you a dashboard and leave you to build everything. We learn how your company sells and configure the system around that journey.",
+    items:["Connect WhatsApp and configure the agent around your services, prices and rules.","Build qualification questions, fields and tags for your business.","Organize contacts, opportunities and pipeline stages so your team knows what is happening.","Build follow-up and human handoff, then test the journey before launch.","Understand Arabic voice notes and feed them into the same customer journey.","Monitor, update and improve the existing system after launch."],
+    closer:"You explain how you sell. We turn it into a working system for your team."
+  },
+  howItWorks:{
+    eyebrow:"Implementation",title:"From understanding your business to a working system",
+    steps:[
+      {day:"1",title:"Map the sales journey",body:"We review your services, FAQs, qualification process, team and human handoff points."},
+      {day:"2",title:"Build the system",body:"We configure knowledge, agent behavior, fields, qualification, pipeline and follow-up for your business.",highlight:true},
+      {day:"3",title:"Connect and test",body:"We test real scenarios and tune responses and handoffs before customers use it."},
+      {day:"4",title:"Run and improve",body:"After launch we monitor the system, update knowledge and improve the existing sales journey."}
     ],
-    cta: { label: "Get started", source: "nav" },
-    switchTo: { href: "/ar", label: "العربية", hrefLang: "ar" },
-    skipToContent: "Skip to content",
+    guarantee:"You don't need to learn another system to get started — we implement it with you.",
+    cta:{label:"Discuss your business",source:"how-it-works"}
   },
-
-  hero: {
-    h1: "A WhatsApp agent that answers your customers in the UAE and the Gulf — in their dialect, around the clock",
-    sub: "Every message left unanswered for an hour is a customer who booked somewhere else. We build an agent that replies instantly, handles questions about services and prices, and books appointments — and we hand it to you already working.",
-    cta: { label: "Book a short call", source: "hero" },
-    trust: [
-      "Official WhatsApp from Meta",
-      "Understands Gulf dialect",
-      "Live within a week",
-    ],
+  costs:{eyebrow:"External costs",title:"WhatsApp and third-party fees are separate",disclaimer:"Meta or other provider fees may apply depending on usage. We keep those costs separate from Sahl Flow implementation and management.",columns:{category:"Service",perMessage:"Fee",aed:"Note"},rows:[],freeTier:"",freeLabel:"",footnote:"We explain any applicable external costs before launch."},
+  pricing:{
+    eyebrow:"Investment",headline:"AED 6,500 implementation & launch + AED 2,000/month",
+    founderLabel:"A system built for your business — not a software subscription",
+    standard:"One-time implementation, followed by ongoing operation, management and improvement.",
+    includedTitle:"Implementation & launch includes",
+    included:["WhatsApp connection and workspace setup","Agent behavior and knowledge base","Qualification logic, fields and tags","Contacts, pipeline and opportunities","Follow-up and human handoff","Testing, tuning, training and launch"],
+    passthrough:"Meta and applicable third-party fees are separate. New integrations or automation projects outside the agreed scope are quoted separately.",
+    lockIn:"Improving the existing system is part of monthly management; a new system or integration is separately scoped.",
+    cta:{label:"Try Sahl Flow for your business",source:"pricing"}
   },
-
-  video: {
-    eyebrow: "Watch",
-    title: "Two minutes, start to finish",
-    placeholder: "Video coming soon",
+  faq:{
+    eyebrow:"FAQ",title:"Before we start",
+    items:[
+      {q:"Is Sahl Flow just a WhatsApp reply bot?",a:"No. Replying is one part. The goal is to turn a conversation into structured data, qualification, a sales opportunity, follow-up and human handoff when needed."},
+      {q:"Do I need to learn AI and automation setup?",a:"No. That is the point of the service: we design, connect, test and implement the system for you, then manage and improve it."},
+      {q:"Do I own my business data?",a:"Yes. Your business data remains yours and your company's data is isolated from other accounts. We explain the applicable access and export process during implementation."},
+      {q:"Does it understand Arabic and voice notes?",a:"It is built for Arabic and can transcribe Arabic voice notes so they enter the same understanding, qualification and automation journey."},
+      {q:"What does the AED 2,000 monthly fee cover?",a:"Operation, monitoring, support, knowledge updates and improvements to the existing replies, qualification and follow-up. New systems or integrations are scoped separately."},
+      {q:"Can you build automation outside WhatsApp?",a:"Yes. Custom Automation covers projects that connect systems, APIs, databases or multi-stage internal workflows and is priced by scope."}
+    ]
   },
-
-  problem: {
-    title: "The problem is simple",
-    lines: [
-      "Customers message after hours — and nobody replies.",
-      "The same ten questions every day, answered by hand.",
-      "A reply two hours later arrives too late. They already booked elsewhere.",
-    ],
+  finalCta:{line:"Your customer messages already exist. Give every one a clear sales path.",cta:{label:"Discuss your system",source:"final-cta"}},
+  footer:{
+    tagline:"A done-for-you WhatsApp sales system.",
+    links:[{href:"#system",label:"How it works"},{href:"#done-for-you",label:"What we build"},{href:"#pricing",label:"Pricing"},{href:"#faq",label:"FAQ"}],
+    whatsappLabel:"Have a question? WhatsApp",legal:"WhatsApp is a trademark of Meta. Sahl Flow is not affiliated with Meta.",rights:"All rights reserved."
   },
-
-  whatYouGet: {
-    eyebrow: "What you get",
-    title: "We do the work — we don't hand you a tool",
-    intro:
-      "You won't be handed a dashboard and left to figure it out. We set the whole thing up:",
-    items: [
-      "We connect your business WhatsApp number through Meta's official API.",
-      "We train the agent on your services, your prices, and how you talk to customers.",
-      "We test it on your real messages — not on examples we made up.",
-      "We hand it over working, and the monthly upkeep stays with us.",
-    ],
-    closer:
-      "Your only job: give us your services and prices, and answer our questions. We handle the rest.",
-  },
-
-  howItWorks: {
-    eyebrow: "How it works",
-    title: "From first call to a working agent — inside a week",
-    steps: [
-      {
-        day: "Day 1",
-        title: "A short call",
-        body: "We ask about your business, your services, and the questions you get most. Twenty minutes is enough.",
-      },
-      {
-        day: "Day 2",
-        title: "A trial agent on your own data",
-        body: "We build you a trial version trained on your services and your prices. Message it as much as you like.",
-        badge: "100% free",
-        highlight: true,
-      },
-      {
-        day: "Days 3–7",
-        title: "Connection and testing",
-        body: "We connect your number through official WhatsApp, test the agent against real customer messages, and tune its replies.",
-      },
-      {
-        day: "Ongoing",
-        title: "Monthly upkeep",
-        body: "We review replies every month, update prices and services, and improve whatever needs improving.",
-      },
-    ],
-    guarantee: "If the trial agent doesn't convince you, you pay nothing.",
-    cta: { label: "Start with the free trial agent", source: "how-it-works" },
-  },
-
-  costs: {
-    eyebrow: "Message costs",
-    title: "WhatsApp fees go to Meta — not to us",
-    disclaimer:
-      "These are Meta's UAE rates, billed to you by Meta. We pass them through at cost with nothing added.",
-    columns: { category: "Message type", perMessage: "USD", aed: "AED" },
-    rows: [
-      {
-        category: "marketing",
-        label: "Marketing",
-        note: "Offers and campaigns you send",
-      },
-      {
-        category: "utility",
-        label: "Utility",
-        note: "Booking confirmations, reminders",
-      },
-      {
-        category: "authentication",
-        label: "Authentication",
-        note: "One-time passcodes",
-      },
-      {
-        category: "service",
-        label: "Service",
-        note: "When the customer starts the chat",
-      },
-    ],
-    freeTier: "The first 1,000 service messages per number each month are free.",
-    freeLabel: "Free",
-    footnote:
-      "These follow Meta's pricing as it applies from 1 October 2026. AED figures are an approximate conversion from USD. Check Meta's official pricing page for current rates.",
-  },
-
-  pricing: {
-    eyebrow: "Pricing",
-    headline: "AED 6,500 setup + AED 2,000 per month",
-    founderLabel:
-      "For the first three clients — in exchange for a case study and a referral",
-    standard:
-      "Standard price AED 9,000 + AED 2,500 per month · Final price is set after a short call, based on the size of the business",
-    includedTitle: "Included",
-    included: [
-      "Connecting your number",
-      "Training the agent on your services and prices",
-      "Testing on your real messages",
-      "Handover, already working",
-      "Monthly upkeep",
-    ],
-    passthrough:
-      "Meta's WhatsApp fees are passed through at cost — with nothing added",
-    lockIn:
-      "Founding pricing is locked for 12 months from the start of your subscription.",
-    cta: { label: "Claim one of the three places", source: "pricing" },
-  },
-
-  faq: {
-    eyebrow: "FAQ",
-    title: "Questions worth asking before you sign",
-    items: [
-      {
-        q: "Is the data mine?",
-        a: "Yes. The WhatsApp number is in your name, the Meta account is in your name, and the conversations are yours. We work inside your account, and if we stop working together everything stays with you.",
-      },
-      {
-        q: "What if I cancel?",
-        a: "The monthly subscription has no long lock-in — cancel whenever with a month's notice. Your number and account remain yours, and we hand over the agent's configuration on the way out.",
-      },
-      {
-        q: "What will messages actually cost me?",
-        a: "It depends on how many you send and of what kind. Service replies — the bulk of it — are free for the first 1,000 each month. The table above shows Meta's rates, and they are paid to Meta directly.",
-      },
-      {
-        q: "Does it understand Gulf dialect?",
-        a: "Yes, and we test it on that specifically. During testing we feed it your real customer messages in their own dialect and tune the replies until they read naturally rather than robotically.",
-      },
-      {
-        q: "Why not just use an off-the-shelf tool myself?",
-        a: "You could. But a tool hands you a blank page: you connect the number, write the replies, test them, and fix them every time a price changes. We hand over the result rather than the tool, and stay responsible for running it.",
-      },
-      {
-        q: "How long does setup take?",
-        a: "Usually a week: a call on day 1, a trial agent on day 2, connection and testing across days 3–7.",
-      },
-    ],
-  },
-
-  finalCta: {
-    line: "Try the trial agent free — and if it doesn't convince you, pay nothing.",
-    cta: { label: "Start on WhatsApp", source: "final-cta" },
-  },
-
-  footer: {
-    tagline: "WhatsApp agents for businesses in the UAE and the Gulf.",
-    links: [
-      { href: "#how", label: "How it works" },
-      { href: "#pricing", label: "Pricing" },
-      { href: "#faq", label: "FAQ" },
-      { href: "#costs", label: "Message costs" },
-    ],
-    whatsappLabel: "WhatsApp",
-    legal:
-      "WhatsApp is a registered trademark of Meta. Sahl Flow is not affiliated with Meta.",
-    rights: "All rights reserved.",
-  },
-
-  demo: {
-    badge: "Illustrative demo",
-    title: "Try it now",
-    sub: "Write as if you were a customer. The agent replies the way it would to yours.",
-    tabs: [
-      { id: "clinic", label: "Clinic" },
-      { id: "brokerage", label: "Real estate" },
-    ],
-    placeholder: "Type your message…",
-    send: "Send",
-    thinking: "Typing…",
-    limitTitle: "Like it? Let's build you one",
-    limitCta: { label: "Message us on WhatsApp", source: "demo-limit" },
-    error:
-      "Couldn't reply just now. Try again shortly, or message us on WhatsApp directly.",
-    remaining: "Messages left in this demo: {n}",
-    leadCardTitle: "Lead summary",
-    languageNote:
-      "Type in English or العربية — it replies in the same language.",
-    // English on /en: the agent mirrors the visitor's language, and an English
-    // reader should be met in English rather than in script they can't read.
-    opener: {
-      clinic: "Hi! Lamsa Aesthetics in Jumeirah. How can I help you today?",
-      brokerage: "Hi there — are you buying as an investment, or to live in?",
-    },
-  },
+  demo:{
+    badge:"Live demo",title:"See a conversation become usable sales data",sub:"Write as a customer. Experience qualification instead of a canned auto-reply.",
+    tabs:[{id:"clinic",label:"Clinic"},{id:"brokerage",label:"Real estate"}],placeholder:"Type your message…",send:"Send",thinking:"Typing…",
+    limitTitle:"Want this journey for your business?",limitCta:{label:"Talk to us",source:"demo-limit"},error:"Couldn't reply just now. Try again shortly or contact us directly.",remaining:"Messages left in this demo: {n}",leadCardTitle:"What your sales team receives",languageNote:"Type in English or العربية — it replies in the same language.",
+    opener:{clinic:"Hi! Lamsa Aesthetics in Jumeirah. How can I help you today?",brokerage:"Hi — are you looking for an investment property or a home to live in?"}
+  }
 };
-
 export default en;
