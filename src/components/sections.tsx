@@ -149,6 +149,100 @@ export function WhatYouGet({ copy }: { copy: SiteCopy }) {
   );
 }
 
+
+/* ───────────────────── capabilities & business impact ───────────────────── */
+
+export function Capabilities({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const items = ar ? [
+    ["01", "صندوق وارد مشترك", "كل محادثات العملاء في مكان واحد مع تعيين المحادثة للموظف وإغلاقها وتحويلها عند الحاجة."],
+    ["02", "AI يفهم نشاطك", "وكيل مضبوط على خدماتك وأسعارك وقواعدك وقاعدة معرفتك، وليس بوتاً عاماً يجيب من تلقاء نفسه."],
+    ["03", "فهم الرسائل الصوتية العربية", "يحوّل الـVoice Notes العربية إلى نص ويدخلها في نفس مسار الفهم والتأهيل والمتابعة."],
+    ["04", "تأهيل العملاء تلقائياً", "يسأل الأسئلة الصحيحة ويجمع الاحتياج والميزانية والتوقيت والبيانات التي تحددها لنشاطك."],
+    ["05", "CRM وجهات اتصال", "كل عميل يصبح سجلاً منظماً مع بياناته ومحادثاته وحقوله وتصنيفاته بدلاً من بقائه رقماً داخل واتساب."],
+    ["06", "Pipeline وفرص بيع", "إنشاء وتحديث الفرص ومراحل البيع حتى يرى الفريق من هو جديد، مؤهل، قيد المتابعة أو جاهز للخطوة التالية."],
+    ["07", "متابعة تلقائية", "يبني متابعات للعملاء الذين لم يشتروا من أول محادثة وفق السيناريو والقواعد التي نعتمدها معك."],
+    ["08", "تحويل ذكي للإنسان", "عندما تحتاج المحادثة موظفاً، ينتقل العميل للفريق مع السياق والبيانات بدلاً من بدء الحديث من الصفر."],
+    ["09", "Dashboard وقياس النشاط", "رؤية المحادثات وجهات الاتصال والفرص وقيمة الصفقات والنشاط حتى لا تبقى المبيعات مخفية داخل الشات."],
+    ["10", "Broadcasts وحملات إعادة التواصل", "إرسال رسائل معتمدة لشرائح العملاء وإعادة تنشيط قاعدة العملاء ضمن قواعد واتساب المعمول بها."],
+    ["11", "Automations وFlows", "تشغيل إجراءات بناءً على رسالة أو كلمة أو Tag أو حقل: تحديث بيانات، إنشاء Deal، تعيين موظف، انتظار، شرط أو Webhook."],
+    ["12", "Custom Automation", "عند الحاجة نربط CRM أو API أو حجوزات أو مدفوعات أو تقارير أو عمليات داخلية كمشروع مخصص منفصل."],
+  ] : [
+    ["01","Shared team inbox","Keep customer conversations in one place, assign them to teammates, close them and hand them off when needed."],
+    ["02","AI trained on your business","An agent configured around your services, pricing, rules and knowledge base — not a generic chatbot."],
+    ["03","Arabic voice-note understanding","Turn Arabic voice notes into text and route them through the same qualification and follow-up flow."],
+    ["04","Automatic lead qualification","Ask the right questions and capture needs, budget, timing and the fields that matter to your business."],
+    ["05","CRM & contacts","Turn each lead into a structured record with conversation context, custom fields and tags."],
+    ["06","Pipeline & opportunities","Create and update deals and sales stages so the team sees what is new, qualified, in follow-up or ready to act."],
+    ["07","Automated follow-up","Run agreed follow-up journeys for leads who do not buy in the first conversation."],
+    ["08","Smart human handoff","Move a lead to your team with context and captured data instead of making the customer start again."],
+    ["09","Dashboard & activity visibility","See conversations, contacts, opportunities, deal value and activity instead of leaving sales buried in chat."],
+    ["10","Broadcasts & re-engagement","Send approved messages to customer segments and reactivate your database within WhatsApp rules."],
+    ["11","Automations & flows","Trigger actions from messages, keywords, tags or fields: update data, create deals, assign, wait, branch or call webhooks."],
+    ["12","Custom automation","When needed, connect CRM, APIs, bookings, payments, reporting or internal processes as a separately scoped project."],
+  ];
+  return (
+    <Section id="capabilities" tone="muted">
+      <Eyebrow>{ar ? "ماذا يوجد داخل النظام؟" : "What's inside the system?"}</Eyebrow>
+      <SectionTitle>{ar ? "12 قدرة تعمل كمنظومة واحدة — من أول رسالة حتى فرصة البيع" : "12 capabilities working as one system — from first message to sales opportunity"}</SectionTitle>
+      <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "الفرق ليس ميزة AI واحدة. الفرق أن المحادثة، التأهيل، الـCRM، الـPipeline، المتابعة والأتمتة تعمل معاً وتترك لفريقك صورة واضحة عن كل عميل." : "The difference is not one AI feature. Conversation, qualification, CRM, pipeline, follow-up and automation work together so your team has a clear picture of every lead."}</p>
+      <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {items.map(([n,title,body]) => <article key={n} className="rounded-card border border-line bg-surface p-5">
+          <span className="numeric text-label font-extrabold text-primary">{n}</span>
+          <h3 className="mt-2 text-h3 font-extrabold">{title}</h3>
+          <p className="mt-2 text-body text-muted">{body}</p>
+        </article>)}
+      </div>
+    </Section>
+  );
+}
+
+export function BusinessImpact({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const before = ar ? [
+    "موظف يقرأ كل رسالة ويعيد نفس الإجابات يومياً",
+    "Voice Notes تحتاج استماعاً يدوياً قبل معرفة المطلوب",
+    "بيانات العميل تبقى موزعة داخل المحادثات",
+    "الفريق يقرر يدوياً من الجاد ومن يحتاج متابعة",
+    "Leads قد تختفي لأن لا أحد تذكّر المتابعة",
+    "الإدارة تسأل الفريق لتعرف ماذا يحدث في المبيعات",
+  ] : [
+    "A teammate reads every message and repeats the same answers",
+    "Voice notes require manual listening before the need is understood",
+    "Customer data stays scattered across conversations",
+    "The team manually decides who is serious and who needs follow-up",
+    "Leads can disappear because nobody remembered to follow up",
+    "Management asks the team to understand what is happening in sales",
+  ];
+  const after = ar ? [
+    "AI يتعامل مع الأسئلة الأولية وفق معرفة شركتك",
+    "الصوت يتحول إلى بيانات قابلة للفهم والمعالجة",
+    "كل Lead يُنظم داخل Contacts وحقول وTags",
+    "التأهيل يُنفذ بنفس القواعد على كل المحادثات",
+    "المتابعات تعمل وفق السيناريو بدل الاعتماد على الذاكرة",
+    "الفرص والـPipeline والنشاط مرئية في النظام",
+  ] : [
+    "AI handles initial questions using your business knowledge",
+    "Voice becomes structured information the system can process",
+    "Each lead is organized into contacts, fields and tags",
+    "Qualification follows the same rules across conversations",
+    "Follow-up runs by workflow instead of human memory",
+    "Opportunities, pipeline and activity are visible in the system",
+  ];
+  return (
+    <Section id="impact">
+      <Eyebrow>{ar ? "أين توفر الوقت والجهد؟" : "Where do you save time and effort?"}</Eyebrow>
+      <SectionTitle>{ar ? "نقل العمل المتكرر من فريقك إلى النظام" : "Move repetitive sales work from your team into the system"}</SectionTitle>
+      <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "لا نضع نسبة توفير وهمية قبل أن نرى أرقام نشاطك. ما نستطيع أن نوضحه هو أين يختفي العمل اليدوي، وأين يبقى الإنسان للقرار والبيع والعلاقة مع العميل." : "We do not invent a savings percentage before seeing your operation. We show exactly where manual work is removed and where your people stay focused on judgment, selling and customer relationships."}</p>
+      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        <div className="rounded-card border border-line bg-surface-muted p-6"><p className="text-h3 font-extrabold">{ar ? "بدون Sahl Flow" : "Without Sahl Flow"}</p><ul className="mt-4 space-y-3">{before.map(x=><li key={x} className="text-body text-muted">— {x}</li>)}</ul></div>
+        <div className="rounded-card border-2 border-primary bg-surface p-6"><p className="text-h3 font-extrabold text-primary">{ar ? "مع Sahl Flow" : "With Sahl Flow"}</p><ul className="mt-4 space-y-3">{after.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></div>
+      </div>
+      <p className="mt-6 rounded-card bg-ink px-5 py-4 text-h3 font-bold text-on-ink">{ar ? "الهدف ليس استبدال فريق المبيعات. الهدف أن يصل الموظف إلى العميل ومعه السياق والبيانات والخطوة التالية — بدل أن يضيع وقته في الفرز والتسجيل والتذكّر." : "The goal is not to replace your sales team. It is to give them the context, data and next step — instead of spending their time sorting, recording and remembering."}</p>
+    </Section>
+  );
+}
+
 /* ─────────────────────────── how it works ──────────────────────────── */
 
 export function HowItWorks({ copy }: { copy: SiteCopy }) {
