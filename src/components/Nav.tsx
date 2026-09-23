@@ -26,7 +26,7 @@ export function Nav({ copy }: { copy: SiteCopy }) {
             <Logo variant="default" width={84} title={null} />
           </Link>
 
-          <nav className="hidden items-center gap-7 sm:flex" aria-label={nav.cta.label}>
+          <nav className="hidden items-center gap-6 lg:flex" aria-label={nav.cta.label}>
             {nav.links.map((link) => (
               <a
                 key={link.href}
@@ -53,7 +53,7 @@ export function Nav({ copy }: { copy: SiteCopy }) {
         </div>
 
         <nav
-          className="-mx-1 flex items-center gap-5 overflow-x-auto pb-2.5 sm:hidden"
+          className="-mx-1 flex items-center gap-5 overflow-x-auto pb-2.5 lg:hidden"
           aria-label={nav.cta.label}
         >
           {nav.links.map((link) => (
