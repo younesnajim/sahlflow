@@ -234,12 +234,9 @@ export function Pricing({ copy }: { copy: SiteCopy }) {
         <p className="mt-4 text-label text-muted">{pricing.lockIn}</p>
 
         <div className="mt-6">
-          <WhatsAppCta
-            label={pricing.cta.label}
-            source={pricing.cta.source}
-            locale={copy.locale}
-            full
-          />
+          <a href="#fit" className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">
+            {pricing.cta.label}
+          </a>
         </div>
       </div>
     </Section>
@@ -395,13 +392,9 @@ export function FinalCta({ copy }: { copy: SiteCopy }) {
           <p className="text-h2 font-extrabold text-on-primary text-balance">
             {finalCta.line}
           </p>
-          <WhatsAppCta
-            label={finalCta.cta.label}
-            source={finalCta.cta.source}
-            locale={copy.locale}
-            tone="onPrimary"
-            className="shrink-0"
-          />
+          <a href="#fit" className="inline-flex shrink-0 items-center justify-center rounded-full bg-on-primary px-6 py-3 text-body font-bold text-primary transition-colors hover:bg-tint">
+            {finalCta.cta.label}
+          </a>
         </div>
       </Container>
     </section>
