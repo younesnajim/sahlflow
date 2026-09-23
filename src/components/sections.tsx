@@ -545,21 +545,21 @@ export function Deliverables({ copy }: { copy: SiteCopy }) {
 
 export function FitVsNotFit({ copy }: { copy: SiteCopy }) {
   const ar = copy.locale === "ar";
-  const yes = ar ? ["لديك حجم محادثات واتساب متكرر","تحتاج تأهيل العملاء قبل وصولهم للمبيعات","تريد CRM وPipeline بدل بقاء البيانات داخل الشات","تحتاج Follow-up منظم لا يعتمد على ذاكرة الموظف","تريد فريقاً ينفذ النظام بدلاً من بناء الأتمتة بنفسك"] : ["You have recurring WhatsApp lead volume","You need qualification before sales handoff","You want CRM and pipeline instead of data buried in chat","You need structured follow-up instead of staff memory","You want a team to implement the system for you"];
-  const no = ar ? ["تبحث فقط عن أرخص Chatbot للرد على FAQ","لديك عدد قليل جداً من المحادثات ولا توجد عملية بيع واضحة","تريد أداة DIY وتفضّل بناء كل شيء بنفسك","تريد إرسال رسائل جماعية فقط بدون CRM أو تأهيل أو متابعة"] : ["You only want the cheapest FAQ chatbot","You have very little message volume and no clear sales process","You want a DIY tool and prefer building everything yourself","You only need bulk messaging without CRM, qualification or follow-up"];
+  const yes = ar ? ["تصل شركتك استفسارات عملاء بشكل مستمر على واتساب","فريقك يكرر الرد والفرز والمتابعة يومياً","تريد أن تعرف أين وصل كل عميل وما الخطوة التالية","تريد التنفيذ جاهزاً بدلاً من بناء الأدوات والأتمتة بنفسك"] : ["Your business receives a steady flow of WhatsApp enquiries","Your team repeats replies, sorting and follow-up every day","You want to know where every lead stands and what happens next","You want implementation done for you rather than building automations yourself"];
+  const no = ar ? ["تريد فقط بوتاً رخيصاً يجيب عن الأسئلة المتكررة","لا يوجد لديك حتى الآن حجم محادثات أو عملية بيع واضحة","هدفك الوحيد إرسال رسائل جماعية","تريد منصة DIY وتفضّل إعداد كل شيء بنفسك"] : ["You only want a cheap FAQ bot","You do not yet have meaningful message volume or a clear sales process","Your only goal is bulk messaging","You want a DIY platform and prefer configuring everything yourself"];
   return (
     <Section id="who">
-      <Eyebrow>{ar ? "قبل أن تدفع" : "Before you pay"}</Eyebrow>
-      <SectionTitle>{ar ? "Sahl Flow مناسب لشركات معيّنة — وليس للجميع" : "Sahl Flow is built for a specific kind of business — not everyone"}</SectionTitle>
-      <div className="mt-8 grid gap-5 lg:grid-cols-2">
-        <article className="rounded-card border-2 border-primary bg-surface p-6"><h3 className="text-h3 font-extrabold text-primary">{ar ? "غالباً مناسب لك إذا" : "Likely a fit if"}</h3><ul className="mt-4 space-y-3">{yes.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></article>
-        <article className="rounded-card border border-line bg-surface-muted p-6"><h3 className="text-h3 font-extrabold">{ar ? "غالباً ليس مناسباً إذا" : "Probably not a fit if"}</h3><ul className="mt-4 space-y-3">{no.map(x=><li key={x} className="text-body text-muted">— {x}</li>)}</ul></article>
+      <div className="rounded-card bg-ink p-6 text-on-ink sm:p-9">
+        <Eyebrow>{ar ? "هل يستحق أن نتكلم؟" : "Is it worth a conversation?"}</Eyebrow>
+        <SectionTitle>{ar ? "سهل فلو ليس مناسباً لكل شركة — وهذا شيء جيد" : "Sahl Flow is not for every business — and that's a good thing"}</SectionTitle>
+        <div className="mt-7 grid gap-6 lg:grid-cols-2">
+          <div><p className="text-h3 font-extrabold text-tint">{ar ? "غالباً مناسب لك إذا…" : "Likely a fit if…"}</p><ul className="mt-4 space-y-3">{yes.map(x=><li key={x} className="flex gap-3 text-body"><span className="text-tint">✓</span><span>{x}</span></li>)}</ul></div>
+          <div className="border-t border-white/15 pt-6 lg:border-s lg:border-t-0 lg:pt-0 lg:ps-7"><p className="text-h3 font-extrabold">{ar ? "غالباً ليس ما تحتاجه إذا…" : "Probably not what you need if…"}</p><ul className="mt-4 space-y-3 opacity-75">{no.map(x=><li key={x} className="text-body">— {x}</li>)}</ul></div>
+        </div>
       </div>
     </Section>
   );
 }
-
-/* ───────────────────────── qualification ───────────────────────── */
 
 export function Qualification({ copy }: { copy: SiteCopy }) {
   const ar = copy.locale === "ar";
