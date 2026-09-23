@@ -244,6 +244,84 @@ function CheckMark() {
   );
 }
 
+/* ───────────────────────── trust & data ───────────────────────── */
+
+export function TrustAndData({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const cards = ar
+    ? [
+        ["بيانات عملك تبقى بياناتك", "نعزل بيانات شركتك عن بقية الحسابات، ونوضح آلية الوصول والتصدير المناسبة لبيئتك أثناء التنفيذ."],
+        ["إنسان عندما تحتاجه", "الوكيل لا يجب أن يتظاهر بأنه يحل كل شيء. نبني نقاط تحويل واضحة لفريقك عندما تحتاج المحادثة تدخلاً بشرياً."],
+        ["مصمم للعربية من الأساس", "واجهة عربية واتجاه RTL وفهم للمحادثات والرسائل الصوتية العربية — وليست طبقة ترجمة فوق منتج أجنبي."],
+      ]
+    : [
+        ["Your business data stays yours", "Your company's data is isolated from other accounts, with access and export explained for your environment during implementation."],
+        ["A human when it matters", "The agent should not pretend it can solve everything. We build clear handoff points for your team when a conversation needs a person."],
+        ["Built for Arabic from the start", "Arabic UI, RTL and understanding of Arabic conversations and voice notes — not a translation layer added later."],
+      ];
+  return (
+    <Section id="trust" tone="muted">
+      <Eyebrow>{ar ? "ثقة وتحكم" : "Trust & control"}</Eyebrow>
+      <SectionTitle>{ar ? "الذكاء الاصطناعي يعمل داخل قواعد شركتك" : "AI that works inside your business rules"}</SectionTitle>
+      <div className="mt-7 grid gap-4 md:grid-cols-3">
+        {cards.map(([title, body]) => (
+          <article key={title} className="rounded-card border border-line bg-surface p-5">
+            <CheckMark />
+            <h3 className="mt-3 text-h3 font-extrabold">{title}</h3>
+            <p className="mt-2 text-body text-muted">{body}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+/* ───────────────────────── custom automation ───────────────────────── */
+
+export function CustomAutomation({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  return (
+    <Section id="automation">
+      <div className="grid gap-7 rounded-card border border-line bg-surface-muted p-6 sm:p-8 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
+        <div>
+          <Eyebrow>{ar ? "Sahl Flow Custom Automation" : "Sahl Flow Custom Automation"}</Eyebrow>
+          <SectionTitle>{ar ? "تحتاج أتمتة خاصة بعملك؟" : "Need automation built around your operation?"}</SectionTitle>
+          <p className="mt-4 max-w-prose text-body text-muted">
+            {ar
+              ? "بعض العمليات لا يناسبها حل جاهز. نصمم أتمتة مخصصة تربط أنظمتك وبياناتك وواجهات API والعمليات الداخلية متعددة المراحل. يتم تحديد النطاق والسعر كمشروع مستقل."
+              : "Some operations do not fit an off-the-shelf tool. We design custom automation connecting your systems, data, APIs and multi-stage internal workflows. Scope and pricing are defined as a separate project."}
+          </p>
+        </div>
+        <div className="grid gap-2 text-body font-bold">
+          {(ar
+            ? ["ربط CRM والأنظمة الداخلية", "المواعيد والتذكيرات والمدفوعات", "المستندات والبيانات والتقارير", "عمليات متعددة المراحل وموافقات الفريق"]
+            : ["CRM and internal system integrations", "Bookings, reminders and payments", "Documents, data and reporting", "Multi-stage workflows and team approvals"]
+          ).map((item) => <div key={item} className="flex items-start gap-2"><CheckMark /><span>{item}</span></div>)}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+/* ───────────────────────── qualification ───────────────────────── */
+
+export function Qualification({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const items = ar
+    ? ["لديك نشاط تجاري مرخّص", "لديك رقم مخصص للعمل", "يصل نشاطك تقريباً إلى ٥٠ محادثة واتساب أو أكثر أسبوعياً", "تريد نظاماً يدير التأهيل والمتابعة — وليس مجرد رد آلي"]
+    : ["You operate a licensed business", "You have a dedicated business number", "You receive roughly 50+ WhatsApp conversations per week", "You want qualification and follow-up — not just automated replies"];
+  return (
+    <Section id="fit" tone="muted">
+      <Eyebrow>{ar ? "هل يناسبك Sahl Flow؟" : "Is Sahl Flow a fit?"}</Eyebrow>
+      <SectionTitle>{ar ? "نبدأ عندما يكون للنظام أثر حقيقي على المبيعات" : "We start where the system can have a real sales impact"}</SectionTitle>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        {items.map((item) => <div key={item} className="flex items-start gap-3 rounded-card border border-line bg-surface p-4"><CheckMark /><span className="text-body font-medium">{item}</span></div>)}
+      </div>
+      <p className="mt-5 text-body text-muted">{ar ? "إذا كان هذا قريباً من وضع شركتك، نراجع رحلة المبيعات معك أولاً ثم نحدد ما يجب بناؤه." : "If this sounds like your company, we first review your sales journey and then define what should be built."}</p>
+    </Section>
+  );
+}
+
 /* ──────────────────────────────── faq ──────────────────────────────── */
 
 export function Faq({ copy }: { copy: SiteCopy }) {
