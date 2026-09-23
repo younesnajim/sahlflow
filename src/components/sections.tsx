@@ -182,42 +182,31 @@ export function WhatYouGet({ copy }: { copy: SiteCopy }) {
 export function Capabilities({ copy }: { copy: SiteCopy }) {
   const ar = copy.locale === "ar";
   const items = ar ? [
-    ["01", "صندوق وارد مشترك", "كل محادثات العملاء في مكان واحد مع تعيين المحادثة للموظف وإغلاقها وتحويلها عند الحاجة."],
-    ["02", "AI يفهم نشاطك", "وكيل مضبوط على خدماتك وأسعارك وقواعدك وقاعدة معرفتك، وليس بوتاً عاماً يجيب من تلقاء نفسه."],
-    ["03", "فهم الرسائل الصوتية العربية", "يحوّل الـVoice Notes العربية إلى نص ويدخلها في نفس مسار الفهم والتأهيل والمتابعة."],
-    ["04", "تأهيل العملاء تلقائياً", "يسأل الأسئلة الصحيحة ويجمع الاحتياج والميزانية والتوقيت والبيانات التي تحددها لنشاطك."],
-    ["05", "ملف واضح لكل عميل", "الاسم والرقم والاهتمام والمحادثة والمعلومات المهمة في سجل واحد بدل أن يبقى العميل مجرد رقم داخل واتساب."],
-    ["06", "تعرف أين وصل كل عميل", "جديد؟ جاد؟ يحتاج متابعة؟ جاهز للموظف؟ يرى الفريق المرحلة الحالية والخطوة التالية بوضوح."],
-    ["07", "متابعة تلقائية", "يبني متابعات للعملاء الذين لم يشتروا من أول محادثة وفق السيناريو والقواعد التي نعتمدها معك."],
-    ["08", "تحويل ذكي للإنسان", "عندما تحتاج المحادثة موظفاً، ينتقل العميل للفريق مع السياق والبيانات بدلاً من بدء الحديث من الصفر."],
-    ["09", "صورة واضحة للإدارة", "ترى المحادثات والعملاء والفرص والنشاط بدل أن تسأل الفريق كل مرة: ماذا حدث مع العملاء؟"],
-    ["10", "إعادة التواصل مع العملاء", "تتواصل مع شرائح محددة من قاعدة العملاء برسائل معتمدة وضمن قواعد واتساب."],
-    ["11", "خطوات تعمل تلقائياً", "وصول رسالة أو إجابة أو تصنيف يمكن أن يشغّل الخطوة التالية: تحديث بيانات، متابعة، تعيين موظف أو نقل العميل لمرحلة جديدة."],
-    ["12", "Custom Automation", "عند الحاجة نربط CRM أو API أو حجوزات أو مدفوعات أو تقارير أو عمليات داخلية كمشروع مخصص منفصل."],
+    ["01","يرد وهو فاهم شغلك","يتعامل مع الأسئلة الأولى اعتماداً على خدماتك ومعلوماتك وقواعدك، وليس بإجابات عامة."],
+    ["02","يفهم النص والصوت","العميل يكتب أو يرسل Voice Note بالعربي؛ المعلومة تدخل نفس الرحلة."],
+    ["03","يسأل بدل أن يخمّن","يجمع الأسئلة المهمة التي تحددها: الاحتياج، الميزانية، التوقيت أو أي معلومة يحتاجها فريقك."],
+    ["04","يحفظ ما عرفه","بيانات العميل واهتمامه وإجاباته تصبح في سجل واضح بدل أن تبقى مدفونة داخل المحادثة."],
+    ["05","يعرف أين وصل العميل","جديد، يحتاج متابعة، جاد أو جاهز للموظف — المرحلة والخطوة التالية واضحتان."],
+    ["06","يتابع في الوقت المناسب","إذا لم يشترِ العميل من أول مرة، تعمل المتابعة وفق السيناريو الذي نبنيه معك."],
+    ["07","يسلّم لفريقك بدون إعادة القصة","عندما يحتاج العميل إنساناً، يصل للموظف ومعه السياق والمعلومات التي جُمعت."],
+    ["08","يعطي الإدارة صورة واضحة","ترى المحادثات والعملاء والفرص والنشاط بدل أن تبقى المبيعات موزعة بين الشات والذاكرة."],
   ] : [
-    ["01","Shared team inbox","Keep customer conversations in one place, assign them to teammates, close them and hand them off when needed."],
-    ["02","AI trained on your business","An agent configured around your services, pricing, rules and knowledge base — not a generic chatbot."],
-    ["03","Arabic voice-note understanding","Turn Arabic voice notes into text and route them through the same qualification and follow-up flow."],
-    ["04","Automatic lead qualification","Ask the right questions and capture needs, budget, timing and the fields that matter to your business."],
-    ["05","CRM & contacts","Turn each lead into a structured record with conversation context, custom fields and tags."],
-    ["06","Pipeline & opportunities","Create and update deals and sales stages so the team sees what is new, qualified, in follow-up or ready to act."],
-    ["07","Automated follow-up","Run agreed follow-up journeys for leads who do not buy in the first conversation."],
-    ["08","Smart human handoff","Move a lead to your team with context and captured data instead of making the customer start again."],
-    ["09","Dashboard & activity visibility","See conversations, contacts, opportunities, deal value and activity instead of leaving sales buried in chat."],
-    ["10","Broadcasts & re-engagement","Send approved messages to customer segments and reactivate your database within WhatsApp rules."],
-    ["11","Automations & flows","Trigger actions from messages, keywords, tags or fields: update data, create deals, assign, wait, branch or call webhooks."],
-    ["12","Custom automation","When needed, connect CRM, APIs, bookings, payments, reporting or internal processes as a separately scoped project."],
+    ["01","Replies with business context","Handles initial questions using your services, information and rules rather than generic answers."],
+    ["02","Understands text and voice","Customers can type or send Arabic voice notes and both enter the same journey."],
+    ["03","Asks instead of guessing","Collects the information your team needs: need, budget, timing or your own qualification fields."],
+    ["04","Keeps what it learns","Customer details, interest and answers become a clear record rather than buried chat history."],
+    ["05","Shows where each lead stands","New, follow-up, serious or ready for a person — stage and next step stay clear."],
+    ["06","Follows up at the right time","If a lead does not buy immediately, follow-up runs through the journey we build with you."],
+    ["07","Hands off with context","When a human is needed, your teammate receives the conversation with the information already captured."],
+    ["08","Gives management visibility","See conversations, customers, opportunities and activity instead of sales living in chat and memory."],
   ];
   return (
     <Section id="capabilities" tone="muted">
-      <Eyebrow>{ar ? "كل شيء في مكان واحد" : "What's inside the system?"}</Eyebrow>
-      <SectionTitle>{ar ? "ليس مجرد رد آلي. هذه هي المنظومة التي تعمل خلف المحادثة" : "12 capabilities working as one system — from first message to sales opportunity"}</SectionTitle>
-      <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "بدل مجموعة أدوات منفصلة، يجمع سهل فلو المحادثة وبيانات العميل ومراحل البيع والمتابعة والأتمتة في مكان واحد." : "The difference is not one AI feature. Conversation, qualification, CRM, pipeline, follow-up and automation work together so your team has a clear picture of every lead."}</p>
-      <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {items.map(([n,title,body]) => <article key={n} className="lift-card rounded-card border border-line bg-surface p-5">
-          <span className="numeric text-label font-extrabold text-primary">{n}</span>
-          <h3 className="mt-2 text-h3 font-extrabold">{title}</h3>
-          <p className="mt-2 text-body text-muted">{body}</p>
+      <Eyebrow>{ar ? "ماذا يفعل سهل فلو فعلياً؟" : "What does Sahl Flow actually do?"}</Eyebrow>
+      <SectionTitle>{ar ? "يأخذ الأعمال التي تتكرر مع كل عميل… ويرتبها في رحلة واحدة" : "It takes the work repeated for every lead and organizes it into one journey"}</SectionTitle>
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {items.map(([n,title,body]) => <article key={n} className="lift-card group rounded-card border border-line bg-surface p-5 sm:p-6">
+          <div className="flex items-start gap-4"><span className="numeric flex size-10 shrink-0 items-center justify-center rounded-full bg-tint font-extrabold text-primary-deep">{n}</span><div><h3 className="text-h3 font-extrabold">{title}</h3><p className="mt-2 text-body text-muted">{body}</p></div></div>
         </article>)}
       </div>
     </Section>
