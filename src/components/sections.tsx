@@ -567,28 +567,30 @@ export function FitVsNotFit({ copy }: { copy: SiteCopy }) {
 
 export function Qualification({ copy }: { copy: SiteCopy }) {
   const ar = copy.locale === "ar";
-  const items = ar
-    ? ["نشاط تجاري مرخّص", "رقم مخصص للعمل", "حوالي ٥٠ محادثة واتساب أو أكثر أسبوعياً", "حاجة فعلية للتأهيل والمتابعة"]
-    : ["Licensed business", "Dedicated business number", "Roughly 50+ WhatsApp conversations per week", "A real need for qualification and follow-up"];
+  const questions = ar ? [
+    ["1","ما نوع نشاطك؟","مدرب/دورات · عقارات · عيادة · تعليم · نشاط آخر"],
+    ["2","كم محادثة عميل تصلك تقريباً على واتساب؟","أسبوعياً أو شهرياً — يكفينا رقم تقريبي"],
+    ["3","ما أكبر مشكلة تريد حلها؟","الرد · التأهيل · المتابعة · تنظيم العملاء · ربط الأنظمة"],
+    ["4","هل لديك ميزانية مخصصة للمشروع؟","نستخدمها فقط لمعرفة إن كان نطاق الحل مناسباً لك"],
+    ["5","متى تريد أن تبدأ؟","الآن · خلال 30 يوماً · خلال 1–3 أشهر · أبحث حالياً"],
+  ] : [
+    ["1","What kind of business do you run?","Coaching/courses · real estate · clinic · education · other"],
+    ["2","Roughly how many customer chats reach WhatsApp?","Weekly or monthly — an estimate is enough"],
+    ["3","What is the main problem you want to solve?","Replies · qualification · follow-up · customer organization · integrations"],
+    ["4","Do you have a budget allocated?","We use it only to understand whether the solution scope is a fit"],
+    ["5","When would you like to start?","Now · within 30 days · 1–3 months · researching"],
+  ];
   return (
     <Section id="fit" tone="muted">
-      <div className="grid gap-8 lg:grid-cols-[1fr_.9fr] lg:items-start">
+      <div className="grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
         <div>
-          <Eyebrow>{ar ? "هل يناسبك Sahl Flow؟" : "Is Sahl Flow a fit?"}</Eyebrow>
-          <SectionTitle>{ar ? "قبل المكالمة، نتأكد أن النظام مناسب لنشاطك" : "Before a call, we make sure the system fits your business"}</SectionTitle>
-          <p className="mt-4 max-w-prose text-body text-muted">{ar ? "Sahl Flow ليس مناسباً لكل نشاط. نفضّل العمل مع الشركات التي لديها حجم محادثات واضح وتريد تحويل واتساب إلى عملية مبيعات منظمة." : "Sahl Flow is not for every business. We focus on companies with meaningful conversation volume that want to turn WhatsApp into a structured sales process."}</p>
-          <div className="mt-6 grid gap-3">
-            {items.map((item) => <div key={item} className="flex items-start gap-3"><CheckMark /><span className="text-body font-medium">{item}</span></div>)}
-          </div>
+          <Eyebrow>{ar ? "خلّينا نعرف إذا سهل فلو مناسب لك" : "Let's see if Sahl Flow fits"}</Eyebrow>
+          <SectionTitle>{ar ? "5 أسئلة تختصر علينا وعليك مكالمة غير مناسبة" : "5 questions to avoid a call that isn't a fit"}</SectionTitle>
+          <p className="mt-4 text-body text-muted">{ar ? "لسنا بحاجة إلى عرض طويل قبل أن نفهم نشاطك. نبدأ بهذه المعلومات، وإذا كان سهل فلو مناسباً ننتقل للخطوة التالية ونبني تصوراً لحالتك." : "We start with a few facts about your operation. If there is a fit, we move to the next step and map the right journey."}</p>
+          <div className="mt-6"><WhatsAppCta label={ar ? "ابدأ التقييم على واتساب" : "Start the WhatsApp fit check"} source="fit" locale={copy.locale} full /></div>
+          <p className="mt-3 text-label text-muted">{ar ? "لا يوجد التزام. الهدف أولاً معرفة إن كان الحل مناسباً." : "No commitment. The first goal is simply to determine fit."}</p>
         </div>
-        <div className="rounded-card border-2 border-primary bg-surface p-6">
-          <p className="text-h3 font-extrabold">{ar ? "الخطوة الأولى: مراجعة سريعة لنشاطك" : "First step: a quick business fit check"}</p>
-          <p className="mt-3 text-body text-muted">{ar ? "أرسل لنا نوع النشاط، حجم رسائل واتساب التقريبي، وهل لديك رقم عمل مخصص. إذا كان هناك توافق، ننتقل لمكالمة تعريفية ونرسم رحلة المبيعات المطلوبة." : "Send us your business type, approximate WhatsApp volume and whether you have a dedicated business number. If there is a fit, we move to a discovery call and map the sales journey."}</p>
-          <div className="mt-6">
-            <WhatsAppCta label={ar ? "ابدأ التقييم السريع" : "Start the fit check"} source="fit" locale={copy.locale} full />
-          </div>
-          <p className="mt-3 text-center text-label text-muted">{ar ? "لديك سؤال فقط؟ يمكنك استخدام نفس المحادثة." : "Just have a question? You can use the same chat."}</p>
-        </div>
+        <div className="space-y-3">{questions.map(([n,q,h])=><div key={n} className="flex gap-4 rounded-card border border-line bg-surface p-4"><span className="numeric flex size-8 shrink-0 items-center justify-center rounded-full bg-tint font-extrabold">{n}</span><div><p className="font-extrabold">{q}</p><p className="mt-1 text-body text-muted">{h}</p></div></div>)}</div>
       </div>
     </Section>
   );
