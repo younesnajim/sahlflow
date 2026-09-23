@@ -2,12 +2,6 @@ import { Container, Eyebrow, Section, SectionTitle, WhatsAppCta } from "./ui";
 import { DemoWidget } from "./DemoWidget";
 import { Logo } from "./Logo";
 import { formatNumber } from "@/lib/format";
-import {
-  FREE_SERVICE_MESSAGES_PER_MONTH,
-  META_UAE_RATES,
-  formatAed,
-  formatUsd,
-} from "@/lib/meta-rates";
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
 import type { SiteCopy } from "@/content/types";
 
