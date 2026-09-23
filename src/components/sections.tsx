@@ -297,42 +297,65 @@ export function HowItWorks({ copy }: { copy: SiteCopy }) {
 
 export function Pricing({ copy }: { copy: SiteCopy }) {
   const { pricing } = copy;
+  const ar = copy.locale === "ar";
+  const setup = ar ? [
+    "جلسة فهم رحلة البيع وتحديد نقاط التأهيل والتحويل",
+    "ربط واتساب وتجهيز بيئة العمل الخاصة بشركتك",
+    "إعداد الوكيل: السلوك، التعليمات، الخدمات والأسعار وقاعدة المعرفة",
+    "بناء أسئلة التأهيل والحقول المخصصة والـTags",
+    "إعداد Contacts والـPipeline ومراحل الفرص",
+    "بناء المتابعات الأساسية والتحويل للموظف",
+    "اختبار سيناريوهات حقيقية وضبط الردود قبل الإطلاق",
+    "تدريب الفريق وإطلاق النظام",
+  ] : [
+    "Sales-journey discovery and qualification/handoff mapping",
+    "WhatsApp connection and company workspace setup",
+    "Agent behavior, instructions, services, pricing and knowledge base",
+    "Qualification questions, custom fields and tags",
+    "Contacts, pipeline and opportunity stages",
+    "Core follow-up journeys and human handoff",
+    "Real-scenario testing and response tuning before launch",
+    "Team training and launch",
+  ];
+  const monthly = ar ? [
+    "تشغيل واستضافة النظام الحالي ومتابعة حالته",
+    "Inbox وContacts وPipelines وDashboard وBroadcasts والـAI",
+    "تحديث قاعدة المعرفة عند تغير خدماتك أو معلوماتك",
+    "تحسين الردود والتأهيل والمتابعات الموجودة",
+    "دعم ومراقبة المشاكل التشغيلية ضمن النطاق",
+    "تحسين مستمر على الرحلة الحالية بناءً على الاستخدام",
+  ] : [
+    "Operation, hosting and monitoring of the existing system",
+    "Inbox, contacts, pipelines, dashboard, broadcasts and AI",
+    "Knowledge-base updates when your services or information change",
+    "Tuning of existing replies, qualification and follow-up",
+    "Operational support and monitoring within scope",
+    "Ongoing improvement of the existing journey based on usage",
+  ];
   return (
     <Section id="pricing">
       <Eyebrow>{pricing.eyebrow}</Eyebrow>
-
-      <div className="mt-4 rounded-card border-2 border-primary bg-surface p-6 sm:p-8">
-        <p className="text-price font-extrabold text-balance">{pricing.headline}</p>
-
-        <p className="mt-4 text-body font-bold text-primary">{pricing.founderLabel}</p>
-        <p className="mt-2 text-body text-muted">{pricing.standard}</p>
-
-        <hr className="my-6 border-line" />
-
-        <p className="text-label font-bold text-muted uppercase">
-          {pricing.includedTitle}
-        </p>
-        <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-          {pricing.included.map((item) => (
-            <li key={item} className="flex items-start gap-2 text-body">
-              <CheckMark />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        <p className="mt-6 rounded-card bg-surface-muted px-4 py-3 text-body font-medium">
-          {pricing.passthrough}
-        </p>
-
-        <p className="mt-4 text-label text-muted">{pricing.lockIn}</p>
-
-        <div className="mt-6">
-          <a href="#fit" className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">
-            {pricing.cta.label}
-          </a>
-        </div>
+      <SectionTitle>{ar ? "أنت لا تدفع مقابل Login — أنت تدفع مقابل نظام يتم بناؤه وتشغيله لك" : "You're not paying for a login — you're paying for a system built and operated for you"}</SectionTitle>
+      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        <article className="rounded-card border-2 border-primary bg-surface p-6 sm:p-7">
+          <p className="text-label font-bold text-primary">{ar ? "مرة واحدة — التنفيذ والإطلاق" : "One time — implementation & launch"}</p>
+          <p className="numeric mt-2 text-price font-extrabold">{ar ? "٦٬٥٠٠ درهم" : "AED 6,500"}</p>
+          <p className="mt-3 text-body text-muted">{ar ? "نحوّل طريقة البيع لديك إلى نظام جاهز للعمل مع فريقك." : "We turn your sales process into a working system for your team."}</p>
+          <ul className="mt-5 space-y-3">{setup.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul>
+        </article>
+        <article className="rounded-card border border-line bg-surface-muted p-6 sm:p-7">
+          <p className="text-label font-bold text-primary">{ar ? "شهرياً — التشغيل والإدارة والتحسين" : "Monthly — operation, management & improvement"}</p>
+          <p className="numeric mt-2 text-price font-extrabold">{ar ? "٢٬٠٠٠ درهم / شهر" : "AED 2,000 / month"}</p>
+          <p className="mt-3 text-body text-muted">{ar ? "بعد الإطلاق لا نتركك وحدك مع الأداة؛ نستمر في تشغيل وتحسين النظام الموجود." : "After launch, we do not leave you alone with the tool; we keep the existing system running and improving."}</p>
+          <ul className="mt-5 space-y-3">{monthly.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul>
+        </article>
       </div>
+      <div className="mt-5 rounded-card border border-line bg-surface p-5">
+        <p className="font-extrabold">{ar ? "حدود واضحة حتى تعرف ماذا تدفع مقابله" : "Clear boundaries so you know what you're paying for"}</p>
+        <p className="mt-2 text-body text-muted">{pricing.passthrough}</p>
+        <p className="mt-2 text-body font-bold">{pricing.lockIn}</p>
+      </div>
+      <div className="mt-6"><a href="#fit" className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">{pricing.cta.label}</a></div>
     </Section>
   );
 }
