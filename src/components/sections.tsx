@@ -17,7 +17,7 @@ export function Hero({ copy }: { copy: SiteCopy }) {
     ? [["12", "قدرة مترابطة"], ["7", "مراحل من الرسالة للفرصة"], ["1", "نظام للمحادثة والـCRM والمتابعة"]]
     : [["12", "connected capabilities"], ["7", "stages from message to opportunity"], ["1", "system for chat, CRM & follow-up"]];
   return (
-    <section id="top" className="scroll-target overflow-hidden bg-surface py-12 sm:py-20">
+    <section id="top" className="sales-section soft-grid scroll-target overflow-hidden bg-surface py-14 sm:py-24">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
           <div>
@@ -35,7 +35,7 @@ export function Hero({ copy }: { copy: SiteCopy }) {
               {outcomes.map(([n,l])=><div key={l} className="rounded-card border border-line bg-surface-muted p-3"><p className="numeric text-h3 font-extrabold text-primary">{n}</p><p className="mt-1 text-label font-medium text-muted">{l}</p></div>)}
             </div>
           </div>
-          <div className="relative rounded-card border border-line bg-surface-muted p-5 shadow-sm sm:p-7">
+          <div className="glass-card relative rounded-card p-5 sm:p-7">
             <div className="absolute -top-3 end-5 rounded-full bg-primary px-3 py-1 text-label font-bold text-on-primary">{ar ? "من رسالة إلى عملية مبيعات" : "From message to sales process"}</div>
             <p className="text-label font-bold text-muted">{ar ? "ما يحدث خلف محادثة واحدة" : "What happens behind one conversation"}</p>
             <div className="mt-5 space-y-3">
@@ -110,7 +110,7 @@ export function CostOfManualWork({ copy }: { copy: SiteCopy }) {
     <Section tone="muted">
       <Eyebrow>{ar ? "هل هذا يحدث عندكم؟" : "Where do time and leads leak?"}</Eyebrow>
       <SectionTitle>{ar ? "المشكلة ليست في واتساب… المشكلة في كل ما يحدث بعد وصول الرسالة" : "Not every message needs a person from start to finish"}</SectionTitle>
-      <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{leaks.map(([t,b])=><article key={t} className="rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-2 text-body text-muted">{b}</p></article>)}</div>
+      <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{leaks.map(([t,b])=><article key={t} className="lift-card rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-2 text-body text-muted">{b}</p></article>)}</div>
       <p className="mt-6 text-body font-bold">{ar ? "سهل فلو يتولى الجزء المتكرر والمنظم من الرحلة. ويبقى فريقك للمواقف التي تحتاج إنساناً: تفاوض، قرار، إقناع وعلاقة مع العميل." : "Sahl Flow moves repetitive work into the system while your team stays involved where negotiation, judgment and human relationships matter."}</p>
     </Section>
   );
@@ -207,7 +207,7 @@ export function Capabilities({ copy }: { copy: SiteCopy }) {
       <SectionTitle>{ar ? "ليس مجرد رد آلي. هذه هي المنظومة التي تعمل خلف المحادثة" : "12 capabilities working as one system — from first message to sales opportunity"}</SectionTitle>
       <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "بدل مجموعة أدوات منفصلة، يجمع سهل فلو المحادثة وبيانات العميل ومراحل البيع والمتابعة والأتمتة في مكان واحد." : "The difference is not one AI feature. Conversation, qualification, CRM, pipeline, follow-up and automation work together so your team has a clear picture of every lead."}</p>
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {items.map(([n,title,body]) => <article key={n} className="rounded-card border border-line bg-surface p-5">
+        {items.map(([n,title,body]) => <article key={n} className="lift-card rounded-card border border-line bg-surface p-5">
           <span className="numeric text-label font-extrabold text-primary">{n}</span>
           <h3 className="mt-2 text-h3 font-extrabold">{title}</h3>
           <p className="mt-2 text-body text-muted">{body}</p>
@@ -399,7 +399,7 @@ export function CrmAutomation({ copy }: { copy: SiteCopy }) {
       <div className="mt-8 grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
         <div className="rounded-card border border-line bg-surface-muted p-6">
           <p className="text-h3 font-extrabold">{ar ? "عندما يفتح موظفك العميل، يعرف فوراً:" : "What does your sales team see?"}</p>
-          <div className="mt-5 space-y-3">{crm.map(([n,t,b])=><div key={n} className="rounded-card border border-line bg-surface p-4"><div className="flex gap-3"><span className="numeric font-extrabold text-primary">{n}</span><div><p className="font-extrabold">{t}</p><p className="mt-1 text-body text-muted">{b}</p></div></div></div>)}</div>
+          <div className="mt-5 space-y-3">{crm.map(([n,t,b])=><div key={n} className="lift-card rounded-card border border-line bg-surface p-4"><div className="flex gap-3"><span className="numeric font-extrabold text-primary">{n}</span><div><p className="font-extrabold">{t}</p><p className="mt-1 text-body text-muted">{b}</p></div></div></div>)}</div>
         </div>
         <div className="rounded-card border-2 border-primary bg-surface p-6">
           <p className="text-h3 font-extrabold text-primary">{ar ? "وما الذي يمكن أن يحدث تلقائياً؟" : "Examples of what runs automatically"}</p>
@@ -428,7 +428,7 @@ export function UseCases({ copy }: { copy: SiteCopy }) {
     <Section id="use-cases" tone="muted">
       <Eyebrow>{ar ? "يتشكل حسب طريقة بيعك" : "Not a generic demo"}</Eyebrow>
       <SectionTitle>{ar ? "عيادة ليست مثل شركة عقارات… لذلك لا نبني للجميع نفس الرحلة" : "One engine — a sales journey built around your business"}</SectionTitle>
-      <div className="mt-8 grid gap-4 md:grid-cols-2">{cases.map(([t,b])=><article key={t} className="rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-3 text-body text-muted">{b}</p></article>)}</div>
+      <div className="mt-8 grid gap-4 md:grid-cols-2">{cases.map(([t,b])=><article key={t} className="lift-card rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-3 text-body text-muted">{b}</p></article>)}</div>
     </Section>
   );
 }
@@ -483,7 +483,7 @@ export function TrustAndData({ copy }: { copy: SiteCopy }) {
       <SectionTitle>{ar ? "الذكاء الاصطناعي يعمل داخل قواعد شركتك" : "AI that works inside your business rules"}</SectionTitle>
       <div className="mt-7 grid gap-4 md:grid-cols-3">
         {cards.map(([title, body]) => (
-          <article key={title} className="rounded-card border border-line bg-surface p-5">
+          <article key={title} className="lift-card rounded-card border border-line bg-surface p-5">
             <CheckMark />
             <h3 className="mt-3 text-h3 font-extrabold">{title}</h3>
             <p className="mt-2 text-body text-muted">{body}</p>
@@ -540,7 +540,7 @@ export function Deliverables({ copy }: { copy: SiteCopy }) {
       <Eyebrow>{ar ? "ماذا تستلم فعلياً؟" : "What do you actually get?"}</Eyebrow>
       <SectionTitle>{ar ? "ليس ملف إعدادات ولا Chatbot — بيئة عمل يستخدمها فريقك" : "Not a configuration file or chatbot — a workspace your team can use"}</SectionTitle>
       <div className="mt-8 grid gap-4 lg:grid-cols-3">
-        {groups.map(([title,...items])=><article key={title} className="rounded-card border border-line bg-surface p-6"><h3 className="text-h3 font-extrabold text-primary">{title}</h3><ul className="mt-4 space-y-3">{items.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></article>)}
+        {groups.map(([title,...items])=><article key={title} className="lift-card rounded-card border border-line bg-surface p-6"><h3 className="text-h3 font-extrabold text-primary">{title}</h3><ul className="mt-4 space-y-3">{items.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></article>)}
       </div>
       <p className="mt-6 text-body font-bold">{ar ? "نضبط هذه المكونات على طريقة عمل شركتك، ثم نختبر الرحلة معك قبل الإطلاق." : "We configure these components around how your company works, then test the journey with you before launch."}</p>
     </Section>
