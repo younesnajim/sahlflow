@@ -316,66 +316,28 @@ export function HowItWorks({ copy }: { copy: SiteCopy }) {
 /* ────────────────────────────── pricing ────────────────────────────── */
 
 export function Pricing({ copy }: { copy: SiteCopy }) {
-  const { pricing } = copy;
   const ar = copy.locale === "ar";
-  const setup = ar ? [
-    "جلسة فهم رحلة البيع وتحديد نقاط التأهيل والتحويل",
-    "ربط واتساب وتجهيز بيئة العمل الخاصة بشركتك",
-    "إعداد الوكيل: السلوك، التعليمات، الخدمات والأسعار وقاعدة المعرفة",
-    "بناء أسئلة التأهيل والحقول المخصصة والـTags",
-    "إعداد Contacts والـPipeline ومراحل الفرص",
-    "بناء المتابعات الأساسية والتحويل للموظف",
-    "اختبار سيناريوهات حقيقية وضبط الردود قبل الإطلاق",
-    "تدريب الفريق وإطلاق النظام",
+  const factors = ar ? [
+    "حجم محادثات العملاء التي تصل إلى واتساب",
+    "طريقة التأهيل والمتابعة الحالية",
+    "عدد أفراد الفريق وطريقة توزيع المحادثات",
+    "الأنظمة أو الحجوزات أو البيانات التي تحتاج إلى ربط",
   ] : [
-    "Sales-journey discovery and qualification/handoff mapping",
-    "WhatsApp connection and company workspace setup",
-    "Agent behavior, instructions, services, pricing and knowledge base",
-    "Qualification questions, custom fields and tags",
-    "Contacts, pipeline and opportunity stages",
-    "Core follow-up journeys and human handoff",
-    "Real-scenario testing and response tuning before launch",
-    "Team training and launch",
-  ];
-  const monthly = ar ? [
-    "تشغيل واستضافة النظام الحالي ومتابعة حالته",
-    "Inbox وContacts وPipelines وDashboard وBroadcasts والـAI",
-    "تحديث قاعدة المعرفة عند تغير خدماتك أو معلوماتك",
-    "تحسين الردود والتأهيل والمتابعات الموجودة",
-    "دعم ومراقبة المشاكل التشغيلية ضمن النطاق",
-    "تحسين مستمر على الرحلة الحالية بناءً على الاستخدام",
-  ] : [
-    "Operation, hosting and monitoring of the existing system",
-    "Inbox, contacts, pipelines, dashboard, broadcasts and AI",
-    "Knowledge-base updates when your services or information change",
-    "Tuning of existing replies, qualification and follow-up",
-    "Operational support and monitoring within scope",
-    "Ongoing improvement of the existing journey based on usage",
+    "Your WhatsApp conversation volume",
+    "Your current qualification and follow-up process",
+    "Team size and conversation routing",
+    "Systems, booking or data integrations required",
   ];
   return (
     <Section id="pricing">
-      <Eyebrow>{pricing.eyebrow}</Eyebrow>
-      <SectionTitle>{ar ? "أنت لا تدفع مقابل Login — أنت تدفع مقابل نظام يتم بناؤه وتشغيله لك" : "You're not paying for a login — you're paying for a system built and operated for you"}</SectionTitle>
-      <div className="mt-8 grid gap-5 lg:grid-cols-2">
-        <article className="rounded-card border-2 border-primary bg-surface p-6 sm:p-7">
-          <p className="text-label font-bold text-primary">{ar ? "مرة واحدة — التنفيذ والإطلاق" : "One time — implementation & launch"}</p>
-          <p className="numeric mt-2 text-price font-extrabold">{ar ? "٦٬٥٠٠ درهم" : "AED 6,500"}</p>
-          <p className="mt-3 text-body text-muted">{ar ? "نحوّل طريقة البيع لديك إلى نظام جاهز للعمل مع فريقك." : "We turn your sales process into a working system for your team."}</p>
-          <ul className="mt-5 space-y-3">{setup.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul>
-        </article>
-        <article className="rounded-card border border-line bg-surface-muted p-6 sm:p-7">
-          <p className="text-label font-bold text-primary">{ar ? "شهرياً — التشغيل والإدارة والتحسين" : "Monthly — operation, management & improvement"}</p>
-          <p className="numeric mt-2 text-price font-extrabold">{ar ? "٢٬٠٠٠ درهم / شهر" : "AED 2,000 / month"}</p>
-          <p className="mt-3 text-body text-muted">{ar ? "بعد الإطلاق لا نتركك وحدك مع الأداة؛ نستمر في تشغيل وتحسين النظام الموجود." : "After launch, we do not leave you alone with the tool; we keep the existing system running and improving."}</p>
-          <ul className="mt-5 space-y-3">{monthly.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul>
-        </article>
+      <Eyebrow>{ar ? "قبل أن نقدم لك عرضاً" : "Before we propose a solution"}</Eyebrow>
+      <SectionTitle>{ar ? "نريد أولاً أن نعرف: هل سهل فلو مناسب لشركتك؟" : "First, we want to know whether Sahl Flow fits your business"}</SectionTitle>
+      <p className="mt-4 max-w-3xl text-lead text-muted">{ar ? "كل شركة تعمل بطريقة مختلفة. لذلك لا نضع سعراً عاماً ثم نحاول إجبار احتياجك داخل باقة جاهزة. نفهم العملية أولاً، ثم نحدد ما الذي يجب بناؤه وتشغيله." : "Every business operates differently. We understand the process first, then define what should be built and operated."}</p>
+      <div className="mt-7 grid gap-3 sm:grid-cols-2">{factors.map(x=><div key={x} className="flex gap-3 rounded-card border border-line bg-surface-muted p-4 text-body"><CheckMark/><span>{x}</span></div>)}</div>
+      <div className="mt-7 rounded-card bg-ink p-6 text-on-ink sm:flex sm:items-center sm:justify-between sm:gap-6">
+        <div><p className="text-h3 font-extrabold">{ar ? "التقييم الأولي قصير — وليس مكالمة بيع طويلة" : "The initial fit check is short — not a long sales call"}</p><p className="mt-2 text-body opacity-80">{ar ? "نعرف حجم العمل والمشكلة والجاهزية، ثم نحدد الخطوة المناسبة." : "We learn the volume, problem and readiness, then recommend the right next step."}</p></div>
+        <a href="#fit" className="mt-4 inline-flex shrink-0 items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary sm:mt-0">{ar ? "ابدأ التقييم السريع" : "Start the fit check"}</a>
       </div>
-      <div className="mt-5 rounded-card border border-line bg-surface p-5">
-        <p className="font-extrabold">{ar ? "حدود واضحة حتى تعرف ماذا تدفع مقابله" : "Clear boundaries so you know what you're paying for"}</p>
-        <p className="mt-2 text-body text-muted">{pricing.passthrough}</p>
-        <p className="mt-2 text-body font-bold">{pricing.lockIn}</p>
-      </div>
-      <div className="mt-6"><a href="#fit" className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">{pricing.cta.label}</a></div>
     </Section>
   );
 }
