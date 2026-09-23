@@ -1,5 +1,5 @@
 import { Nav } from "./Nav";
-import { Faq, FinalCta, Footer, Hero, HowItWorks, Pricing, Problem, SalesJourney, WhatYouGet } from "./sections";
+import { CustomAutomation, Faq, FinalCta, Footer, Hero, HowItWorks, Pricing, Problem, Qualification, SalesJourney, TrustAndData, WhatYouGet } from "./sections";
 import type { SiteCopy } from "@/content/types";
 
 export function LandingPage({ copy }: { copy: SiteCopy }) {
@@ -13,7 +13,10 @@ export function LandingPage({ copy }: { copy: SiteCopy }) {
         <Problem copy={copy} />
         <WhatYouGet copy={copy} />
         <HowItWorks copy={copy} />
+        <TrustAndData copy={copy} />
         <Pricing copy={copy} />
+        <CustomAutomation copy={copy} />
+        <Qualification copy={copy} />
         <Faq copy={copy} />
         <FinalCta copy={copy} />
       </main>
