@@ -4,16 +4,16 @@ export const en: SiteCopy = {
   locale: "en", dir: "ltr",
   meta: { title: "Sahl Flow — a done-for-you WhatsApp sales system", description: "Turn WhatsApp conversations into qualified sales opportunities. We build, connect, test and run the system for you." },
   nav: {
-    links: [{href:"#system",label:"How it works"},{href:"#done-for-you",label:"What we build"},{href:"#pricing",label:"Pricing"},{href:"#faq",label:"FAQ"}],
+    links: [{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#pricing",label:"Pricing"}],
     cta:{label:"Try Sahl Flow",source:"nav"}, switchTo:{href:"/ar",label:"العربية",hrefLang:"ar"}, skipToContent:"Skip to content"
   },
   hero:{
-    h1:"Turn WhatsApp conversations into sales opportunities — automatically",
-    sub:"Sahl Flow receives your leads, understands text and voice notes, qualifies them, organizes customer data and opportunities, and follows up — while we build, configure and run the system for you.",
+    h1:"Stop running your sales process inside WhatsApp chats",
+    sub:"Sahl Flow turns WhatsApp messages into a structured sales process: it understands the lead, qualifies them, records the data in CRM, creates the opportunity, then follows up or hands it to your team — and we build and run the system for you.",
     cta:{label:"Try Sahl Flow for your business",source:"hero"},
     trust:["Done for you","Built for Arabic","Ongoing management & improvement"]
   },
-  video:{eyebrow:"From message to opportunity",title:"A fast reply is only the beginning",placeholder:"The Sahl Flow customer journey will appear here"},
+  video:{eyebrow:"From message to opportunity",title:"A fast reply is only the beginning",placeholder:"7 connected stages move a customer from an inbound message to structured data, a sales opportunity and managed follow-up."},
   problem:{title:"The problem isn't only response speed",lines:["A lead gets a reply — but nobody determines whether they're serious.","The chat ends — and the customer's context and intent disappear with it.","They don't buy today — and there is no structured follow-up to bring them back."]},
   whatYouGet:{
     eyebrow:"A sales system, not just a bot",title:"We do the work — we don't hand you a tool",
@@ -57,7 +57,7 @@ export const en: SiteCopy = {
   finalCta:{line:"Your customer messages already exist. Give every one a clear sales path.",cta:{label:"Discuss your system",source:"final-cta"}},
   footer:{
     tagline:"A done-for-you WhatsApp sales system.",
-    links:[{href:"#system",label:"How it works"},{href:"#done-for-you",label:"What we build"},{href:"#pricing",label:"Pricing"},{href:"#faq",label:"FAQ"}],
+    links:[{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#pricing",label:"Pricing"}],
     whatsappLabel:"Have a question? WhatsApp",legal:"WhatsApp is a trademark of Meta. Sahl Flow is not affiliated with Meta.",rights:"All rights reserved."
   },
   demo:{
