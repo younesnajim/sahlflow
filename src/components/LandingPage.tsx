@@ -12,13 +12,16 @@ export function LandingPage({ copy }: { copy: SiteCopy }) {
         <CostOfManualWork copy={copy} />
         <SalesJourney copy={copy} />
         <LiveDemo copy={copy} />
+        <div className="section-rule" />
         <WhatYouGet copy={copy} />
         <Capabilities copy={copy} />
         <BusinessImpact copy={copy} />
+        <div className="section-rule" />
         <CrmAutomation copy={copy} />
         <UseCases copy={copy} />
         <Differentiation copy={copy} />
         <HowItWorks copy={copy} />
+        <div className="section-rule" />
         <TrustAndData copy={copy} />
         <Deliverables copy={copy} />
         <Pricing copy={copy} />
