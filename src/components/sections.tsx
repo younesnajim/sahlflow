@@ -92,6 +92,30 @@ export function LiveDemo({ copy }: { copy: SiteCopy }) {
   );
 }
 
+
+export function CostOfManualWork({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const leaks = ar ? [
+    ["الرد المتكرر","نفس الأسئلة والأسعار والخدمات تستهلك وقت الفريق كل يوم."],
+    ["الفرز اليدوي","موظف يقرأ المحادثة ليعرف إن كان العميل جاداً وما الذي يريده."],
+    ["إدخال البيانات","نسخ الاسم والرقم والاحتياج إلى CRM أو Sheet — أو عدم تسجيله أصلاً."],
+    ["المتابعة بالذاكرة","Lead مهتم اليوم قد يختفي غداً إذا لم يتذكر أحد الرجوع إليه."],
+  ] : [
+    ["Repeated replies","The same questions, pricing and service information consume team time every day."],
+    ["Manual sorting","A teammate reads conversations to decide who is serious and what they need."],
+    ["Data entry","Names, numbers and needs are copied into a CRM or sheet — or never recorded."],
+    ["Memory-based follow-up","An interested lead can disappear tomorrow if nobody remembers to follow up."],
+  ];
+  return (
+    <Section tone="muted">
+      <Eyebrow>{ar ? "أين يتسرب الوقت والـLeads؟" : "Where do time and leads leak?"}</Eyebrow>
+      <SectionTitle>{ar ? "كل رسالة لا تحتاج موظفاً من البداية إلى النهاية" : "Not every message needs a person from start to finish"}</SectionTitle>
+      <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{leaks.map(([t,b])=><article key={t} className="rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-2 text-body text-muted">{b}</p></article>)}</div>
+      <p className="mt-6 text-body font-bold">{ar ? "Sahl Flow ينقل هذه الأعمال المتكررة إلى النظام، بينما يبقى فريقك في اللحظات التي تحتاج تفاوضاً وقراراً وعلاقة بشرية." : "Sahl Flow moves repetitive work into the system while your team stays involved where negotiation, judgment and human relationships matter."}</p>
+    </Section>
+  );
+}
+
 /* ────────────────────────────── problem ────────────────────────────── */
 
 export function Problem({ copy }: { copy: SiteCopy }) {
