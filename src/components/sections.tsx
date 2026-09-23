@@ -62,13 +62,20 @@ export function SalesJourney({ copy }: { copy: SiteCopy }) {
       <Eyebrow>{video.eyebrow}</Eyebrow>
       <SectionTitle>{video.title}</SectionTitle>
       <p className="mt-4 max-w-prose text-body text-muted">{video.placeholder}</p>
-      <div className="mt-7 flex gap-3 overflow-x-auto pb-2 lg:grid lg:grid-cols-7 lg:overflow-visible">
-        {steps.map((step, i) => (
-          <div key={step} className="min-w-44 rounded-card border border-line bg-surface p-4 lg:min-w-0">
-            <span className="numeric text-label font-extrabold text-primary">{formatNumber(i + 1, copy.locale)}</span>
-            <p className="mt-2 text-body font-bold">{step}</p>
-          </div>
-        ))}
+      <div className="relative mt-9">
+        <div className="absolute inset-inline-0 top-6 hidden h-px bg-line lg:block" aria-hidden="true" />
+        <div className="relative flex gap-3 overflow-x-auto pb-3 lg:grid lg:grid-cols-7 lg:overflow-visible">
+          {steps.map((step, i) => (
+            <div key={step} className="min-w-44 lg:min-w-0">
+              <div className="mx-auto flex size-12 items-center justify-center rounded-full border-4 border-surface bg-primary text-body font-extrabold text-on-primary shadow-sm">
+                <span className="numeric">{formatNumber(i + 1, copy.locale)}</span>
+              </div>
+              <div className="lift-card mt-3 min-h-24 rounded-card border border-line bg-surface p-4 text-center shadow-sm">
+                <p className="text-body font-bold">{step}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       
     </Section>
@@ -399,7 +406,7 @@ export function CrmAutomation({ copy }: { copy: SiteCopy }) {
       <div className="mt-8 grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
         <div className="rounded-card border border-line bg-surface-muted p-6">
           <p className="text-h3 font-extrabold">{ar ? "عندما يفتح موظفك العميل، يعرف فوراً:" : "What does your sales team see?"}</p>
-          <div className="mt-5 space-y-3">{crm.map(([n,t,b])=><div key={n} className="lift-card rounded-card border border-line bg-surface p-4"><div className="flex gap-3"><span className="numeric font-extrabold text-primary">{n}</span><div><p className="font-extrabold">{t}</p><p className="mt-1 text-body text-muted">{b}</p></div></div></div>)}</div>
+          <div className="relative mt-6 space-y-4 before:absolute before:bottom-5 before:top-5 before:w-px before:bg-line before:start-4">{crm.map(([n,t,b])=><div key={n} className="relative flex gap-4"><span className="numeric z-10 flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-label font-extrabold text-on-primary">{n}</span><div className="lift-card flex-1 rounded-card border border-line bg-surface p-4"><p className="font-extrabold">{t}</p><p className="mt-1 text-body text-muted">{b}</p></div></div>)}</div>
         </div>
         <div className="rounded-card border-2 border-primary bg-surface p-6">
           <p className="text-h3 font-extrabold text-primary">{ar ? "وما الذي يمكن أن يحدث تلقائياً؟" : "Examples of what runs automatically"}</p>
