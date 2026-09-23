@@ -66,9 +66,9 @@ export function SalesJourney({ copy }: { copy: SiteCopy }) {
       <Eyebrow>{video.eyebrow}</Eyebrow>
       <SectionTitle>{video.title}</SectionTitle>
       <p className="mt-4 max-w-prose text-body text-muted">{video.placeholder}</p>
-      <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-7">
+      <div className="mt-7 flex gap-3 overflow-x-auto pb-2 lg:grid lg:grid-cols-7 lg:overflow-visible">
         {steps.map((step, i) => (
-          <div key={step} className="rounded-card border border-line bg-surface p-4">
+          <div key={step} className="min-w-44 rounded-card border border-line bg-surface p-4 lg:min-w-0">
             <span className="numeric text-label font-extrabold text-primary">{formatNumber(i + 1, copy.locale)}</span>
             <p className="mt-2 text-body font-bold">{step}</p>
           </div>
