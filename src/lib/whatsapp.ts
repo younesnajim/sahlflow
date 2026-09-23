@@ -23,8 +23,8 @@ export type LeadSource =
 export type Locale = "ar" | "en";
 
 const OPENING: Record<Locale, string> = {
-  ar: "السلام عليكم، وصلتكم من موقع سهل فلو وأبغى أعرف أكثر عن وكيل واتساب.",
-  en: "السلام عليكم، وصلتكم من موقع سهل فلو وأبغى أعرف أكثر عن وكيل واتساب.",
+  ar: "السلام عليكم، وصلتكم من موقع سهل فلو وأرغب بمعرفة كيف يمكن تطبيق نظام Sahl Flow على نشاطي.",
+  en: "Hi, I came from the Sahl Flow website and I'd like to see how Sahl Flow could work for my business.",
 };
 
 /**
