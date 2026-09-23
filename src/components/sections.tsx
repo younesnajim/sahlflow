@@ -59,16 +59,26 @@ export function Hero({ copy }: { copy: SiteCopy }) {
 
 /* ─────────────────────────────── video ─────────────────────────────── */
 
-export function VideoBlock({ copy }: { copy: SiteCopy }) {
+export function SalesJourney({ copy }: { copy: SiteCopy }) {
   const { video } = copy;
+  const steps = copy.locale === "ar"
+    ? ["رسالة واتساب", "فهم العميل", "تأهيل", "تسجيل البيانات", "إنشاء فرصة", "متابعة", "تحويل للفريق"]
+    : ["WhatsApp message", "Understand", "Qualify", "Capture data", "Create opportunity", "Follow up", "Handoff"];
+
   return (
-    <Section tone="muted">
+    <Section id="system" tone="muted">
       <Eyebrow>{video.eyebrow}</Eyebrow>
       <SectionTitle>{video.title}</SectionTitle>
-      {/* Placeholder: swap for the real <video> once the file is supplied. */}
-      <div className="mt-6 flex aspect-video w-full max-w-4xl items-center justify-center rounded-card border border-dashed border-line bg-surface-sunken">
-        <p className="text-body font-medium text-muted">{video.placeholder}</p>
+      <p className="mt-4 max-w-prose text-body text-muted">{video.placeholder}</p>
+      <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-7">
+        {steps.map((step, i) => (
+          <div key={step} className="rounded-card border border-line bg-surface p-4">
+            <span className="numeric text-label font-extrabold text-primary">{formatNumber(i + 1, copy.locale)}</span>
+            <p className="mt-2 text-body font-bold">{step}</p>
+          </div>
+        ))}
       </div>
+      <div className="mt-8"><DemoWidget copy={copy} /></div>
     </Section>
   );
 }
@@ -99,7 +109,7 @@ export function Problem({ copy }: { copy: SiteCopy }) {
 export function WhatYouGet({ copy }: { copy: SiteCopy }) {
   const { whatYouGet } = copy;
   return (
-    <Section id="what" tone="muted">
+    <Section id="done-for-you">
       <Eyebrow>{whatYouGet.eyebrow}</Eyebrow>
       <SectionTitle>{whatYouGet.title}</SectionTitle>
       <p className="mt-4 max-w-prose text-body text-muted">{whatYouGet.intro}</p>
@@ -176,80 +186,6 @@ export function HowItWorks({ copy }: { copy: SiteCopy }) {
 
 /* ───────────────────────────── message costs ───────────────────────── */
 
-export function MessageCosts({ copy }: { copy: SiteCopy }) {
-  const { costs } = copy;
-  const rateFor = (category: string) =>
-    META_UAE_RATES.find((r) => r.category === category);
-
-  return (
-    <Section id="costs" tone="muted">
-      <Eyebrow>{costs.eyebrow}</Eyebrow>
-      <SectionTitle>{costs.title}</SectionTitle>
-      <p className="mt-4 max-w-prose text-body text-muted">{costs.disclaimer}</p>
-
-      <div className="mt-6 overflow-x-auto rounded-card border border-line bg-surface">
-        <table className="w-full border-collapse text-start">
-          <thead>
-            <tr className="border-b border-line bg-surface-sunken">
-              <th className="px-4 py-3 text-start text-label font-bold">
-                {costs.columns.category}
-              </th>
-              <th className="px-4 py-3 text-start text-label font-bold whitespace-nowrap">
-                {costs.columns.perMessage}
-              </th>
-              <th className="px-4 py-3 text-start text-label font-bold whitespace-nowrap">
-                {costs.columns.aed}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {costs.rows.map((row) => {
-              const rate = rateFor(row.category);
-              const free = !rate || rate.usdPerMessage === 0;
-              return (
-                <tr key={row.category} className="border-b border-line last:border-0">
-                  <td className="px-4 py-3 align-top">
-                    <span className="text-body font-medium">{row.label}</span>
-                    {row.note && (
-                      <span className="block text-label text-muted">{row.note}</span>
-                    )}
-                  </td>
-                  <td className="px-4 py-3 align-top text-body whitespace-nowrap">
-                    {free ? (
-                      <span className="font-bold text-primary">{costs.freeLabel}</span>
-                    ) : (
-                      <span className="numeric">
-                        {formatUsd(rate.usdPerMessage, copy.locale)}
-                      </span>
-                    )}
-                  </td>
-                  <td className="px-4 py-3 align-top text-body whitespace-nowrap">
-                    {free ? (
-                      <span className="text-muted" aria-hidden="true">
-                        —
-                      </span>
-                    ) : (
-                      <span className="numeric">
-                        {formatAed(rate.usdPerMessage, copy.locale)}
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-
-      <p className="mt-4 text-body font-bold">{costs.freeTier}</p>
-      <p className="mt-2 text-label text-muted">
-        {costs.footnote}
-        <span className="sr-only"> ({FREE_SERVICE_MESSAGES_PER_MONTH})</span>
-      </p>
-    </Section>
-  );
-}
-
 /* ────────────────────────────── pricing ────────────────────────────── */
 
 export function Pricing({ copy }: { copy: SiteCopy }) {
@@ -261,11 +197,8 @@ export function Pricing({ copy }: { copy: SiteCopy }) {
       <div className="mt-4 rounded-card border-2 border-primary bg-surface p-6 sm:p-8">
         <p className="text-price font-extrabold text-balance">{pricing.headline}</p>
 
-        <p className="mt-3 inline-block rounded-full bg-amber/20 px-3 py-1 text-label font-bold">
-          {pricing.founderLabel}
-        </p>
-
-        <p className="mt-4 text-label text-muted">{pricing.standard}</p>
+        <p className="mt-4 text-body font-bold text-primary">{pricing.founderLabel}</p>
+        <p className="mt-2 text-body text-muted">{pricing.standard}</p>
 
         <hr className="my-6 border-line" />
 
