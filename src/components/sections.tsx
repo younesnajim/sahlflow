@@ -54,7 +54,7 @@ export function Hero({ copy }: { copy: SiteCopy }) {
 export function SalesJourney({ copy }: { copy: SiteCopy }) {
   const { video } = copy;
   const steps = copy.locale === "ar"
-    ? ["رسالة واتساب", "فهم العميل", "تأهيل", "تسجيل البيانات", "إنشاء فرصة", "متابعة", "تحويل للفريق"]
+    ? ["العميل يرسل", "سهل فلو يفهم", "يسأل ويجمع التفاصيل", "يحفظ المعلومات", "يحدد المرحلة", "يتابع في الوقت المناسب", "يسلّم لفريقك عند الحاجة"]
     : ["WhatsApp message", "Understand", "Qualify", "Capture data", "Create opportunity", "Follow up", "Handoff"];
 
   return (
@@ -96,10 +96,10 @@ export function LiveDemo({ copy }: { copy: SiteCopy }) {
 export function CostOfManualWork({ copy }: { copy: SiteCopy }) {
   const ar = copy.locale === "ar";
   const leaks = ar ? [
-    ["الرد المتكرر","نفس الأسئلة والأسعار والخدمات تستهلك وقت الفريق كل يوم."],
-    ["الفرز اليدوي","موظف يقرأ المحادثة ليعرف إن كان العميل جاداً وما الذي يريده."],
-    ["إدخال البيانات","نسخ الاسم والرقم والاحتياج إلى CRM أو Sheet — أو عدم تسجيله أصلاً."],
-    ["المتابعة بالذاكرة","Lead مهتم اليوم قد يختفي غداً إذا لم يتذكر أحد الرجوع إليه."],
+    ["نفس الأسئلة كل يوم","السعر؟ الموقع؟ المواعيد؟ التفاصيل؟ فريقك يعيد نفس الإجابات بينما يمكن للنظام أن يتولاها."],
+    ["مين الجاد ومين فقط يسأل؟","بدل أن يقرأ الموظف عشرات المحادثات ليكتشف ذلك، سهل فلو يجمع المعلومات التي تساعد على معرفة الأولوية."],
+    ["المعلومات مدفونة داخل الشات","اسم العميل واحتياجه وميزانيته لا يجب أن تبقى بين عشرات الرسائل. تتحول إلى سجل واضح يمكن الرجوع إليه."],
+    ["«رجعوا له بكرا»","وهنا يضيع كثير من العملاء. المتابعة تصبح خطوة منظمة بدل أن تعتمد على ذاكرة الموظف."],
   ] : [
     ["Repeated replies","The same questions, pricing and service information consume team time every day."],
     ["Manual sorting","A teammate reads conversations to decide who is serious and what they need."],
@@ -108,10 +108,10 @@ export function CostOfManualWork({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section tone="muted">
-      <Eyebrow>{ar ? "أين يتسرب الوقت والـLeads؟" : "Where do time and leads leak?"}</Eyebrow>
-      <SectionTitle>{ar ? "كل رسالة لا تحتاج موظفاً من البداية إلى النهاية" : "Not every message needs a person from start to finish"}</SectionTitle>
+      <Eyebrow>{ar ? "هل هذا يحدث عندكم؟" : "Where do time and leads leak?"}</Eyebrow>
+      <SectionTitle>{ar ? "المشكلة ليست في واتساب… المشكلة في كل ما يحدث بعد وصول الرسالة" : "Not every message needs a person from start to finish"}</SectionTitle>
       <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{leaks.map(([t,b])=><article key={t} className="rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-2 text-body text-muted">{b}</p></article>)}</div>
-      <p className="mt-6 text-body font-bold">{ar ? "Sahl Flow ينقل هذه الأعمال المتكررة إلى النظام، بينما يبقى فريقك في اللحظات التي تحتاج تفاوضاً وقراراً وعلاقة بشرية." : "Sahl Flow moves repetitive work into the system while your team stays involved where negotiation, judgment and human relationships matter."}</p>
+      <p className="mt-6 text-body font-bold">{ar ? "سهل فلو يتولى الجزء المتكرر والمنظم من الرحلة. ويبقى فريقك للمواقف التي تحتاج إنساناً: تفاوض، قرار، إقناع وعلاقة مع العميل." : "Sahl Flow moves repetitive work into the system while your team stays involved where negotiation, judgment and human relationships matter."}</p>
     </Section>
   );
 }
@@ -179,13 +179,13 @@ export function Capabilities({ copy }: { copy: SiteCopy }) {
     ["02", "AI يفهم نشاطك", "وكيل مضبوط على خدماتك وأسعارك وقواعدك وقاعدة معرفتك، وليس بوتاً عاماً يجيب من تلقاء نفسه."],
     ["03", "فهم الرسائل الصوتية العربية", "يحوّل الـVoice Notes العربية إلى نص ويدخلها في نفس مسار الفهم والتأهيل والمتابعة."],
     ["04", "تأهيل العملاء تلقائياً", "يسأل الأسئلة الصحيحة ويجمع الاحتياج والميزانية والتوقيت والبيانات التي تحددها لنشاطك."],
-    ["05", "CRM وجهات اتصال", "كل عميل يصبح سجلاً منظماً مع بياناته ومحادثاته وحقوله وتصنيفاته بدلاً من بقائه رقماً داخل واتساب."],
-    ["06", "Pipeline وفرص بيع", "إنشاء وتحديث الفرص ومراحل البيع حتى يرى الفريق من هو جديد، مؤهل، قيد المتابعة أو جاهز للخطوة التالية."],
+    ["05", "ملف واضح لكل عميل", "الاسم والرقم والاهتمام والمحادثة والمعلومات المهمة في سجل واحد بدل أن يبقى العميل مجرد رقم داخل واتساب."],
+    ["06", "تعرف أين وصل كل عميل", "جديد؟ جاد؟ يحتاج متابعة؟ جاهز للموظف؟ يرى الفريق المرحلة الحالية والخطوة التالية بوضوح."],
     ["07", "متابعة تلقائية", "يبني متابعات للعملاء الذين لم يشتروا من أول محادثة وفق السيناريو والقواعد التي نعتمدها معك."],
     ["08", "تحويل ذكي للإنسان", "عندما تحتاج المحادثة موظفاً، ينتقل العميل للفريق مع السياق والبيانات بدلاً من بدء الحديث من الصفر."],
-    ["09", "Dashboard وقياس النشاط", "رؤية المحادثات وجهات الاتصال والفرص وقيمة الصفقات والنشاط حتى لا تبقى المبيعات مخفية داخل الشات."],
-    ["10", "Broadcasts وحملات إعادة التواصل", "إرسال رسائل معتمدة لشرائح العملاء وإعادة تنشيط قاعدة العملاء ضمن قواعد واتساب المعمول بها."],
-    ["11", "Automations وFlows", "تشغيل إجراءات بناءً على رسالة أو كلمة أو Tag أو حقل: تحديث بيانات، إنشاء Deal، تعيين موظف، انتظار، شرط أو Webhook."],
+    ["09", "صورة واضحة للإدارة", "ترى المحادثات والعملاء والفرص والنشاط بدل أن تسأل الفريق كل مرة: ماذا حدث مع العملاء؟"],
+    ["10", "إعادة التواصل مع العملاء", "تتواصل مع شرائح محددة من قاعدة العملاء برسائل معتمدة وضمن قواعد واتساب."],
+    ["11", "خطوات تعمل تلقائياً", "وصول رسالة أو إجابة أو تصنيف يمكن أن يشغّل الخطوة التالية: تحديث بيانات، متابعة، تعيين موظف أو نقل العميل لمرحلة جديدة."],
     ["12", "Custom Automation", "عند الحاجة نربط CRM أو API أو حجوزات أو مدفوعات أو تقارير أو عمليات داخلية كمشروع مخصص منفصل."],
   ] : [
     ["01","Shared team inbox","Keep customer conversations in one place, assign them to teammates, close them and hand them off when needed."],
@@ -203,9 +203,9 @@ export function Capabilities({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="capabilities" tone="muted">
-      <Eyebrow>{ar ? "ماذا يوجد داخل النظام؟" : "What's inside the system?"}</Eyebrow>
-      <SectionTitle>{ar ? "12 قدرة تعمل كمنظومة واحدة — من أول رسالة حتى فرصة البيع" : "12 capabilities working as one system — from first message to sales opportunity"}</SectionTitle>
-      <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "الفرق ليس ميزة AI واحدة. الفرق أن المحادثة، التأهيل، الـCRM، الـPipeline، المتابعة والأتمتة تعمل معاً وتترك لفريقك صورة واضحة عن كل عميل." : "The difference is not one AI feature. Conversation, qualification, CRM, pipeline, follow-up and automation work together so your team has a clear picture of every lead."}</p>
+      <Eyebrow>{ar ? "كل شيء في مكان واحد" : "What's inside the system?"}</Eyebrow>
+      <SectionTitle>{ar ? "ليس مجرد رد آلي. هذه هي المنظومة التي تعمل خلف المحادثة" : "12 capabilities working as one system — from first message to sales opportunity"}</SectionTitle>
+      <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "بدل مجموعة أدوات منفصلة، يجمع سهل فلو المحادثة وبيانات العميل ومراحل البيع والمتابعة والأتمتة في مكان واحد." : "The difference is not one AI feature. Conversation, qualification, CRM, pipeline, follow-up and automation work together so your team has a clear picture of every lead."}</p>
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {items.map(([n,title,body]) => <article key={n} className="rounded-card border border-line bg-surface p-5">
           <span className="numeric text-label font-extrabold text-primary">{n}</span>
@@ -251,12 +251,12 @@ export function BusinessImpact({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="impact">
-      <Eyebrow>{ar ? "أين توفر الوقت والجهد؟" : "Where do you save time and effort?"}</Eyebrow>
-      <SectionTitle>{ar ? "نقل العمل المتكرر من فريقك إلى النظام" : "Move repetitive sales work from your team into the system"}</SectionTitle>
-      <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "لا نضع نسبة توفير وهمية قبل أن نرى أرقام نشاطك. ما نستطيع أن نوضحه هو أين يختفي العمل اليدوي، وأين يبقى الإنسان للقرار والبيع والعلاقة مع العميل." : "We do not invent a savings percentage before seeing your operation. We show exactly where manual work is removed and where your people stay focused on judgment, selling and customer relationships."}</p>
+      <Eyebrow>{ar ? "قبل سهل فلو وبعده" : "Where do you save time and effort?"}</Eyebrow>
+      <SectionTitle>{ar ? "فريقك لا يحتاج أن يعمل كأنه دفتر ملاحظات بشري" : "Move repetitive sales work from your team into the system"}</SectionTitle>
+      <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "الردود المتكررة، فرز العملاء، تسجيل المعلومات والتذكير بالمتابعة يمكن تنظيمها داخل النظام. أما البيع الحقيقي والعلاقة مع العميل فتبقى لفريقك." : "We do not invent a savings percentage before seeing your operation. We show exactly where manual work is removed and where your people stay focused on judgment, selling and customer relationships."}</p>
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
-        <div className="rounded-card border border-line bg-surface-muted p-6"><p className="text-h3 font-extrabold">{ar ? "بدون Sahl Flow" : "Without Sahl Flow"}</p><ul className="mt-4 space-y-3">{before.map(x=><li key={x} className="text-body text-muted">— {x}</li>)}</ul></div>
-        <div className="rounded-card border-2 border-primary bg-surface p-6"><p className="text-h3 font-extrabold text-primary">{ar ? "مع Sahl Flow" : "With Sahl Flow"}</p><ul className="mt-4 space-y-3">{after.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></div>
+        <div className="rounded-card border border-line bg-surface-muted p-6"><p className="text-h3 font-extrabold">{ar ? "اليوم" : "Without Sahl Flow"}</p><ul className="mt-4 space-y-3">{before.map(x=><li key={x} className="text-body text-muted">— {x}</li>)}</ul></div>
+        <div className="rounded-card border-2 border-primary bg-surface p-6"><p className="text-h3 font-extrabold text-primary">{ar ? "بعد تنظيم الرحلة مع سهل فلو" : "With Sahl Flow"}</p><ul className="mt-4 space-y-3">{after.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></div>
       </div>
       <p className="mt-6 rounded-card bg-ink px-5 py-4 text-h3 font-bold text-on-ink">{ar ? "الهدف ليس استبدال فريق المبيعات. الهدف أن يصل الموظف إلى العميل ومعه السياق والبيانات والخطوة التالية — بدل أن يضيع وقته في الفرز والتسجيل والتذكّر." : "The goal is not to replace your sales team. It is to give them the context, data and next step — instead of spending their time sorting, recording and remembering."}</p>
     </Section>
@@ -394,17 +394,17 @@ export function CrmAutomation({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="crm">
-      <Eyebrow>{ar ? "CRM + Pipeline + Automation" : "CRM + Pipeline + Automation"}</Eyebrow>
-      <SectionTitle>{ar ? "المحادثة لا تبقى محادثة — تتحول إلى سجل وفرصة وخطوة تالية" : "A conversation becomes a record, an opportunity and a next action"}</SectionTitle>
+      <Eyebrow>{ar ? "لن تسأل: وين راح هالعميل؟" : "CRM + Pipeline + Automation"}</Eyebrow>
+      <SectionTitle>{ar ? "كل عميل له قصة واضحة… من أول رسالة إلى آخر متابعة" : "A conversation becomes a record, an opportunity and a next action"}</SectionTitle>
       <div className="mt-8 grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
         <div className="rounded-card border border-line bg-surface-muted p-6">
-          <p className="text-h3 font-extrabold">{ar ? "ماذا يرى فريق المبيعات؟" : "What does your sales team see?"}</p>
+          <p className="text-h3 font-extrabold">{ar ? "عندما يفتح موظفك العميل، يعرف فوراً:" : "What does your sales team see?"}</p>
           <div className="mt-5 space-y-3">{crm.map(([n,t,b])=><div key={n} className="rounded-card border border-line bg-surface p-4"><div className="flex gap-3"><span className="numeric font-extrabold text-primary">{n}</span><div><p className="font-extrabold">{t}</p><p className="mt-1 text-body text-muted">{b}</p></div></div></div>)}</div>
         </div>
         <div className="rounded-card border-2 border-primary bg-surface p-6">
-          <p className="text-h3 font-extrabold text-primary">{ar ? "أمثلة على ما يعمل تلقائياً" : "Examples of what runs automatically"}</p>
+          <p className="text-h3 font-extrabold text-primary">{ar ? "وما الذي يمكن أن يحدث تلقائياً؟" : "Examples of what runs automatically"}</p>
           <div className="mt-5 space-y-4">{automations.map(x=><div key={x} className="flex gap-3"><CheckMark/><span className="text-body font-medium">{x}</span></div>)}</div>
-          <p className="mt-6 rounded-card bg-tint/30 p-4 text-body font-bold">{ar ? "بدل أن يكون واتساب صندوق رسائل منفصلاً عن المبيعات، يصبح مدخلاً لنظام المبيعات نفسه." : "Instead of WhatsApp being separate from sales operations, it becomes an entry point into the sales system itself."}</p>
+          <p className="mt-6 rounded-card bg-tint/30 p-4 text-body font-bold">{ar ? "واتساب يبقى مكان المحادثة مع العميل، لكن خلفه تصبح لديك عملية مبيعات مرتبة يمكن إدارتها ومتابعتها." : "Instead of WhatsApp being separate from sales operations, it becomes an entry point into the sales system itself."}</p>
         </div>
       </div>
     </Section>
@@ -426,8 +426,8 @@ export function UseCases({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="use-cases" tone="muted">
-      <Eyebrow>{ar ? "ليس Demo عاماً" : "Not a generic demo"}</Eyebrow>
-      <SectionTitle>{ar ? "نفس المحرك — لكن رحلة البيع تُبنى حسب نشاطك" : "One engine — a sales journey built around your business"}</SectionTitle>
+      <Eyebrow>{ar ? "يتشكل حسب طريقة بيعك" : "Not a generic demo"}</Eyebrow>
+      <SectionTitle>{ar ? "عيادة ليست مثل شركة عقارات… لذلك لا نبني للجميع نفس الرحلة" : "One engine — a sales journey built around your business"}</SectionTitle>
       <div className="mt-8 grid gap-4 md:grid-cols-2">{cases.map(([t,b])=><article key={t} className="rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-3 text-body text-muted">{b}</p></article>)}</div>
     </Section>
   );
@@ -450,8 +450,8 @@ export function Differentiation({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="difference">
-      <Eyebrow>{ar ? "لماذا Sahl Flow مختلف؟" : "Why Sahl Flow is different"}</Eyebrow>
-      <SectionTitle>{ar ? "لا نبيعك برنامجاً ثم نترك لك مهمة بناء النظام" : "We don't sell you software and leave you to build the system"}</SectionTitle>
+      <Eyebrow>{ar ? "الفرق في طريقة التنفيذ" : "Why Sahl Flow is different"}</Eyebrow>
+      <SectionTitle>{ar ? "لا نعطيك أداة ونقول لك: دبّر حالك" : "We don't sell you software and leave you to build the system"}</SectionTitle>
       <div className="mt-8 overflow-x-auto rounded-card border border-line">
         <div className="min-w-[720px]">
           <div className="grid grid-cols-[.7fr_1fr_1fr] bg-ink px-5 py-4 font-bold text-on-ink"><span>{ar?"المقارنة":"Compare"}</span><span>{ar?"الطريقة التقليدية":"Typical approach"}</span><span className="text-tint">Sahl Flow</span></div>
