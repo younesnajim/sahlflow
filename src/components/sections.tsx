@@ -354,6 +354,109 @@ function CheckMark() {
   );
 }
 
+
+/* ─────────────────────────── CRM & automation ─────────────────────────── */
+
+export function CrmAutomation({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const crm = ar ? [
+    ["01","Contact","الاسم، الرقم، المصدر، الاهتمام، الحقول المخصصة والـTags في سجل واحد."],
+    ["02","Qualification","إجابات التأهيل تُحفظ كبيانات، لا تضيع داخل تاريخ المحادثة."],
+    ["03","Opportunity","عندما يصبح العميل فرصة، ينشئ النظام Deal ويربطها بالعميل."],
+    ["04","Pipeline","تتحرك الفرصة بين مراحل البيع حتى يعرف الفريق أين يقف كل Lead."],
+    ["05","Next action","متابعة أو حجز أو تحويل لموظف أو إغلاق — الخطوة التالية واضحة."],
+  ] : [
+    ["01","Contact","Name, number, source, interest, custom fields and tags in one record."],
+    ["02","Qualification","Qualification answers become data instead of disappearing inside chat history."],
+    ["03","Opportunity","When a lead becomes an opportunity, the system creates a deal tied to the contact."],
+    ["04","Pipeline","The opportunity moves through sales stages so the team knows where every lead stands."],
+    ["05","Next action","Follow-up, booking, human handoff or close — the next action stays clear."],
+  ];
+  const automations = ar ? [
+    "رسالة جديدة → فهم المحتوى → تحديث Contact",
+    "Lead مؤهل → إنشاء Opportunity في الـPipeline",
+    "لا يوجد رد → Follow-up حسب السيناريو المعتمد",
+    "كلمة أو Tag أو Field → تشغيل إجراء أو Flow",
+    "حالة تحتاج إنساناً → Assign للموظف مع كامل السياق",
+    "تغيير مرحلة البيع → تحديث البيانات وتشغيل الخطوة التالية",
+  ] : [
+    "New message → understand intent → update contact",
+    "Qualified lead → create pipeline opportunity",
+    "No response → run the agreed follow-up journey",
+    "Keyword, tag or field → trigger an action or flow",
+    "Human-needed case → assign with full context",
+    "Sales-stage change → update data and trigger the next step",
+  ];
+  return (
+    <Section id="crm">
+      <Eyebrow>{ar ? "CRM + Pipeline + Automation" : "CRM + Pipeline + Automation"}</Eyebrow>
+      <SectionTitle>{ar ? "المحادثة لا تبقى محادثة — تتحول إلى سجل وفرصة وخطوة تالية" : "A conversation becomes a record, an opportunity and a next action"}</SectionTitle>
+      <div className="mt-8 grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
+        <div className="rounded-card border border-line bg-surface-muted p-6">
+          <p className="text-h3 font-extrabold">{ar ? "ماذا يرى فريق المبيعات؟" : "What does your sales team see?"}</p>
+          <div className="mt-5 space-y-3">{crm.map(([n,t,b])=><div key={n} className="rounded-card border border-line bg-surface p-4"><div className="flex gap-3"><span className="numeric font-extrabold text-primary">{n}</span><div><p className="font-extrabold">{t}</p><p className="mt-1 text-body text-muted">{b}</p></div></div></div>)}</div>
+        </div>
+        <div className="rounded-card border-2 border-primary bg-surface p-6">
+          <p className="text-h3 font-extrabold text-primary">{ar ? "أمثلة على ما يعمل تلقائياً" : "Examples of what runs automatically"}</p>
+          <div className="mt-5 space-y-4">{automations.map(x=><div key={x} className="flex gap-3"><CheckMark/><span className="text-body font-medium">{x}</span></div>)}</div>
+          <p className="mt-6 rounded-card bg-tint/30 p-4 text-body font-bold">{ar ? "بدل أن يكون واتساب صندوق رسائل منفصلاً عن المبيعات، يصبح مدخلاً لنظام المبيعات نفسه." : "Instead of WhatsApp being separate from sales operations, it becomes an entry point into the sales system itself."}</p>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+export function UseCases({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const cases = ar ? [
+    ["مدربون وبائعو الدورات","يسأل العميل عن البرنامج → النظام يجيب من المعرفة → يجمع الهدف والاهتمام → يؤهل → يتابع → يحوّل الجاهز للفريق."],
+    ["العقارات","استثمار أم سكن → المنطقة → الميزانية → نوع العقار → التوقيت → Lead منظم + Opportunity + تحويل للوسيط المناسب."],
+    ["العيادات","الخدمة المطلوبة → أسئلة أولية → بيانات العميل → متابعة أو تحويل للموظف → ويمكن ربط الحجوزات حسب النظام المستخدم."],
+    ["مراكز التعليم","البرنامج → العمر/المستوى → الموعد → بيانات ولي الأمر أو الطالب → متابعة → فرصة تسجيل واضحة للفريق."],
+  ] : [
+    ["Coaches & course sellers","Program question → knowledge-based answer → capture goal and interest → qualify → follow up → hand ready leads to the team."],
+    ["Real estate","Investment or home → area → budget → property type → timeline → structured lead + opportunity + broker handoff."],
+    ["Clinics","Requested service → initial questions → contact data → follow-up or staff handoff → booking can be integrated where supported."],
+    ["Education centres","Program → age/level → timing → parent or student details → follow-up → clear enrollment opportunity."],
+  ];
+  return (
+    <Section id="use-cases" tone="muted">
+      <Eyebrow>{ar ? "ليس Demo عاماً" : "Not a generic demo"}</Eyebrow>
+      <SectionTitle>{ar ? "نفس المحرك — لكن رحلة البيع تُبنى حسب نشاطك" : "One engine — a sales journey built around your business"}</SectionTitle>
+      <div className="mt-8 grid gap-4 md:grid-cols-2">{cases.map(([t,b])=><article key={t} className="rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-3 text-body text-muted">{b}</p></article>)}</div>
+    </Section>
+  );
+}
+
+export function Differentiation({ copy }: { copy: SiteCopy }) {
+  const ar = copy.locale === "ar";
+  const rows = ar ? [
+    ["أداة جاهزة","تفتح حساباً وتبدأ أنت بالإعداد","نبدأ بفهم رحلة مبيعاتك ثم ننفذها"],
+    ["AI Chatbot","التركيز على الرد","الرد + التأهيل + البيانات + الفرصة + المتابعة"],
+    ["CRM منفصل","الفريق ينقل البيانات أو يربط عدة أدوات","المحادثة تدخل مباشرة إلى Contacts والـPipeline"],
+    ["Automation DIY","أنت تبني وتختبر وتحل المشاكل","نحن نبني ونربط ونختبر ونحسّن معك"],
+    ["لغة عربية مضافة","تعريب واجهة أو ترجمة","Arabic-first + RTL + فهم Voice Notes العربية"],
+  ] : [
+    ["Off-the-shelf tool","You open an account and configure it yourself","We start with your sales journey and implement it"],
+    ["AI chatbot","Focuses on answering","Answering + qualification + data + opportunity + follow-up"],
+    ["Separate CRM","Team moves data or connects several tools","Conversation feeds contacts and pipeline directly"],
+    ["DIY automation","You build, test and troubleshoot","We build, connect, test and improve it with you"],
+    ["Arabic added later","Translated UI or messages","Arabic-first + RTL + Arabic voice-note understanding"],
+  ];
+  return (
+    <Section id="difference">
+      <Eyebrow>{ar ? "لماذا Sahl Flow مختلف؟" : "Why Sahl Flow is different"}</Eyebrow>
+      <SectionTitle>{ar ? "لا نبيعك برنامجاً ثم نترك لك مهمة بناء النظام" : "We don't sell you software and leave you to build the system"}</SectionTitle>
+      <div className="mt-8 overflow-x-auto rounded-card border border-line">
+        <div className="min-w-[720px]">
+          <div className="grid grid-cols-[.7fr_1fr_1fr] bg-ink px-5 py-4 font-bold text-on-ink"><span>{ar?"المقارنة":"Compare"}</span><span>{ar?"الطريقة التقليدية":"Typical approach"}</span><span className="text-tint">Sahl Flow</span></div>
+          {rows.map(([a,b,c])=><div key={a} className="grid grid-cols-[.7fr_1fr_1fr] border-t border-line px-5 py-4 text-body"><strong>{a}</strong><span className="text-muted">{b}</span><span className="font-bold">{c}</span></div>)}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 /* ───────────────────────── trust & data ───────────────────────── */
 
 export function TrustAndData({ copy }: { copy: SiteCopy }) {
