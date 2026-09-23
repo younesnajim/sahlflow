@@ -623,7 +623,7 @@ export function Qualification({ copy }: { copy: SiteCopy }) {
           <p className="text-h3 font-extrabold">{ar ? "الخطوة الأولى: مراجعة سريعة لنشاطك" : "First step: a quick business fit check"}</p>
           <p className="mt-3 text-body text-muted">{ar ? "أرسل لنا نوع النشاط، حجم رسائل واتساب التقريبي، وهل لديك رقم عمل مخصص. إذا كان هناك توافق، ننتقل لمكالمة تعريفية ونرسم رحلة المبيعات المطلوبة." : "Send us your business type, approximate WhatsApp volume and whether you have a dedicated business number. If there is a fit, we move to a discovery call and map the sales journey."}</p>
           <div className="mt-6">
-            <WhatsAppCta label={ar ? "ابدأ التقييم السريع" : "Start the fit check"} source="faq" locale={copy.locale} full />
+            <WhatsAppCta label={ar ? "ابدأ التقييم السريع" : "Start the fit check"} source="fit" locale={copy.locale} full />
           </div>
           <p className="mt-3 text-center text-label text-muted">{ar ? "لديك سؤال فقط؟ يمكنك استخدام نفس المحادثة." : "Just have a question? You can use the same chat."}</p>
         </div>
