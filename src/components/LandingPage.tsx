@@ -1,5 +1,5 @@
 import { Nav } from "./Nav";
-import { BusinessImpact, Capabilities, CostOfManualWork, CrmAutomation, CustomAutomation, Differentiation, Deliverables, Faq, FitVsNotFit, FinalCta, Footer, Hero, HowItWorks, LiveDemo, Pricing, Qualification, SalesJourney, TrustAndData, UseCases, WhatYouGet } from "./sections";
+import { BusinessImpact, Capabilities, CostOfManualWork, CrmAutomation, CustomAutomation, Differentiation, Faq, FitVsNotFit, FinalCta, Footer, Hero, HowItWorks, LiveDemo, Pricing, Qualification, SalesJourney, TrustAndData, UseCases, WhatYouGet } from "./sections";
 import type { SiteCopy } from "@/content/types";
 
 export function LandingPage({ copy }: { copy: SiteCopy }) {
@@ -23,7 +23,6 @@ export function LandingPage({ copy }: { copy: SiteCopy }) {
         <HowItWorks copy={copy} />
         <div className="section-rule" />
         <TrustAndData copy={copy} />
-        <Deliverables copy={copy} />
         <Pricing copy={copy} />
         <CustomAutomation copy={copy} />
         <FitVsNotFit copy={copy} />
