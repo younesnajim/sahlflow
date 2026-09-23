@@ -327,16 +327,28 @@ export function CustomAutomation({ copy }: { copy: SiteCopy }) {
 export function Qualification({ copy }: { copy: SiteCopy }) {
   const ar = copy.locale === "ar";
   const items = ar
-    ? ["لديك نشاط تجاري مرخّص", "لديك رقم مخصص للعمل", "يصل نشاطك تقريباً إلى ٥٠ محادثة واتساب أو أكثر أسبوعياً", "تريد نظاماً يدير التأهيل والمتابعة — وليس مجرد رد آلي"]
-    : ["You operate a licensed business", "You have a dedicated business number", "You receive roughly 50+ WhatsApp conversations per week", "You want qualification and follow-up — not just automated replies"];
+    ? ["نشاط تجاري مرخّص", "رقم مخصص للعمل", "حوالي ٥٠ محادثة واتساب أو أكثر أسبوعياً", "حاجة فعلية للتأهيل والمتابعة"]
+    : ["Licensed business", "Dedicated business number", "Roughly 50+ WhatsApp conversations per week", "A real need for qualification and follow-up"];
   return (
     <Section id="fit" tone="muted">
-      <Eyebrow>{ar ? "هل يناسبك Sahl Flow؟" : "Is Sahl Flow a fit?"}</Eyebrow>
-      <SectionTitle>{ar ? "نبدأ عندما يكون للنظام أثر حقيقي على المبيعات" : "We start where the system can have a real sales impact"}</SectionTitle>
-      <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        {items.map((item) => <div key={item} className="flex items-start gap-3 rounded-card border border-line bg-surface p-4"><CheckMark /><span className="text-body font-medium">{item}</span></div>)}
+      <div className="grid gap-8 lg:grid-cols-[1fr_.9fr] lg:items-start">
+        <div>
+          <Eyebrow>{ar ? "هل يناسبك Sahl Flow؟" : "Is Sahl Flow a fit?"}</Eyebrow>
+          <SectionTitle>{ar ? "قبل المكالمة، نتأكد أن النظام مناسب لنشاطك" : "Before a call, we make sure the system fits your business"}</SectionTitle>
+          <p className="mt-4 max-w-prose text-body text-muted">{ar ? "Sahl Flow ليس مناسباً لكل نشاط. نفضّل العمل مع الشركات التي لديها حجم محادثات واضح وتريد تحويل واتساب إلى عملية مبيعات منظمة." : "Sahl Flow is not for every business. We focus on companies with meaningful conversation volume that want to turn WhatsApp into a structured sales process."}</p>
+          <div className="mt-6 grid gap-3">
+            {items.map((item) => <div key={item} className="flex items-start gap-3"><CheckMark /><span className="text-body font-medium">{item}</span></div>)}
+          </div>
+        </div>
+        <div className="rounded-card border-2 border-primary bg-surface p-6">
+          <p className="text-h3 font-extrabold">{ar ? "الخطوة الأولى: مراجعة سريعة لنشاطك" : "First step: a quick business fit check"}</p>
+          <p className="mt-3 text-body text-muted">{ar ? "أرسل لنا نوع النشاط، حجم رسائل واتساب التقريبي، وهل لديك رقم عمل مخصص. إذا كان هناك توافق، ننتقل لمكالمة تعريفية ونرسم رحلة المبيعات المطلوبة." : "Send us your business type, approximate WhatsApp volume and whether you have a dedicated business number. If there is a fit, we move to a discovery call and map the sales journey."}</p>
+          <div className="mt-6">
+            <WhatsAppCta label={ar ? "ابدأ التقييم السريع" : "Start the fit check"} source="faq" locale={copy.locale} full />
+          </div>
+          <p className="mt-3 text-center text-label text-muted">{ar ? "لديك سؤال فقط؟ يمكنك استخدام نفس المحادثة." : "Just have a question? You can use the same chat."}</p>
+        </div>
       </div>
-      <p className="mt-5 text-body text-muted">{ar ? "إذا كان هذا قريباً من وضع شركتك، نراجع رحلة المبيعات معك أولاً ثم نحدد ما يجب بناؤه." : "If this sounds like your company, we first review your sales journey and then define what should be built."}</p>
     </Section>
   );
 }
