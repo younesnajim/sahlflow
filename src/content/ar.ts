@@ -12,7 +12,7 @@ export const ar: SiteCopy = {
       { href: "#system", label: "كيف يعمل" },
       { href: "#capabilities", label: "القدرات" },
       { href: "#crm", label: "CRM والأتمتة" },
-      { href: "#pricing", label: "الأسعار" },
+      { href: "#fit", label: "هل يناسبك؟" },
       { href: "#faq", label: "أسئلة" },
     ],
     cta: { label: "جرّب Sahl Flow", source: "nav" },
@@ -105,15 +105,15 @@ export const ar: SiteCopy = {
     ],
   },
   finalCta: {
-    line: "رسائل العملاء موجودة بالفعل. اجعل كل واحدة منها تدخل مسار بيع واضح.",
-    cta: { label: "ناقش نظامك معنا", source: "final-cta" },
+    line: "كل رسالة عميل قد تكون فرصة. المهم ألا تضيع بين الرد والمتابعة.",
+    cta: { label: "شوف إذا سهل فلو مناسب لشركتك", source: "final-cta" },
   },
   footer: {
     tagline: "نظام مبيعات واتساب ننفّذه ونشغّله عنك.",
     links: [
       { href: "#system", label: "كيف يعمل" },
-      { href: "#done-for-you", label: "ماذا ننفّذ" },
-      { href: "#pricing", label: "الأسعار" },
+      { href: "#capabilities", label: "ماذا يفعل" },
+      { href: "#fit", label: "هل يناسبك؟" },
       { href: "#faq", label: "أسئلة" },
     ],
     whatsappLabel: "لديك سؤال؟ واتساب",
