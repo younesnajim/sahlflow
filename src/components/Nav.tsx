@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { Container, WhatsAppCta } from "./ui";
+import { Container } from "./ui";
 import type { SiteCopy } from "@/content/types";
 
 /**
@@ -15,7 +15,7 @@ export function Nav({ copy }: { copy: SiteCopy }) {
   const { nav } = copy;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-surface/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line/80 bg-surface/80 shadow-[0_8px_30px_rgba(14,26,20,0.04)] backdrop-blur-xl">
       <Container>
         <div className="flex h-16 items-center justify-between gap-3">
           <Link
@@ -26,7 +26,7 @@ export function Nav({ copy }: { copy: SiteCopy }) {
             <Logo variant="default" width={84} title={null} />
           </Link>
 
-          <nav className="hidden items-center gap-7 sm:flex" aria-label={nav.cta.label}>
+          <nav className="hidden items-center gap-6 lg:flex" aria-label={nav.cta.label}>
             {nav.links.map((link) => (
               <a
                 key={link.href}
@@ -46,17 +46,14 @@ export function Nav({ copy }: { copy: SiteCopy }) {
             >
               {nav.switchTo.label}
             </Link>
-            <WhatsAppCta
-              label={nav.cta.label}
-              source={nav.cta.source}
-              locale={copy.locale}
-              className="px-4 py-2"
-            />
+            <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-body font-bold text-on-primary shadow-sm whitespace-nowrap transition-all hover:-translate-y-0.5 hover:bg-primary-deep hover:shadow-md">
+              {nav.cta.label}
+            </a>
           </div>
         </div>
 
         <nav
-          className="-mx-1 flex items-center gap-5 overflow-x-auto pb-2.5 sm:hidden"
+          className="-mx-1 flex items-center gap-5 overflow-x-auto pb-2.5 lg:hidden"
           aria-label={nav.cta.label}
         >
           {nav.links.map((link) => (

@@ -2,7 +2,7 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://sahlflow.com";
 
-export const SITE_NAME = "Sahl Flow";
+export const SITE_NAME = "Sahl";
 
 /** The /ar ↔ /en pair, declared once and used by both pages' metadata. */
 export const ALTERNATES = {

@@ -1,4 +1,4 @@
-# Sahl Flow — marketing site
+# Sahl — marketing site
 
 Next.js 15 (App Router) · TypeScript · Tailwind v4 (CSS-first, no config file).
 
