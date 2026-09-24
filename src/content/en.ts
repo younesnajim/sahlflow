@@ -2,15 +2,15 @@ import type { SiteCopy } from "./types";
 
 export const en: SiteCopy = {
   locale: "en", dir: "ltr",
-  meta: { title: "Sahl Flow — a done-for-you WhatsApp sales system", description: "Turn WhatsApp conversations into qualified sales opportunities. We build, connect, test and run the system for you." },
+  meta: { title: "Sahl — a done-for-you WhatsApp sales system", description: "Turn WhatsApp conversations into qualified sales opportunities. We build, connect, test and run the system for you." },
   nav: {
     links: [{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#fit",label:"Is it a fit?"}],
-    cta:{label:"Try Sahl Flow",source:"nav"}, switchTo:{href:"/ar",label:"العربية",hrefLang:"ar"}, skipToContent:"Skip to content"
+    cta:{label:"Try Sahl",source:"nav"}, switchTo:{href:"/ar",label:"العربية",hrefLang:"ar"}, skipToContent:"Skip to content"
   },
   hero:{
     h1:"Slow replies, missed follow-ups and misunderstood enquiries are costing you clients.",
     sub:"Sahl turns WhatsApp enquiries into a structured sales process: it understands the customer, qualifies them, records the data, and follows up or hands them to your team.",
-    cta:{label:"Try Sahl Flow for your business",source:"hero"},
+    cta:{label:"Try Sahl for your business",source:"hero"},
     trust:["Done for you","Built for Arabic","Ongoing management & improvement"]
   },
   video:{eyebrow:"From message to opportunity",title:"A fast reply is only the beginning",placeholder:"7 connected stages move a customer from an inbound message to structured data, a sales opportunity and managed follow-up."},
@@ -32,7 +32,7 @@ export const en: SiteCopy = {
     guarantee:"You don't need to learn another system to get started — we implement it with you.",
     cta:{label:"Discuss your business",source:"how-it-works"}
   },
-  costs:{eyebrow:"External costs",title:"WhatsApp and third-party fees are separate",disclaimer:"Meta or other provider fees may apply depending on usage. We keep those costs separate from Sahl Flow implementation and management.",columns:{category:"Service",perMessage:"Fee",aed:"Note"},rows:[],freeTier:"",freeLabel:"",footnote:"We explain any applicable external costs before launch."},
+  costs:{eyebrow:"External costs",title:"WhatsApp and third-party fees are separate",disclaimer:"Meta or other provider fees may apply depending on usage. We keep those costs separate from Sahl implementation and management.",columns:{category:"Service",perMessage:"Fee",aed:"Note"},rows:[],freeTier:"",freeLabel:"",footnote:"We explain any applicable external costs before launch."},
   pricing:{
     eyebrow:"Investment",headline:"AED 6,500 implementation & launch + AED 2,000/month",
     founderLabel:"A system built for your business — not a software subscription",
@@ -41,12 +41,12 @@ export const en: SiteCopy = {
     included:["WhatsApp connection and workspace setup","Agent behavior and knowledge base","Qualification logic, fields and tags","Contacts, pipeline and opportunities","Follow-up and human handoff","Testing, tuning, training and launch"],
     passthrough:"Meta and applicable third-party fees are separate. New integrations or automation projects outside the agreed scope are quoted separately.",
     lockIn:"Improving the existing system is part of monthly management; a new system or integration is separately scoped.",
-    cta:{label:"Try Sahl Flow for your business",source:"pricing"}
+    cta:{label:"Try Sahl for your business",source:"pricing"}
   },
   faq:{
     eyebrow:"FAQ",title:"Before we start",
     items:[
-      {q:"Is Sahl Flow just a WhatsApp reply bot?",a:"No. Replying is one part. The goal is to turn a conversation into structured data, qualification, a sales opportunity, follow-up and human handoff when needed."},
+      {q:"Is Sahl just a WhatsApp reply bot?",a:"No. Replying is one part. The goal is to turn a conversation into structured data, qualification, a sales opportunity, follow-up and human handoff when needed."},
       {q:"Do I need to learn AI and automation setup?",a:"No. That is the point of the service: we design, connect, test and implement the system for you, then manage and improve it."},
       {q:"Do I own my business data?",a:"Yes. Your business data remains yours and your company's data is isolated from other accounts. We explain the applicable access and export process during implementation."},
       {q:"Does it understand Arabic and voice notes?",a:"It is built for Arabic and can transcribe Arabic voice notes so they enter the same understanding, qualification and automation journey."},
@@ -58,7 +58,7 @@ export const en: SiteCopy = {
   footer:{
     tagline:"A done-for-you WhatsApp sales system.",
     links:[{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#pricing",label:"Pricing"}],
-    whatsappLabel:"Have a question? WhatsApp",legal:"WhatsApp is a trademark of Meta. Sahl Flow is not affiliated with Meta.",rights:"All rights reserved."
+    whatsappLabel:"Have a question? WhatsApp",legal:"WhatsApp is a trademark of Meta. Sahl is not affiliated with Meta.",rights:"All rights reserved."
   },
   demo:{
     badge:"Live demo",title:"See a conversation become usable sales data",sub:"Write as a customer. Experience qualification instead of a canned auto-reply.",
