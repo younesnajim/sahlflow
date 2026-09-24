@@ -390,5 +390,5 @@ export const SYSTEM_PROMPTS: Record<DemoScenario, string> = {
 /* ─────────────────────────── model configuration ────────────────────────── */
 
 /** The only model the demo may call. */
-export const DEMO_MODEL = "gpt-4o-mini";
+export const DEMO_MODEL = "gpt-5.6-luna";
 export const DEMO_MAX_TOKENS = 300;
