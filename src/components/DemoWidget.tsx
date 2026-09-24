@@ -186,6 +186,12 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
         </span>
       </div>
 
+      {demo.languageNote && (
+        <p className="border-b border-line bg-amber/10 px-4 py-3 text-body font-extrabold leading-relaxed text-ink">
+          {demo.languageNote}
+        </p>
+      )}
+
       {/* tabs --------------------------------------------------------- */}
       <div className="flex gap-2 border-b border-line px-4 py-3" role="tablist">
         {demo.tabs.map((tab) => {
