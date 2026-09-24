@@ -24,8 +24,8 @@ export type LeadSource =
 export type Locale = "ar" | "en";
 
 const OPENING: Record<Locale, string> = {
-  ar: "السلام عليكم، وصلتكم من موقع سهل فلو وأرغب بمعرفة كيف يمكن تطبيق نظام Sahl Flow على نشاطي.",
-  en: "Hi, I came from the Sahl Flow website and I'd like to see how Sahl Flow could work for my business.",
+  ar: "السلام عليكم، وصلتكم من موقع سهل وأرغب بمعرفة كيف يمكن تطبيق نظام Sahl على نشاطي.",
+  en: "Hi, I came from the Sahl website and I'd like to see how Sahl could work for my business.",
 };
 
 /** Build a locale-aware WhatsApp opening message with a source marker. */
