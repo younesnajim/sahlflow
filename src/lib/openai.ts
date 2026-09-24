@@ -26,7 +26,6 @@ const TIMEOUT_MS = 20_000;
  * The agent quotes prices and opening hours from its prompt. It should not be
  * inventive about them, so temperature sits well below the default.
  */
-const TEMPERATURE = 0.5;
 
 /** Why a completion could not be produced. Logged server-side, never sent out. */
 export type ModelFailure =
@@ -67,8 +66,7 @@ export async function completeChat(messages: ChatMessage[]): Promise<string> {
       },
       body: JSON.stringify({
         model: DEMO_MODEL,
-        max_tokens: DEMO_MAX_TOKENS,
-        temperature: TEMPERATURE,
+        max_completion_tokens: DEMO_MAX_TOKENS,
         messages,
       }),
       signal: controller.signal,
