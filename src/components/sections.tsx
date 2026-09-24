@@ -42,7 +42,7 @@ export function Hero({ copy }: { copy: SiteCopy }) {
 export function SalesJourney({ copy }: { copy: SiteCopy }) {
   const { video } = copy;
   const steps = copy.locale === "ar"
-    ? ["العميل يرسل", "سهل فلو يفهم", "يسأل ويجمع التفاصيل", "يحفظ المعلومات", "يحدد المرحلة", "يتابع في الوقت المناسب", "يسلّم لفريقك عند الحاجة"]
+    ? ["العميل يرسل", "سهل يفهم", "يسأل ويجمع التفاصيل", "يحفظ المعلومات", "يحدد المرحلة", "يتابع في الوقت المناسب", "يسلّم لفريقك عند الحاجة"]
     : ["WhatsApp message", "Understand", "Qualify", "Capture data", "Create opportunity", "Follow up", "Handoff"];
 
   return (
@@ -92,7 +92,7 @@ export function CostOfManualWork({ copy }: { copy: SiteCopy }) {
   const ar = copy.locale === "ar";
   const leaks = ar ? [
     ["نفس الأسئلة كل يوم","السعر؟ الموقع؟ المواعيد؟ التفاصيل؟ فريقك يعيد نفس الإجابات بينما يمكن للنظام أن يتولاها."],
-    ["مين الجاد ومين فقط يسأل؟","بدل أن يقرأ الموظف عشرات المحادثات ليكتشف ذلك، سهل فلو يجمع المعلومات التي تساعد على معرفة الأولوية."],
+    ["مين الجاد ومين فقط يسأل؟","بدل أن يقرأ الموظف عشرات المحادثات ليكتشف ذلك، سهل يجمع المعلومات التي تساعد على معرفة الأولوية."],
     ["المعلومات مدفونة داخل الشات","اسم العميل واحتياجه وميزانيته لا يجب أن تبقى بين عشرات الرسائل. تتحول إلى سجل واضح يمكن الرجوع إليه."],
     ["«رجعوا له بكرا»","وهنا يضيع كثير من العملاء. المتابعة تصبح خطوة منظمة بدل أن تعتمد على ذاكرة الموظف."],
   ] : [
@@ -106,7 +106,7 @@ export function CostOfManualWork({ copy }: { copy: SiteCopy }) {
       <Eyebrow>{ar ? "هل هذا يحدث عندكم؟" : "Where do time and leads leak?"}</Eyebrow>
       <SectionTitle>{ar ? "المشكلة ليست في واتساب… المشكلة في كل ما يحدث بعد وصول الرسالة" : "Not every message needs a person from start to finish"}</SectionTitle>
       <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{leaks.map(([t,b])=><article key={t} className="lift-card rounded-card border border-line bg-surface p-5"><h3 className="text-h3 font-extrabold">{t}</h3><p className="mt-2 text-body text-muted">{b}</p></article>)}</div>
-      <p className="mt-6 text-body font-bold">{ar ? "سهل فلو يتولى الجزء المتكرر والمنظم من الرحلة. ويبقى فريقك للمواقف التي تحتاج إنساناً: تفاوض، قرار، إقناع وعلاقة مع العميل." : "Sahl Flow moves repetitive work into the system while your team stays involved where negotiation, judgment and human relationships matter."}</p>
+      <p className="mt-6 text-body font-bold">{ar ? "سهل يتولى الجزء المتكرر والمنظم من الرحلة. ويبقى فريقك للمواقف التي تحتاج إنساناً: تفاوض، قرار، إقناع وعلاقة مع العميل." : "Sahl moves repetitive work into the system while your team stays involved where negotiation, judgment and human relationships matter."}</p>
     </Section>
   );
 }
@@ -190,7 +190,7 @@ export function Capabilities({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="capabilities" tone="muted">
-      <Eyebrow>{ar ? "ماذا يفعل سهل فلو فعلياً؟" : "What does Sahl Flow actually do?"}</Eyebrow>
+      <Eyebrow>{ar ? "ماذا يفعل سهل فعلياً؟" : "What does Sahl actually do?"}</Eyebrow>
       <SectionTitle>{ar ? "يأخذ الأعمال التي تتكرر مع كل عميل… ويرتبها في رحلة واحدة" : "It takes the work repeated for every lead and organizes it into one journey"}</SectionTitle>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {items.map(([n,title,body]) => <article key={n} className="lift-card group rounded-card border border-line bg-surface p-5 sm:p-6">
@@ -235,12 +235,12 @@ export function BusinessImpact({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="impact">
-      <Eyebrow>{ar ? "قبل سهل فلو وبعده" : "Where do you save time and effort?"}</Eyebrow>
+      <Eyebrow>{ar ? "قبل سهل وبعده" : "Where do you save time and effort?"}</Eyebrow>
       <SectionTitle>{ar ? "فريقك لا يحتاج أن يعمل كأنه دفتر ملاحظات بشري" : "Move repetitive sales work from your team into the system"}</SectionTitle>
       <p className="mt-4 max-w-3xl text-body text-muted">{ar ? "الردود المتكررة، فرز العملاء، تسجيل المعلومات والتذكير بالمتابعة يمكن تنظيمها داخل النظام. أما البيع الحقيقي والعلاقة مع العميل فتبقى لفريقك." : "We do not invent a savings percentage before seeing your operation. We show exactly where manual work is removed and where your people stay focused on judgment, selling and customer relationships."}</p>
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
-        <div className="rounded-card border border-line bg-surface-muted p-6"><p className="text-h3 font-extrabold">{ar ? "اليوم" : "Without Sahl Flow"}</p><ul className="mt-4 space-y-3">{before.map(x=><li key={x} className="text-body text-muted">— {x}</li>)}</ul></div>
-        <div className="rounded-card border-2 border-primary bg-surface p-6"><p className="text-h3 font-extrabold text-primary">{ar ? "بعد تنظيم الرحلة مع سهل فلو" : "With Sahl Flow"}</p><ul className="mt-4 space-y-3">{after.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></div>
+        <div className="rounded-card border border-line bg-surface-muted p-6"><p className="text-h3 font-extrabold">{ar ? "اليوم" : "Without Sahl"}</p><ul className="mt-4 space-y-3">{before.map(x=><li key={x} className="text-body text-muted">— {x}</li>)}</ul></div>
+        <div className="rounded-card border-2 border-primary bg-surface p-6"><p className="text-h3 font-extrabold text-primary">{ar ? "بعد تنظيم الرحلة مع سهل" : "With Sahl"}</p><ul className="mt-4 space-y-3">{after.map(x=><li key={x} className="flex gap-2 text-body"><CheckMark/><span>{x}</span></li>)}</ul></div>
       </div>
       <p className="mt-6 rounded-card bg-ink px-5 py-4 text-h3 font-bold text-on-ink">{ar ? "الهدف ليس استبدال فريق المبيعات. الهدف أن يصل الموظف إلى العميل ومعه السياق والبيانات والخطوة التالية — بدل أن يضيع وقته في الفرز والتسجيل والتذكّر." : "The goal is not to replace your sales team. It is to give them the context, data and next step — instead of spending their time sorting, recording and remembering."}</p>
     </Section>
@@ -315,7 +315,7 @@ export function Pricing({ copy }: { copy: SiteCopy }) {
   return (
     <Section id="pricing">
       <Eyebrow>{ar ? "قبل أن نقدم لك عرضاً" : "Before we propose a solution"}</Eyebrow>
-      <SectionTitle>{ar ? "نريد أولاً أن نعرف: هل سهل فلو مناسب لشركتك؟" : "First, we want to know whether Sahl Flow fits your business"}</SectionTitle>
+      <SectionTitle>{ar ? "نريد أولاً أن نعرف: هل سهل مناسب لشركتك؟" : "First, we want to know whether Sahl fits your business"}</SectionTitle>
       <p className="mt-4 max-w-3xl text-lead text-muted">{ar ? "كل شركة تعمل بطريقة مختلفة. لذلك لا نضع سعراً عاماً ثم نحاول إجبار احتياجك داخل باقة جاهزة. نفهم العملية أولاً، ثم نحدد ما الذي يجب بناؤه وتشغيله." : "Every business operates differently. We understand the process first, then define what should be built and operated."}</p>
       <div className="mt-7 grid gap-3 sm:grid-cols-2">{factors.map(x=><div key={x} className="flex gap-3 rounded-card border border-line bg-surface-muted p-4 text-body"><CheckMark/><span>{x}</span></div>)}</div>
       <div className="mt-7 rounded-card bg-ink p-6 text-on-ink sm:flex sm:items-center sm:justify-between sm:gap-6">
@@ -434,11 +434,11 @@ export function Differentiation({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="difference">
-      <Eyebrow>{ar ? "الفرق في طريقة التنفيذ" : "Why Sahl Flow is different"}</Eyebrow>
+      <Eyebrow>{ar ? "الفرق في طريقة التنفيذ" : "Why Sahl is different"}</Eyebrow>
       <SectionTitle>{ar ? "لا نعطيك أداة ونقول لك: دبّر حالك" : "We don't sell you software and leave you to build the system"}</SectionTitle>
       <div className="mt-8 overflow-x-auto rounded-card border border-line">
         <div className="min-w-[720px]">
-          <div className="grid grid-cols-[.7fr_1fr_1fr] bg-ink px-5 py-4 font-bold text-on-ink"><span>{ar?"المقارنة":"Compare"}</span><span>{ar?"الطريقة التقليدية":"Typical approach"}</span><span className="text-tint">Sahl Flow</span></div>
+          <div className="grid grid-cols-[.7fr_1fr_1fr] bg-ink px-5 py-4 font-bold text-on-ink"><span>{ar?"المقارنة":"Compare"}</span><span>{ar?"الطريقة التقليدية":"Typical approach"}</span><span className="text-tint">Sahl</span></div>
           {rows.map(([a,b,c])=><div key={a} className="grid grid-cols-[.7fr_1fr_1fr] border-t border-line px-5 py-4 text-body"><strong>{a}</strong><span className="text-muted">{b}</span><span className="font-bold">{c}</span></div>)}
         </div>
       </div>
@@ -486,7 +486,7 @@ export function CustomAutomation({ copy }: { copy: SiteCopy }) {
     <Section id="automation">
       <div className="grid gap-7 rounded-card border border-line bg-surface-muted p-6 sm:p-8 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
         <div>
-          <Eyebrow>{ar ? "Sahl Flow Custom Automation" : "Sahl Flow Custom Automation"}</Eyebrow>
+          <Eyebrow>{ar ? "Sahl Custom Automation" : "Sahl Custom Automation"}</Eyebrow>
           <SectionTitle>{ar ? "تحتاج أتمتة خاصة بعملك؟" : "Need automation built around your operation?"}</SectionTitle>
           <p className="mt-4 max-w-prose text-body text-muted">
             {ar
@@ -539,7 +539,7 @@ export function FitVsNotFit({ copy }: { copy: SiteCopy }) {
     <Section id="who">
       <div className="rounded-card bg-ink p-6 text-on-ink sm:p-9">
         <Eyebrow>{ar ? "هل يستحق أن نتكلم؟" : "Is it worth a conversation?"}</Eyebrow>
-        <SectionTitle>{ar ? "سهل فلو ليس مناسباً لكل شركة — وهذا شيء جيد" : "Sahl Flow is not for every business — and that's a good thing"}</SectionTitle>
+        <SectionTitle>{ar ? "سهل ليس مناسباً لكل شركة — وهذا شيء جيد" : "Sahl is not for every business — and that's a good thing"}</SectionTitle>
         <div className="mt-7 grid gap-6 lg:grid-cols-2">
           <div><p className="text-h3 font-extrabold text-tint">{ar ? "غالباً مناسب لك إذا…" : "Likely a fit if…"}</p><ul className="mt-4 space-y-3">{yes.map(x=><li key={x} className="flex gap-3 text-body"><span className="text-tint">✓</span><span>{x}</span></li>)}</ul></div>
           <div className="border-t border-white/15 pt-6 lg:border-s lg:border-t-0 lg:pt-0 lg:ps-7"><p className="text-h3 font-extrabold">{ar ? "غالباً ليس ما تحتاجه إذا…" : "Probably not what you need if…"}</p><ul className="mt-4 space-y-3 opacity-75">{no.map(x=><li key={x} className="text-body">— {x}</li>)}</ul></div>
@@ -568,9 +568,9 @@ export function Qualification({ copy }: { copy: SiteCopy }) {
     <Section id="fit" tone="muted">
       <div className="grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
         <div>
-          <Eyebrow>{ar ? "خلّينا نعرف إذا سهل فلو مناسب لك" : "Let's see if Sahl Flow fits"}</Eyebrow>
+          <Eyebrow>{ar ? "خلّينا نعرف إذا سهل مناسب لك" : "Let's see if Sahl fits"}</Eyebrow>
           <SectionTitle>{ar ? "5 أسئلة تختصر علينا وعليك مكالمة غير مناسبة" : "5 questions to avoid a call that isn't a fit"}</SectionTitle>
-          <p className="mt-4 text-body text-muted">{ar ? "لسنا بحاجة إلى عرض طويل قبل أن نفهم نشاطك. نبدأ بهذه المعلومات، وإذا كان سهل فلو مناسباً ننتقل للخطوة التالية ونبني تصوراً لحالتك." : "We start with a few facts about your operation. If there is a fit, we move to the next step and map the right journey."}</p>
+          <p className="mt-4 text-body text-muted">{ar ? "لسنا بحاجة إلى عرض طويل قبل أن نفهم نشاطك. نبدأ بهذه المعلومات، وإذا كان سهل مناسباً ننتقل للخطوة التالية ونبني تصوراً لحالتك." : "We start with a few facts about your operation. If there is a fit, we move to the next step and map the right journey."}</p>
           <div className="mt-6"><WhatsAppCta label={ar ? "ابدأ التقييم على واتساب" : "Start the WhatsApp fit check"} source="fit" locale={copy.locale} full /></div>
           <p className="mt-3 text-label text-muted">{ar ? "لا يوجد التزام. الهدف أولاً معرفة إن كان الحل مناسباً." : "No commitment. The first goal is simply to determine fit."}</p>
         </div>
