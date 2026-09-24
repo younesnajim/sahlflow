@@ -76,7 +76,7 @@ export function LiveDemo({ copy }: { copy: SiteCopy }) {
     <Section id="demo">
       <div className="mx-auto max-w-4xl text-center">
         <Eyebrow>{ar ? "جرّبه بنفسك" : "Try it yourself"}</Eyebrow>
-        <SectionTitle>{ar ? "لا نريدك أن تصدقنا — اختبر المحادثة" : "Don't take our word for it — test the conversation"}</SectionTitle>
+        <SectionTitle>{ar ? "جرّب بنفسك — اختبر المحادثة" : "Don't take our word for it — test the conversation"}</SectionTitle>
         <p className="mx-auto mt-4 max-w-2xl text-body text-muted">{ar ? "اختر عيادة أو عقارات، واكتب كأنك عميل حقيقي. في سيناريو العقارات سترى كيف تتحول الإجابات إلى بطاقة Lead واضحة للفريق." : "Choose a clinic or real estate scenario and write like a real customer. In real estate, watch the answers become a structured lead card for the team."}</p>
       </div>
       <div className="mx-auto mt-8 max-w-3xl">
@@ -93,8 +93,8 @@ export function CostOfManualWork({ copy }: { copy: SiteCopy }) {
   const leaks = ar ? [
     ["نفس الأسئلة كل يوم","السعر؟ الموقع؟ المواعيد؟ التفاصيل؟ فريقك يعيد نفس الإجابات بينما يمكن للنظام أن يتولاها."],
     ["مين الجاد ومين فقط يسأل؟","بدل أن يقرأ الموظف عشرات المحادثات ليكتشف ذلك، سهل يجمع المعلومات التي تساعد على معرفة الأولوية."],
-    ["المعلومات مدفونة داخل الشات","اسم العميل واحتياجه وميزانيته لا يجب أن تبقى بين عشرات الرسائل. تتحول إلى سجل واضح يمكن الرجوع إليه."],
-    ["«رجعوا له بكرا»","وهنا يضيع كثير من العملاء. المتابعة تصبح خطوة منظمة بدل أن تعتمد على ذاكرة الموظف."],
+    ["المعلومات تبقى في الشات","اسم العميل واحتياجه وميزانيته لا يجب أن تبقى بين عشرات الرسائل. تتحول إلى سجل واضح يمكن الرجوع إليه."],
+    ["لما الموظف ينسى يتابع","وهنا يضيع كثير من العملاء. المتابعة تصبح خطوة منظمة بدل أن تعتمد على ذاكرة الموظف."],
   ] : [
     ["Repeated replies","The same questions, pricing and service information consume team time every day."],
     ["Manual sorting","A teammate reads conversations to decide who is serious and what they need."],
@@ -176,7 +176,7 @@ export function Capabilities({ copy }: { copy: SiteCopy }) {
     ["04","يحفظ ما عرفه","بيانات العميل واهتمامه وإجاباته تصبح في سجل واضح بدل أن تبقى مدفونة داخل المحادثة."],
     ["05","يعرف أين وصل العميل","جديد، يحتاج متابعة، جاد أو جاهز للموظف — المرحلة والخطوة التالية واضحتان."],
     ["06","يتابع في الوقت المناسب","إذا لم يشترِ العميل من أول مرة، تعمل المتابعة وفق السيناريو الذي نبنيه معك."],
-    ["07","يسلّم لفريقك بدون إعادة القصة","عندما يحتاج العميل إنساناً، يصل للموظف ومعه السياق والمعلومات التي جُمعت."],
+    ["07","يسلّم لفريقك بدون إعادة القصة","عندما يحتاج العميل تدخل موظف من الشركة، يصل للموظف ومعه السياق والمعلومات التي جُمعت."],
     ["08","يعطي الإدارة صورة واضحة","ترى المحادثات والعملاء والفرص والنشاط بدل أن تبقى المبيعات موزعة بين الشات والذاكرة."],
   ] : [
     ["01","Replies with business context","Handles initial questions using your services, information and rules rather than generic answers."],
@@ -219,7 +219,7 @@ export function BusinessImpact({ copy }: { copy: SiteCopy }) {
     "Management asks the team to understand what is happening in sales",
   ];
   const after = ar ? [
-    "AI يتعامل مع الأسئلة الأولية وفق معرفة شركتك",
+    "AI يتعامل مع الأسئلة الأولية وفق معرفته بشركتك",
     "الصوت يتحول إلى بيانات قابلة للفهم والمعالجة",
     "كل Lead يُنظم داخل Contacts وحقول وTags",
     "التأهيل يُنفذ بنفس القواعد على كل المحادثات",
