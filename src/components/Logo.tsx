@@ -43,7 +43,7 @@ export function Logo({
   variant = "reversed",
   width = 132,
   className,
-  title = "سهل فلو",
+  title = "سهل",
 }: LogoProps) {
   const reversed = variant === "reversed";
   const compact = width < LOGO_COMPACT_MAX_WIDTH;
