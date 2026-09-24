@@ -61,10 +61,10 @@ export const en: SiteCopy = {
     whatsappLabel:"Have a question? WhatsApp",legal:"WhatsApp is a trademark of Meta. Sahl is not affiliated with Meta.",rights:"All rights reserved."
   },
   demo:{
-    badge:"Live demo",title:"See a conversation become usable sales data",sub:"Write as a customer. Experience qualification instead of a canned auto-reply.",
+    badge:"Demo",title:"See how Sahl handles a real customer conversation",sub:"Write as a customer and see how Sahl understands the enquiry, answers questions, qualifies the lead, and moves the conversation forward.",
     tabs:[{id:"clinic",label:"Clinic"},{id:"brokerage",label:"Real estate"}],placeholder:"Type your message…",send:"Send",thinking:"Typing…",
-    limitTitle:"Want this journey for your business?",limitCta:{label:"Talk to us",source:"demo-limit"},error:"Couldn't reply just now. Try again shortly or contact us directly.",remaining:"Messages left in this demo: {n}",leadCardTitle:"What your sales team receives",languageNote:"Type in English or العربية — it replies in the same language.",
-    opener:{clinic:"Hi! Lamsa Aesthetics in Jumeirah. How can I help you today?",brokerage:"Hi — are you looking for an investment property or a home to live in?"}
+    limitTitle:"Want this journey for your business?",limitCta:{label:"Talk to us",source:"demo-limit"},error:"Couldn't reply just now. Try again shortly or contact us directly.",remaining:"Messages left in this demo: {n}",leadCardTitle:"What your sales team receives",languageNote:"Note: The clinic name, services, prices, property projects, availability and appointment details in this demo are fictional and provided for demonstration purposes only.",
+    opener:{clinic:"Hi, this is Sahl. How can I help you today?",brokerage:"Hi, this is Sahl. How can I help you today?"}
   }
 };
 export default en;
