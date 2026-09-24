@@ -36,7 +36,7 @@ export function HeroMetrics({ locale }: { locale: Locale }) {
         setValues(v=>{
           if(v.enquiries>=CAPS.enquiries||v.hot>=CAPS.hot||v.followups>=CAPS.followups)return {...START};
           const r=Math.random();
-          const key:r extends never?never:"enquiries"|"hot"|"followups" = r<.58?"enquiries":r<.88?"followups":"hot";
+          const key: "enquiries" | "hot" | "followups" = r<.58?"enquiries":r<.88?"followups":"hot";
           return {...v,[key]:Math.min(CAPS[key],v[key]+1)};
         });
         if(!stopped)tickMetric();
