@@ -8,8 +8,8 @@ export const en: SiteCopy = {
     cta:{label:"Try Sahl Flow",source:"nav"}, switchTo:{href:"/ar",label:"العربية",hrefLang:"ar"}, skipToContent:"Skip to content"
   },
   hero:{
-    h1:"Stop running your sales process inside WhatsApp chats",
-    sub:"Sahl Flow turns WhatsApp messages into a structured sales process: it understands the lead, qualifies them, records the data in CRM, creates the opportunity, then follows up or hands it to your team — and we build and run the system for you.",
+    h1:"Slow replies, missed follow-ups and misunderstood enquiries are costing you clients.",
+    sub:"Sahl turns WhatsApp enquiries into a structured sales process: it understands the customer, qualifies them, records the data, and follows up or hands them to your team.",
     cta:{label:"Try Sahl Flow for your business",source:"hero"},
     trust:["Done for you","Built for Arabic","Ongoing management & improvement"]
   },
