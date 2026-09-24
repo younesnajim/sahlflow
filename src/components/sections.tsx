@@ -1,5 +1,6 @@
 import { Container, Eyebrow, Section, SectionTitle, WhatsAppCta } from "./ui";
 import { DemoWidget } from "./DemoWidget";
+import { HeroMetrics } from "./HeroMetrics";
 import { Logo } from "./Logo";
 import { formatNumber } from "@/lib/format";
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
@@ -10,38 +11,25 @@ import type { SiteCopy } from "@/content/types";
 export function Hero({ copy }: { copy: SiteCopy }) {
   const { hero } = copy;
   const ar = copy.locale === "ar";
-  const flow = ar
-    ? [["01", "يفهم الرسالة"], ["02", "يؤهل العميل"], ["03", "يسجل في CRM"], ["04", "ينشئ فرصة"], ["05", "يتابع أو يحوّل للفريق"]]
-    : [["01", "Understand"], ["02", "Qualify"], ["03", "Update CRM"], ["04", "Create opportunity"], ["05", "Follow up / handoff"]];
-  const outcomes = ar
-    ? [["12", "قدرة مترابطة"], ["7", "مراحل من الرسالة للفرصة"], ["1", "نظام للمحادثة والـCRM والمتابعة"]]
-    : [["12", "connected capabilities"], ["7", "stages from message to opportunity"], ["1", "system for chat, CRM & follow-up"]];
   return (
-    <section id="top" className="sales-section soft-grid scroll-target overflow-hidden bg-surface py-14 sm:py-24">
+    <section id="top" className="sales-section soft-grid scroll-target overflow-hidden bg-surface py-10 sm:py-16">
       <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
-          <div>
-            <p className="mb-4 inline-flex rounded-full border border-line bg-surface-muted px-4 py-2 text-label font-bold text-primary">
-              {ar ? "Done-for-you · WhatsApp + AI + CRM + Automation" : "Done-for-you · WhatsApp + AI + CRM + Automation"}
-            </p>
-            <h1 className="text-h1 font-extrabold text-balance">{hero.h1}</h1>
-            <p className="mt-5 max-w-2xl text-lead text-muted">{hero.sub}</p>
-            <p className="mt-4 max-w-2xl text-body font-bold">{ar ? "بدل أن يضيع وقت فريقك في الرد والفرز والتسجيل والتذكّر، يصل إليه العميل ومعه البيانات والسياق والخطوة التالية." : "Instead of spending team time answering, sorting, recording and remembering, the lead reaches your team with data, context and a clear next action."}</p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">{hero.cta.label}</a>
-              <a href="#demo" className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-body font-bold text-primary transition-colors hover:bg-surface-sunken">{ar ? "جرّب المحادثة مباشرة" : "Try the live conversation"}</a>
-            </div>
-            <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
-              {outcomes.map(([n,l])=><div key={l} className="rounded-card border border-line bg-surface-muted p-3"><p className="numeric text-h3 font-extrabold text-primary">{n}</p><p className="mt-1 text-label font-medium text-muted">{l}</p></div>)}
-            </div>
+        <HeroMetrics locale={copy.locale} />
+        <div className="mx-auto mt-10 max-w-4xl text-center sm:mt-14">
+          <p className="mb-4 inline-flex rounded-full border border-line bg-surface-muted px-4 py-2 text-label font-bold text-primary">
+            Done-for-you · WhatsApp + AI + CRM + Automation
+          </p>
+          <h1 className="text-h1 font-extrabold text-balance">{hero.h1}</h1>
+          <p className="mx-auto mt-5 max-w-3xl text-lead text-muted">{hero.sub}</p>
+          <p className="mx-auto mt-4 max-w-3xl text-body font-bold">{ar ? "سهل يفهم الاستفسار، يؤهل العميل، يسجل بياناته ويتابع معه — حتى يصل فريقك للعميل ومعه السياق والخطوة التالية." : "Sahl understands the enquiry, qualifies the lead, records the data and follows up — so your team receives the customer with context and a clear next step."}</p>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">{hero.cta.label}</a>
+            <a href="#system" className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-body font-bold text-primary transition-colors hover:bg-surface-sunken">{ar ? "شاهد كيف يعمل" : "See how it works"}</a>
           </div>
-          <div className="glass-card relative rounded-card p-5 sm:p-7">
-            <div className="absolute -top-3 end-5 rounded-full bg-primary px-3 py-1 text-label font-bold text-on-primary">{ar ? "من رسالة إلى عملية مبيعات" : "From message to sales process"}</div>
-            <p className="text-label font-bold text-muted">{ar ? "ما يحدث خلف محادثة واحدة" : "What happens behind one conversation"}</p>
-            <div className="mt-5 space-y-3">
-              {flow.map(([n,label]) => <div key={label} className="flex items-center gap-3 rounded-card border border-line bg-surface p-4"><span className="numeric flex size-8 shrink-0 items-center justify-center rounded-full bg-tint text-label font-extrabold text-on-tint">{n}</span><span className="text-body font-bold">{label}</span><span className="ms-auto text-primary" aria-hidden="true">✓</span></div>)}
-            </div>
-            <p className="mt-5 rounded-card bg-ink px-4 py-3 text-body font-bold text-on-ink">{ar ? "فريقك لا يبدأ من الصفر: يرى من هو العميل، ماذا يريد، أين وصل، وما المطلوب الآن." : "Your team doesn't start from zero: they see who the lead is, what they want, where they stand and what happens next."}</p>
+          <div className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-label font-bold text-muted">
+            <span>✓ {ar ? "ذكاء اصطناعي يفهم العربية" : "AI that understands Arabic"}</span>
+            <span>✓ CRM & Pipeline</span>
+            <span>✓ {ar ? "متابعة وأتمتة" : "Follow-up & Automation"}</span>
           </div>
         </div>
       </Container>
