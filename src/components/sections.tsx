@@ -1,3 +1,4 @@
+import { PricingCard } from "./PricingCard";
 import { Container, Eyebrow, Section, SectionTitle, WhatsAppCta } from "./ui";
 import { DemoWidget } from "./DemoWidget";
 import { HeroMetrics } from "./HeroMetrics";
@@ -300,47 +301,7 @@ export function HowItWorks({ copy }: { copy: SiteCopy }) {
 /* ────────────────────────────── pricing ────────────────────────────── */
 
 export function Pricing({ copy }: { copy: SiteCopy }) {
-  const ar = copy.locale === "ar";
-  const markets = [
-    { key: "uae", country: ar ? "الإمارات العربية المتحدة" : "United Arab Emirates", currency: ar ? "درهم" : "AED" },
-    { key: "sa", country: ar ? "المملكة العربية السعودية" : "Saudi Arabia", currency: ar ? "ريال" : "SAR" },
-  ];
-  const included = ar
-    ? ["مساعد ذكاء اصطناعي يفهم العربية", "إدارة محادثات واتساب وCRM", "تأهيل العملاء والفرص", "المتابعة والأتمتة الأساسية", "الإعداد والتشغيل والدعم"]
-    : ["Arabic-ready AI assistant", "WhatsApp inbox and CRM", "Lead qualification and pipeline", "Core follow-ups and automation", "Setup, operation and support"];
-  return (
-    <Section id="pricing" tone="muted">
-      <div className="mx-auto max-w-3xl text-center">
-        <Eyebrow>{ar ? "الأسعار" : "Pricing"}</Eyebrow>
-        <SectionTitle>{ar ? "اشتراك واحد. نظام مبيعات متكامل." : "One plan. A complete sales system."}</SectionTitle>
-        <p className="mt-4 text-body text-muted">{ar ? "نجهّز سهل ونشغّله لشركتك، مع الأدوات الأساسية التي تحتاجها لتحويل محادثات واتساب إلى فرص بيع." : "We set up and run Sahl for your business, with the core tools to turn WhatsApp conversations into sales opportunities."}</p>
-      </div>
-      <div className="mx-auto mt-9 grid max-w-5xl gap-5 md:grid-cols-2">
-        {markets.map((market) => (
-          <article key={market.key} className="flex flex-col rounded-card border-2 border-line bg-surface p-6 shadow-sm sm:p-8">
-            <p className="text-h3 font-extrabold">{market.country}</p>
-            <p className="mt-7 text-label font-bold text-muted">{ar ? "الاشتراك الشهري" : "Monthly subscription"}</p>
-            <div className="mt-2 flex flex-wrap items-baseline gap-2">
-              <span className="numeric text-5xl font-extrabold tracking-tight text-primary">1,500</span>
-              <span className="text-body font-bold">{market.currency}{ar ? " / شهريًا" : " / month"}</span>
-            </div>
-            <div className="mt-6 rounded-card bg-surface-muted p-4">
-              <p className="text-label text-muted">{ar ? "رسوم التأسيس — مرة واحدة فقط" : "One-time setup fee"}</p>
-              <p className="mt-1 text-h3 font-extrabold"><span className="numeric">3,000</span> {market.currency}</p>
-            </div>
-            <WhatsAppCta label={ar ? "اطلب عرضًا لنشاطك" : "Discuss your business"} source="pricing" locale={copy.locale} className="mt-7 w-full justify-center" />
-          </article>
-        ))}
-      </div>
-      <div className="mx-auto mt-8 max-w-5xl rounded-card border border-line bg-surface p-6 sm:p-8">
-        <h3 className="text-h3 font-extrabold">{ar ? "ماذا يشمل الاشتراك؟" : "What's included?"}</h3>
-        <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-          {included.map((item) => <li key={item} className="flex items-start gap-3 text-body"><CheckMark /><span>{item}</span></li>)}
-        </ul>
-        <p className="mt-6 border-t border-line pt-5 text-label leading-relaxed text-muted">{copy.pricing.passthrough}</p>
-      </div>
-    </Section>
-  );
+  return <PricingCard copy={copy} />;
 }
 
 function CheckMark() {
