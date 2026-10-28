@@ -15,17 +15,15 @@ export function Hero({ copy }: { copy: SiteCopy }) {
   return (
     <section id="top" className="sales-section soft-grid scroll-target overflow-hidden bg-surface py-10 sm:py-16">
       <Container>
-        <HeroMetrics locale={copy.locale} />
-        <div className="mx-auto mt-10 max-w-4xl text-center sm:mt-14">
+        <div className="mx-auto max-w-4xl text-center">
           <p className="mb-4 inline-flex rounded-full border border-line bg-surface-muted px-4 py-2 text-label font-bold text-primary">
             Done-for-you · WhatsApp + AI + CRM + Automation
           </p>
           <h1 className="text-h1 font-extrabold text-balance">{hero.h1}</h1>
           <p className="mx-auto mt-5 max-w-3xl text-lead text-muted">{hero.sub}</p>
-          <p className="mx-auto mt-4 max-w-3xl text-body font-bold">{ar ? "سهل يفهم الاستفسار، يؤهل العميل، يسجل بياناته ويتابع معه — حتى يصل فريقك للعميل ومعه السياق والخطوة التالية." : "Sahl understands the enquiry, qualifies the lead, records the data and follows up — so your team receives the customer with context and a clear next step."}</p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <a href="#fit" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">{hero.cta.label}</a>
-            <a href="#system" className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-body font-bold text-primary transition-colors hover:bg-surface-sunken">{ar ? "شاهد كيف يعمل" : "See how it works"}</a>
+            <a href="#demo" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary transition-colors hover:bg-primary-deep">{ar ? "جرّب الديمو الآن" : "Try the live demo"}</a>
+            <WhatsAppCta label={ar ? "تحدث معنا على واتساب" : "Chat on WhatsApp"} source="hero" locale={copy.locale} />
           </div>
           <div className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-label font-bold text-muted">
             <span>✓ {ar ? "ذكاء اصطناعي يفهم العربية" : "AI that understands Arabic"}</span>
@@ -33,6 +31,7 @@ export function Hero({ copy }: { copy: SiteCopy }) {
             <span>✓ {ar ? "متابعة وأتمتة" : "Follow-up & Automation"}</span>
           </div>
         </div>
+        <div className="mt-8 sm:mt-12"><HeroMetrics locale={copy.locale} /></div>
       </Container>
     </section>
   );
