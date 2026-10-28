@@ -50,19 +50,9 @@ function clean(value: string, limit = MAX_FIELD): string {
   return value.replace(/\s+/g, " ").trim().slice(0, limit);
 }
 
-/**
- * Splits a reply into its conversational part and, if present, a lead card.
- * A malformed or empty block degrades to plain text rather than an empty card.
- */
-export function parseReply(reply: string): ParsedReply {
-  const match = LEAD_BLOCK.exec(reply);
-  if (!match) {
-    // Truncated output can leave a dangling tag; never show it to a visitor.
-    return { text: reply.replace(ORPHAN_TAG, "").trim(), card: null, trailing: "" };
-  }
-
+function parseRows(body: string): LeadCardRow[] {
   const rows: LeadCardRow[] = [];
-  for (const line of match[1]!.split("\n")) {
+  for (const line of body.split("\n")) {
     const separator = line.indexOf(":");
     if (separator === -1) continue;
 
@@ -73,6 +63,26 @@ export function parseReply(reply: string): ParsedReply {
     rows.push({ label, value });
     if (rows.length === MAX_ROWS) break;
   }
+
+  return rows;
+}
+
+/**
+ * Splits a reply into its conversational part and, if present, a lead card.
+ * A malformed or empty block degrades to plain text rather than an empty card.
+ */
+export function parseReply(reply: string): ParsedReply {
+  const match = LEAD_BLOCK.exec(reply);
+  if (!match) {
+    const opening = /<lead>/i.exec(reply);
+    if (opening) {
+      const rows = parseRows(reply.slice(opening.index + opening[0].length).replace(ORPHAN_TAG, ""));
+      if (rows.length) return { text: reply.slice(0, opening.index).trim(), card: { rows }, trailing: "" };
+    }
+    return { text: reply.replace(ORPHAN_TAG, "").trim(), card: null, trailing: "" };
+  }
+
+  const rows = parseRows(match[1]!);
 
   const before = clean(reply.slice(0, match.index), 2000);
   const after = clean(reply.slice(match.index + match[0].length), 2000);
