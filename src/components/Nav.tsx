@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { Container } from "./ui";
@@ -13,6 +16,7 @@ import type { SiteCopy } from "@/content/types";
  */
 export function Nav({ copy }: { copy: SiteCopy }) {
   const { nav } = copy;
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-surface/80 shadow-[0_8px_30px_rgba(14,26,20,0.04)] backdrop-blur-xl">
@@ -52,20 +56,21 @@ export function Nav({ copy }: { copy: SiteCopy }) {
           </div>
         </div>
 
-        <nav
-          className="-mx-1 flex items-center gap-5 overflow-x-auto pb-2.5 lg:hidden"
-          aria-label={nav.cta.label}
-        >
-          {nav.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="shrink-0 px-1 text-label font-medium text-muted transition-colors hover:text-primary"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <div className="pb-3 lg:hidden">
+          <button type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-line px-4 py-2 text-body font-bold text-ink">
+            <span aria-hidden="true">{menuOpen ? "✕" : "☰"}</span>
+            {copy.locale === "ar" ? "القائمة" : "Menu"}
+          </button>
+          {menuOpen && (
+            <nav id="mobile-navigation" className="mt-2 grid gap-1 rounded-xl border border-line bg-surface p-2" aria-label={copy.locale === "ar" ? "القائمة الرئيسية" : "Main navigation"}>
+              {nav.links.map((link) => (
+                <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}
+                  className="rounded-lg px-4 py-3 text-body font-medium text-ink hover:bg-surface-muted">{link.label}</a>
+              ))}
+            </nav>
+          )}
+        </div>
       </Container>
     </header>
   );
