@@ -34,7 +34,7 @@ export const en: SiteCopy = {
   },
   costs:{eyebrow:"External costs",title:"WhatsApp and third-party fees are separate",disclaimer:"Meta or other provider fees may apply depending on usage. We keep those costs separate from Sahl implementation and management.",columns:{category:"Service",perMessage:"Fee",aed:"Note"},rows:[],freeTier:"",freeLabel:"",footnote:"We explain any applicable external costs before launch."},
   pricing:{
-    eyebrow:"Investment",headline:"AED 1,500/month in the UAE or SAR 1,500/month in Saudi Arabia + 3,000 one-time setup",
+    eyebrow:"Investment",headline:"USD $399/month + $799 one-time setup",
     founderLabel:"All core Sahl tools included — we set up and run the system",
     standard:"One managed service with AI agent, WhatsApp CRM, lead qualification, pipeline, core automation and follow-up. Usage is subject to agreed service limits.",
     includedTitle:"Implementation & launch includes",
@@ -50,7 +50,7 @@ export const en: SiteCopy = {
       {q:"Do I need to learn AI and automation setup?",a:"No. That is the point of the service: we design, connect, test and implement the system for you, then manage and improve it."},
       {q:"Do I own my business data?",a:"Yes. Your business data remains yours and your company's data is isolated from other accounts. We explain the applicable access and export process during implementation."},
       {q:"Does it understand Arabic and voice notes?",a:"It is built for Arabic and can transcribe Arabic voice notes so they enter the same understanding, qualification and automation journey."},
-      {q:"What does the 1,500 monthly subscription include?",a:"All core Sahl tools, ongoing operation, support, business knowledge updates and improvements within the agreed scope. One-time setup is 3,000 in the local currency. Meta messaging is paid directly by the customer; custom integrations are extra."},
+      {q:"What does the $399 monthly subscription include?",a:"All core Sahl tools, ongoing operation, support, business knowledge updates and improvements within the agreed scope. One-time setup is $799. Meta messaging is paid directly by the customer; custom integrations are extra."},
       {q:"Can you build automation outside WhatsApp?",a:"Yes. Custom Automation covers projects that connect systems, APIs, databases or multi-stage internal workflows and is priced by scope."}
     ]
   },
