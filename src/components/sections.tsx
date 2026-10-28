@@ -314,13 +314,13 @@ export function Pricing({ copy }: { copy: SiteCopy }) {
   ];
   return (
     <Section id="pricing">
-      <Eyebrow>{ar ? "قبل أن نقدم لك عرضاً" : "Before we propose a solution"}</Eyebrow>
-      <SectionTitle>{ar ? "نريد أولاً أن نعرف: هل سهل مناسب لشركتك؟" : "First, we want to know whether Sahl fits your business"}</SectionTitle>
-      <p className="mt-4 max-w-3xl text-lead text-muted">{ar ? "كل شركة تعمل بطريقة مختلفة. لذلك لا نضع سعراً عاماً ثم نحاول إجبار احتياجك داخل باقة جاهزة. نفهم العملية أولاً، ثم نحدد ما الذي يجب بناؤه وتشغيله." : "Every business operates differently. We understand the process first, then define what should be built and operated."}</p>
+      <Eyebrow>{copy.pricing.eyebrow}</Eyebrow>
+      <SectionTitle>{copy.pricing.headline}</SectionTitle>
+      <p className="mt-4 max-w-3xl text-lead text-muted">{copy.pricing.founderLabel}. {copy.pricing.standard}</p><p className="mt-3 text-body text-muted">{copy.pricing.passthrough}</p>
       <div className="mt-7 grid gap-3 sm:grid-cols-2">{factors.map(x=><div key={x} className="flex gap-3 rounded-card border border-line bg-surface-muted p-4 text-body"><CheckMark/><span>{x}</span></div>)}</div>
       <div className="mt-7 rounded-card bg-ink p-6 text-on-ink sm:flex sm:items-center sm:justify-between sm:gap-6">
         <div><p className="text-h3 font-extrabold">{ar ? "التقييم الأولي قصير — وليس مكالمة بيع طويلة" : "The initial fit check is short — not a long sales call"}</p><p className="mt-2 text-body opacity-80">{ar ? "نعرف حجم العمل والمشكلة والجاهزية، ثم نحدد الخطوة المناسبة." : "We learn the volume, problem and readiness, then recommend the right next step."}</p></div>
-        <a href="#fit" className="mt-4 inline-flex shrink-0 items-center justify-center rounded-full bg-primary px-6 py-3 text-body font-bold text-on-primary sm:mt-0">{ar ? "ابدأ التقييم السريع" : "Start the fit check"}</a>
+        <WhatsAppCta label={copy.pricing.cta.label} source={copy.pricing.cta.source} locale={copy.locale} className="mt-4 shrink-0 sm:mt-0" />
       </div>
     </Section>
   );
