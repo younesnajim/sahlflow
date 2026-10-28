@@ -3,21 +3,14 @@
  * No database: state lives in the server process and is lost on restart,
  * which is exactly what a throwaway demo needs.
  *
- * Limits: 5 messages per session, 20 messages per hour per IP.
+ * Limits: 12 messages per session, 30 messages per hour per IP.
  */
 
-export const MAX_MESSAGES_PER_SESSION = 8;
-export const MAX_MESSAGES_PER_IP_PER_HOUR = 20;
+export const MAX_MESSAGES_PER_SESSION = 12;
+export const MAX_MESSAGES_PER_IP_PER_HOUR = 30;
 
-/**
- * How many past messages are replayed to the model.
- *
- * At 8 messages per session the transcript reaches 16 entries, so this window
- * does truncate: by the last turn the model sees roughly the last five
- * exchanges. That matters because the brokerage agent builds its summary card
- * from answers given early in the conversation — see the note in the README.
- */
-export const MAX_REPLAYED_MESSAGES = 10;
+/** Keep the full twelve-turn conversation available for lead-card completion. */
+export const MAX_REPLAYED_MESSAGES = 24;
 
 const SESSION_TTL_MS = 2 * 60 * 60 * 1000; // 2 hours
 const IP_WINDOW_MS = 60 * 60 * 1000; // 1 hour
