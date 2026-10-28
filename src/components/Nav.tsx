@@ -19,9 +19,9 @@ export function Nav({ copy }: { copy: SiteCopy }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-surface/80 shadow-[0_8px_30px_rgba(14,26,20,0.04)] backdrop-blur-xl">
+    <header className="relative z-40 border-b border-line/80 bg-surface shadow-[0_8px_30px_rgba(14,26,20,0.04)] lg:sticky lg:top-0">
       <Container>
-        <div className="flex h-16 items-center justify-between gap-3">
+        <div className="flex min-h-16 items-center justify-between gap-3 py-2">
           <Link
             href={`/${copy.locale}`}
             className="flex items-center"
@@ -42,7 +42,7 @@ export function Nav({ copy }: { copy: SiteCopy }) {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <Link
               href={nav.switchTo.href}
               hrefLang={nav.switchTo.hrefLang}
@@ -56,9 +56,9 @@ export function Nav({ copy }: { copy: SiteCopy }) {
           </div>
         </div>
 
-        <div className="pb-3 lg:hidden">
+        <div className="pb-2 lg:hidden">
           <button type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-line px-4 py-2 text-body font-bold text-ink">
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-line px-4 py-2 text-label font-bold text-ink">
             <span aria-hidden="true">{menuOpen ? "✕" : "☰"}</span>
             {copy.locale === "ar" ? "القائمة" : "Menu"}
           </button>
