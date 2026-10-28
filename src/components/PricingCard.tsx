@@ -37,7 +37,7 @@ export function PricingCard({ copy }: { copy: SiteCopy }) {
               </li>
             ))}
           </ul>
-          <WhatsAppCta label={ar ? "احجز عرضًا توضيحيًا لنشاطك" : "Book a demo for your business"} source="pricing-usd" locale={copy.locale} className="mt-8 w-full justify-center" />
+          <WhatsAppCta label={ar ? "احجز عرضًا توضيحيًا لنشاطك" : "Book a demo for your business"} source="pricing" locale={copy.locale} className="mt-8 w-full justify-center" />
           <p className="mt-5 text-center text-label leading-relaxed text-muted">{copy.pricing.passthrough}</p>
         </article>
       </div>
