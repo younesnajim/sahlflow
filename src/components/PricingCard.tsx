@@ -1,5 +1,3 @@
-"use client";
-
 import { Eyebrow, Section, SectionTitle, WhatsAppCta } from "./ui";
 import type { SiteCopy } from "@/content/types";
 import { OPENINGS } from "@/lib/whatsapp";
@@ -13,6 +11,7 @@ export function PricingCard({ copy }: { copy: SiteCopy }) {
         <SectionTitle>{p.title}</SectionTitle>
         <p className="mt-4 text-body text-muted">{p.intro}</p>
         <p className="mt-3 inline-flex rounded-full bg-surface px-4 py-1.5 text-label font-bold text-primary-deep">{p.currencyNote}</p>
+        <p className="mt-5 text-h3 font-extrabold text-primary-deep text-balance">{p.roi}</p>
       </div>
 
       <div className="mx-auto mt-10 grid max-w-6xl gap-6 lg:grid-cols-3 lg:items-stretch">
@@ -46,10 +45,9 @@ export function PricingCard({ copy }: { copy: SiteCopy }) {
               ))}
             </ul>
             <WhatsAppCta
-              label={plan.cta}
+              label={copy.ctas.whatsapp}
               source="pricing"
               locale={copy.locale}
-              tone={plan.highlight ? "solid" : "outline"}
               className="mt-8 w-full justify-center"
             />
           </article>
@@ -74,9 +72,10 @@ export function PricingCard({ copy }: { copy: SiteCopy }) {
       </div>
 
       <div className="mx-auto mt-8 max-w-3xl text-center">
-        <p className="text-h3 font-extrabold text-balance">{p.offer.line}</p>
+        {/* Teaser only. The offer's details are never on the site. */}
+        <p className="text-h3 font-extrabold text-balance">{p.offerLine}</p>
         <WhatsAppCta
-          label={p.offer.cta}
+          label={copy.ctas.whatsapp}
           source="pricing-offer"
           locale={copy.locale}
           opening={OPENINGS.offerCall[copy.locale]}

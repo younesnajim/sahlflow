@@ -1,33 +1,25 @@
 import type { LeadSource } from "@/lib/whatsapp";
 
+/**
+ * Every visible word on the landing page and the legal pages lives in
+ * src/content/ar.ts and src/content/en.ts — components hold layout only.
+ */
+
+export type DemoScenarioId = "clinic" | "brokerage" | "coach";
+
 export interface NavLink {
   href: string;
   label: string;
 }
 
-export interface Cta {
-  label: string;
-  source: LeadSource;
-}
-
-export interface Step {
-  day: string;
+export interface Card {
   title: string;
   body: string;
-  /** Rendered as a badge on the highlighted step. */
-  badge?: string;
-  highlight?: boolean;
 }
 
 export interface FaqItem {
   q: string;
   a: string;
-}
-
-export interface RateRow {
-  category: "marketing" | "utility" | "authentication" | "service";
-  label: string;
-  note?: string;
 }
 
 export interface PricingPlan {
@@ -43,7 +35,19 @@ export interface PricingPlan {
   note?: string;
   features: string[];
   highlight?: boolean;
-  cta: string;
+}
+
+export interface LegalSection {
+  heading: string;
+  paragraphs: string[];
+}
+
+export interface LegalPageCopy {
+  title: string;
+  description: string;
+  updated: string;
+  intro: string;
+  sections: LegalSection[];
 }
 
 export interface SiteCopy {
@@ -51,44 +55,67 @@ export interface SiteCopy {
   dir: "rtl" | "ltr";
   meta: { title: string; description: string };
 
+  /**
+   * The page has exactly two calls to action: the demo (primary, always the
+   * solid button) and a WhatsApp chat (secondary, always the outline button).
+   */
+  ctas: { demo: string; whatsapp: string };
+
   nav: {
     links: NavLink[];
-    cta: Cta;
     switchTo: { href: string; label: string; hrefLang: string };
     skipToContent: string;
+    menu: string;
+    menuLabel: string;
   };
 
   hero: {
+    badge: string;
     h1: string;
     sub: string;
-    cta: Cta;
     trust: string[];
+    /** A static, clearly labelled example chat — not a live counter. */
+    example: {
+      label: string;
+      time: string;
+      customer: string;
+      reply: string;
+    };
   };
 
-  video: { eyebrow: string; title: string; placeholder: string };
+  demoSection: { eyebrow: string; title: string; sub: string };
 
-  problem: { title: string; lines: string[] };
+  problem: { eyebrow: string; title: string; cards: Card[]; closer: string };
 
-  whatYouGet: { eyebrow: string; title: string; intro: string; items: string[]; closer: string };
+  howItWorks: { eyebrow: string; title: string; steps: Card[] };
 
-  howItWorks: {
+  setup: { eyebrow: string; title: string; steps: Card[]; note: string };
+
+  useCases: { eyebrow: string; title: string; cards: Card[] };
+
+  trust: { eyebrow: string; title: string; cards: Card[]; privacyLink: string };
+
+  fit: {
     eyebrow: string;
     title: string;
-    steps: Step[];
-    guarantee: string;
-    cta: Cta;
+    yesTitle: string;
+    yes: string[];
+    noTitle: string;
+    no: string[];
   };
 
-  costs: {
-    eyebrow: string;
-    title: string;
-    disclaimer: string;
-    columns: { category: string; perMessage: string; aed: string };
-    rows: RateRow[];
-    freeTier: string;
-    freeLabel: string;
-    footnote: string;
-  };
+  /**
+   * TODO(founder): Younes sends a photo + two lines. Until `founder` is set,
+   * the section renders nothing. Photo goes in /public, e.g. /founder.jpg.
+   */
+  founder?: { eyebrow: string; name: string; role: string; lines: string[]; photo: string; photoAlt: string };
+
+  /**
+   * TODO(case-study): Rasha's story — only with her written permission and
+   * only with real numbers she approves. Until `caseStudy` is set, the section
+   * renders nothing. Never invent figures.
+   */
+  caseStudy?: { eyebrow: string; title: string; body: string[]; attribution: string };
 
   pricing: {
     eyebrow: string;
@@ -96,50 +123,62 @@ export interface SiteCopy {
     intro: string;
     /** Short note that the AED prices apply as-is in SAR. */
     currencyNote: string;
-    currency: string;
     perMonth: string;
     fromLabel: string;
     popularBadge: string;
+    /** One extra client a month covers the subscription. */
+    roi: string;
     plans: PricingPlan[];
     includedTitle: string;
     included: string[];
     notes: string[];
-    offer: { line: string; cta: string };
+    /** Teaser only — the offer's details are never on the site. */
+    offerLine: string;
     passthrough: string;
   };
 
   faq: { eyebrow: string; title: string; items: FaqItem[] };
 
-  finalCta: { line: string; cta: Cta };
+  finalCta: { line: string; sub: string };
 
   footer: {
     tagline: string;
     links: NavLink[];
+    legalLinks: NavLink[];
     whatsappLabel: string;
+    /**
+     * TODO(email): no Sahl contact email is confirmed yet. Set it here (and in
+     * the legal pages' contact paragraph) once Younes confirms the address.
+     */
+    email?: { label: string; address: string };
     legal: string;
     rights: string;
+  };
+
+  legal: {
+    backHome: string;
+    updatedLabel: string;
+    privacy: LegalPageCopy;
+    terms: LegalPageCopy;
   };
 
   demo: {
     badge: string;
     title: string;
     sub: string;
-    tabs: { id: "clinic" | "brokerage"; label: string }[];
+    tabs: { id: DemoScenarioId; label: string }[];
     placeholder: string;
     send: string;
     thinking: string;
     limitTitle: string;
-    limitCta: Cta;
+    limitSource: LeadSource;
     error: string;
     /** Contains the token {n}, replaced with the remaining message count. */
     remaining: string;
-    opener: Record<"clinic" | "brokerage", string>;
+    opener: Record<DemoScenarioId, string>;
     /** Heading on the closing lead-summary card. */
     leadCardTitle: string;
-    /**
-     * Shown above the widget. Only /en sets it: an English reader needs telling
-     * that the agent mirrors their language, an Arabic reader does not.
-     */
+    /** Shown above the widget: the demo's names and prices are fictional. */
     languageNote?: string;
   };
 }

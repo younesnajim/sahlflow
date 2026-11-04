@@ -1,13 +1,13 @@
 import type { Locale } from "./whatsapp";
 
 /**
- * The Arabic copy is written with Arabic-Indic digits (٦٬٥٠٠، ١٠٠٪), so every
- * number the site generates has to match — otherwise the page mixes ٦٬٥٠٠ with
- * 0.0340. Switch `ar` to plain "ar-AE" here to move the whole page to Western
- * digits instead; nothing else needs to change.
+ * The whole page uses Western digits (990، 1,990، 2026) — the prices were
+ * already written that way, so generated numbers (step numbers, the demo's
+ * message counter) follow them. Use "ar-AE-u-nu-arab" here to move generated
+ * numbers to Arabic-Indic digits instead.
  */
 export const NUMBER_LOCALE: Record<Locale, string> = {
-  ar: "ar-AE-u-nu-arab",
+  ar: "ar-AE-u-nu-latn",
   en: "en-AE",
 };
 

@@ -262,8 +262,8 @@ export function DemoWidget({ copy }: { copy: SiteCopy }) {
           <div className="flex flex-col gap-3 text-center">
             <p className="text-h3 font-extrabold">{demo.limitTitle}</p>
             <WhatsAppCta
-              label={demo.limitCta.label}
-              source={demo.limitCta.source}
+              label={copy.ctas.whatsapp}
+              source={demo.limitSource}
               locale={copy.locale}
               full
             />

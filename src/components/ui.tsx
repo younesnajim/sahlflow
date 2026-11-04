@@ -55,13 +55,48 @@ export function SectionTitle({ children }: { children: ReactNode }) {
 
 /* ──────────────────────────── whatsapp CTA ──────────────────────────── */
 
-export type CtaTone = "solid" | "onPrimary" | "outline";
+/**
+ * The page has two calls to action and two only:
+ *  - DemoCta: primary, always a solid button, always "Try the demo".
+ *  - WhatsAppCta: secondary, always an outline button, always "Chat on WhatsApp".
+ * `onPrimary` variants are the same two styles inverted for the green band.
+ */
+export type CtaTone = "outline" | "outlineOnPrimary";
+
+export function DemoCta({
+  label,
+  locale,
+  onPrimary = false,
+  className = "",
+  full = false,
+  compact = false,
+}: {
+  label: string;
+  locale: Locale;
+  compact?: boolean;
+  onPrimary?: boolean;
+  className?: string;
+  full?: boolean;
+}) {
+  return (
+    <a
+      href={`/${locale}#demo`}
+      className={`inline-flex items-center justify-center rounded-full border-2 ${compact ? "px-4 py-1.5" : "px-6 py-3"} text-body font-bold whitespace-nowrap transition-colors ${
+        onPrimary
+          ? "border-on-primary bg-on-primary text-primary hover:bg-tint"
+          : "border-primary bg-primary text-on-primary hover:border-primary-deep hover:bg-primary-deep"
+      } ${full ? "w-full" : ""} ${className}`}
+    >
+      {label}
+    </a>
+  );
+}
 
 export function WhatsAppCta({
   label,
   source,
   locale,
-  tone = "solid",
+  tone = "outline",
   className = "",
   full = false,
   opening,
@@ -76,9 +111,8 @@ export function WhatsAppCta({
   opening?: string;
 }) {
   const tones = {
-    solid: "bg-primary text-on-primary hover:bg-primary-deep",
-    onPrimary: "bg-on-primary text-primary hover:bg-tint",
-    outline: "border-2 border-primary text-primary hover:bg-surface-sunken",
+    outline: "border-2 border-primary bg-surface text-primary hover:bg-surface-sunken",
+    outlineOnPrimary: "border-2 border-on-primary text-on-primary hover:bg-primary-deep",
   } as const;
 
   return (

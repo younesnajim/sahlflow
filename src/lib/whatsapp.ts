@@ -19,6 +19,7 @@ export type LeadSource =
   | "faq"
   | "fit"
   | "demo-limit"
+  | "legal"
   | "final-cta"
   | "footer";
 
