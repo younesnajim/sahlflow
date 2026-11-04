@@ -15,6 +15,7 @@ export type LeadSource =
   | "hero"
   | "how-it-works"
   | "pricing"
+  | "pricing-offer"
   | "faq"
   | "fit"
   | "demo-limit"
@@ -28,9 +29,20 @@ const OPENING: Record<Locale, string> = {
   en: "Hi, I came from the Sahl website and I'd like to see how Sahl could work for my business.",
 };
 
-/** Build a locale-aware WhatsApp opening message with a source marker. */
-export function whatsappLink(source: LeadSource, locale: Locale = "ar"): string {
-  const text = `${OPENING[locale]}\n\n[web:${locale}:${source}]`;
+/** Opening messages for CTAs that ask for something specific. */
+export const OPENINGS = {
+  offerCall: {
+    ar: "السلام عليكم، وصلتكم من موقع سهل وأرغب بحجز مكالمة 15 دقيقة لمعرفة العرض الخاص لأول 5 عملاء.",
+    en: "Hi, I came from the Sahl website and I'd like to book a 15-minute call to hear the special offer for your first 5 clients.",
+  },
+} satisfies Record<string, Record<Locale, string>>;
+
+/**
+ * Build a locale-aware WhatsApp opening message with a source marker.
+ * `opening` replaces the default first line when a CTA asks for something specific.
+ */
+export function whatsappLink(source: LeadSource, locale: Locale = "ar", opening?: string): string {
+  const text = `${opening ?? OPENING[locale]}\n\n[web:${locale}:${source}]`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 

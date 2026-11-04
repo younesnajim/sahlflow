@@ -64,6 +64,7 @@ export function WhatsAppCta({
   tone = "solid",
   className = "",
   full = false,
+  opening,
 }: {
   label: string;
   source: LeadSource;
@@ -71,6 +72,8 @@ export function WhatsAppCta({
   tone?: CtaTone;
   className?: string;
   full?: boolean;
+  /** Custom first line for the pre-filled WhatsApp message. */
+  opening?: string;
 }) {
   const tones = {
     solid: "bg-primary text-on-primary hover:bg-primary-deep",
@@ -80,7 +83,7 @@ export function WhatsAppCta({
 
   return (
     <a
-      href={whatsappLink(source, locale)}
+      href={whatsappLink(source, locale, opening)}
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-body font-bold whitespace-nowrap transition-colors ${

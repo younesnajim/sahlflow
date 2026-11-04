@@ -34,14 +34,30 @@ export const en: SiteCopy = {
   },
   costs:{eyebrow:"External costs",title:"WhatsApp and third-party fees are separate",disclaimer:"Meta or other provider fees may apply depending on usage. We keep those costs separate from Sahl implementation and management.",columns:{category:"Service",perMessage:"Fee",aed:"Note"},rows:[],freeTier:"",freeLabel:"",footnote:"We explain any applicable external costs before launch."},
   pricing:{
-    eyebrow:"Investment",headline:"USD $399/month + $799 one-time setup",
-    founderLabel:"All core Sahl tools included — we set up and run the system",
-    standard:"One managed service with AI agent, WhatsApp CRM, lead qualification, pipeline, core automation and follow-up. Usage is subject to agreed service limits.",
-    includedTitle:"Implementation & launch includes",
-    included:["WhatsApp connection and workspace setup","Agent behavior and knowledge base","Qualification logic, fields and tags","Contacts, pipeline and opportunities","Follow-up and human handoff","Testing, tuning, training and launch"],
-    passthrough:"Customers pay Meta messaging fees directly to Meta. New integrations and custom automations outside the core scope are quoted separately. Prices exclude applicable taxes.",
-    lockIn:"Improving the existing system is part of monthly management; a new system or integration is separately scoped.",
-    cta:{label:"Try Sahl for your business",source:"pricing"}
+    eyebrow:"Pricing",
+    title:"Clear packages for every stage of your business",
+    intro:"Every package includes us setting up and running Sahl for you. Prices in AED.",
+    currencyNote:"Same prices in SAR",
+    currency:"AED",
+    perMonth:"AED / month",
+    fromLabel:"From",
+    popularBadge:"Most popular",
+    plans:[
+      {id:"start",name:"Start",price:"990",setup:"+ AED 1,500 one-time setup",
+        features:["One WhatsApp number","AI assistant that replies to your customers","Shared team inbox","Automatic follow-ups","Simple lead pipeline","2 users"],
+        cta:"Start with Start"},
+      {id:"growth",name:"Growth",price:"1,990",setup:"+ AED 3,500 one-time setup",highlight:true,
+        features:["Everything in Start","Voice-note understanding","Full pipeline and deals","WhatsApp broadcasts","Mobile app with alerts","5 users","Monthly report"],
+        cta:"Start with Growth"},
+      {id:"pro",name:"Pro",price:"4,500",from:true,note:"Final price after a short call",
+        features:["Everything in Growth","Multiple branches or WhatsApp numbers","Custom flows for your business","Priority support"],
+        cta:"Talk to us"}
+    ],
+    includedTitle:"Every package includes",
+    included:["WhatsApp connection and workspace setup","AI knowledge base and behavior setup","Conversation testing before launch","Team onboarding"],
+    notes:["Meta WhatsApp messaging fees are billed at cost.","Pay annually: 2 months free."],
+    offer:{line:"Special offer for our first 5 clients — book a 15-minute call to hear it",cta:"Book a 15-minute call"},
+    passthrough:"New integrations and custom automations outside the core scope are quoted separately. Prices exclude applicable taxes."
   },
   faq:{
     eyebrow:"FAQ",title:"Before we start",
@@ -50,7 +66,7 @@ export const en: SiteCopy = {
       {q:"Do I need to learn AI and automation setup?",a:"No. That is the point of the service: we design, connect, test and implement the system for you, then manage and improve it."},
       {q:"Do I own my business data?",a:"Yes. Your business data remains yours and your company's data is isolated from other accounts. We explain the applicable access and export process during implementation."},
       {q:"Does it understand Arabic and voice notes?",a:"It is built for Arabic and can transcribe Arabic voice notes so they enter the same understanding, qualification and automation journey."},
-      {q:"What does the $399 monthly subscription include?",a:"All core Sahl tools, ongoing operation, support, business knowledge updates and improvements within the agreed scope. One-time setup is $799. Meta messaging is paid directly by the customer; custom integrations are extra."},
+      {q:"How much does Sahl cost?",a:"Three packages: Start at AED 990/month + AED 1,500 setup, Growth at AED 1,990/month + AED 3,500 setup, and Pro from AED 4,500/month. Same prices in SAR. Every package includes setup, operation and support within the agreed scope. Meta messaging fees are billed at cost; custom integrations are extra."},
       {q:"Can you build automation outside WhatsApp?",a:"Yes. Custom Automation covers projects that connect systems, APIs, databases or multi-stage internal workflows and is priced by scope."}
     ]
   },

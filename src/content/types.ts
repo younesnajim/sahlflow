@@ -30,6 +30,22 @@ export interface RateRow {
   note?: string;
 }
 
+export interface PricingPlan {
+  id: "start" | "growth" | "pro";
+  name: string;
+  /** Monthly price in AED, as displayed (Western digits with comma separators). */
+  price: string;
+  /** "From" price, quoted on a call. */
+  from?: boolean;
+  /** One-time setup line, e.g. "+ 1,500 AED one-time setup". */
+  setup?: string;
+  /** Shown instead of a setup line, e.g. "Final price after a short call". */
+  note?: string;
+  features: string[];
+  highlight?: boolean;
+  cta: string;
+}
+
 export interface SiteCopy {
   locale: "ar" | "en";
   dir: "rtl" | "ltr";
@@ -76,14 +92,20 @@ export interface SiteCopy {
 
   pricing: {
     eyebrow: string;
-    headline: string;
-    founderLabel: string;
-    standard: string;
+    title: string;
+    intro: string;
+    /** Short note that the AED prices apply as-is in SAR. */
+    currencyNote: string;
+    currency: string;
+    perMonth: string;
+    fromLabel: string;
+    popularBadge: string;
+    plans: PricingPlan[];
     includedTitle: string;
     included: string[];
+    notes: string[];
+    offer: { line: string; cta: string };
     passthrough: string;
-    lockIn: string;
-    cta: Cta;
   };
 
   faq: { eyebrow: string; title: string; items: FaqItem[] };
