@@ -15,6 +15,8 @@ export interface NavLink {
 export interface Card {
   title: string;
   body: string;
+  /** Optional small muted line under the body, e.g. which plan includes it. */
+  note?: string;
 }
 
 export interface FaqItem {
@@ -88,6 +90,9 @@ export interface SiteCopy {
   problem: { eyebrow: string; title: string; cards: Card[]; closer: string };
 
   howItWorks: { eyebrow: string; title: string; steps: Card[] };
+
+  /** What changes for the business once Sahl is live. Exactly 4 outcome cards. */
+  outcomes: { eyebrow: string; title: string; cards: Card[] };
 
   setup: { eyebrow: string; title: string; steps: Card[]; note: string };
 
