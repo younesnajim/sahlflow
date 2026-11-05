@@ -13,6 +13,7 @@ export const en: SiteCopy = {
     demo: "Try the demo",
     whatsapp: "Chat on WhatsApp",
   },
+  screenshotCaption: "Real screenshot from the app — test data",
   nav: {
     links: [
       { href: "/en#how", label: "How it works" },
@@ -30,11 +31,9 @@ export const en: SiteCopy = {
     h1: "Never miss a WhatsApp message, even at 2 a.m.",
     sub: "We set up an AI assistant that answers your customers in Arabic, saves their details and follows up. And we run it for you.",
     trust: ["Replies in seconds, day and night", "Understands Arabic and voice notes", "We set it up and run it for you"],
-    example: {
-      label: "Example",
-      time: "2:07 AM",
-      customer: "Hi, do you have any appointments next week?",
-      reply: "Hi! Yes. Which service are you interested in? I'll send you the booking link so you can pick a time.",
+    screenshot: {
+      id: "chatAiPrices",
+      alt: "Inbox screenshot: a customer asks about filler prices, and the AI assistant replies with the clinic's price and sends the booking link",
     },
   },
   demoSection: {
@@ -69,8 +68,13 @@ export const en: SiteCopy = {
     title: "What changes once it's live",
     cards: [
       { title: "Your whole team on one number", body: "A shared inbox, chats assigned to each staff member, and internal notes." },
-      { title: "Take over a chat in one tap", body: "The assistant answers from your prices and info. When a customer needs a person, it hands the chat to you with their last message, and one button gives it back to the assistant." },
-      { title: "An alert on your phone when a customer is interested", body: "A home-screen app on your phone. You choose: my chats only, all messages, or interested customers only.", note: "On the Growth plan" },
+      { title: "Take over a chat in one tap", body: "The assistant answers from your prices and info. When a customer needs a person, it hands the chat to you with their last message, and one button gives it back to the assistant.",
+        screenshot: { id: "chatHandoff", alt: "Chat screenshot: the customer asks to speak to someone at the clinic, the assistant pauses with the notice \"AI assistant paused here\", and a button resumes the AI assistant" },
+      },
+      { title: "An alert on your phone when a customer is interested", body: "A home-screen app on your phone. You choose: my chats only, all messages, or interested customers only.",
+        note: "On the Growth plan",
+        screenshot: { id: "pushAlerts", alt: "Screenshot of the phone alert settings: which messages to be notified about, with the options all messages, chats assigned to me only, and interested leads only" },
+      },
       { title: "Win back past customers", body: "A personalized message to your customer list via approved WhatsApp templates.", note: "On the Growth plan" },
     ],
   },
