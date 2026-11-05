@@ -64,6 +64,16 @@ export const en: SiteCopy = {
       { title: "Hands over to your team", body: "When the customer is ready, it sends your own booking link or passes them to a teammate." },
     ],
   },
+  outcomes: {
+    eyebrow: "The result",
+    title: "What changes once it's live",
+    cards: [
+      { title: "Your whole team on one number", body: "A shared inbox, chats assigned to each staff member, and internal notes." },
+      { title: "Take over a chat in one tap", body: "The assistant answers from your prices and info. When a customer needs a person, it hands the chat to you with their last message, and one button gives it back to the assistant." },
+      { title: "An alert on your phone when a customer is interested", body: "A home-screen app on your phone. You choose: my chats only, all messages, or interested customers only.", note: "On the Growth plan" },
+      { title: "Win back past customers", body: "A personalized message to your customer list via approved WhatsApp templates.", note: "On the Growth plan" },
+    ],
+  },
   setup: {
     eyebrow: "We set everything up",
     title: "You tell us how your business works. We do the rest.",
@@ -148,9 +158,8 @@ export const en: SiteCopy = {
           "Voice-note understanding",
           "Full follow-up for every customer and deal until they buy",
           "Bulk messages to your customers",
-          "Mobile app with alerts",
+          "Home-screen phone app with alerts",
           "5 users",
-          "Monthly report",
         ],
       },
       {
@@ -161,7 +170,7 @@ export const en: SiteCopy = {
         note: "Final price after a short call",
         features: [
           "Everything in Growth",
-          "Multiple branches or WhatsApp numbers",
+          "Custom setup for more than one number",
           "Follow-up steps tailored to your business",
           "Priority support",
         ],

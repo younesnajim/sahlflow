@@ -1,5 +1,5 @@
 import { Nav } from "./Nav";
-import { CaseStudy, Faq, FinalCta, FitVsNotFit, Footer, Founder, Hero, HowItWorks, LiveDemo, Pricing, Problem, Setup, Trust, UseCases } from "./sections";
+import { CaseStudy, Faq, FinalCta, FitVsNotFit, Footer, Founder, Hero, HowItWorks, LiveDemo, Outcomes, Pricing, Problem, Setup, Trust, UseCases } from "./sections";
 import type { SiteCopy } from "@/content/types";
 
 export function LandingPage({ copy }: { copy: SiteCopy }) {
@@ -12,6 +12,7 @@ export function LandingPage({ copy }: { copy: SiteCopy }) {
         <LiveDemo copy={copy} />
         <Problem copy={copy} />
         <HowItWorks copy={copy} />
+        <Outcomes copy={copy} />
         <Setup copy={copy} />
         <UseCases copy={copy} />
         {/* TODO(case-study): hidden until copy.caseStudy is set (Rasha, with permission). */}

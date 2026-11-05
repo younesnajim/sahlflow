@@ -103,6 +103,19 @@ export function HowItWorks({ copy }: { copy: SiteCopy }) {
   );
 }
 
+/* ───────────────────────────── outcomes ─────────────────────────────── */
+
+export function Outcomes({ copy }: { copy: SiteCopy }) {
+  const { outcomes } = copy;
+  return (
+    <Section id="outcomes">
+      <Eyebrow>{outcomes.eyebrow}</Eyebrow>
+      <SectionTitle>{outcomes.title}</SectionTitle>
+      <CardGrid cards={outcomes.cards} columns="lg:grid-cols-4" inlineCheck />
+    </Section>
+  );
+}
+
 /* ────────────────────────────── setup ──────────────────────────────── */
 
 export function Setup({ copy }: { copy: SiteCopy }) {
@@ -339,14 +352,23 @@ export function Footer({ copy }: { copy: SiteCopy }) {
 
 /* ───────────────────────────── helpers ─────────────────────────────── */
 
-function CardGrid({ cards, columns, check = false }: { cards: Card[]; columns: string; check?: boolean }) {
+function CardGrid({ cards, columns, check = false, inlineCheck = false }: { cards: Card[]; columns: string; check?: boolean; inlineCheck?: boolean }) {
   return (
     <div className={`mt-7 grid gap-3 sm:grid-cols-2 sm:gap-4 ${columns}`}>
       {cards.map((card) => (
         <article key={card.title} className="lift-card rounded-card border border-line bg-surface p-4 sm:p-5">
-          {check ? <CheckMark /> : null}
-          <h3 className={`${check ? "mt-3 " : ""}text-h3 font-extrabold`}>{card.title}</h3>
+          {inlineCheck ? (
+            <h3 className="flex items-start gap-2 text-h3 font-extrabold"><CheckMark /><span>{card.title}</span></h3>
+          ) : (
+            <>
+              {check ? <CheckMark /> : null}
+              <h3 className={`${check ? "mt-3 " : ""}text-h3 font-extrabold`}>{card.title}</h3>
+            </>
+          )}
           <p className="mt-2 text-body text-muted">{card.body}</p>
+          {card.note ? (
+            <p className="mt-3 inline-flex rounded-full bg-surface-muted px-3 py-1 text-label font-bold text-muted">{card.note}</p>
+          ) : null}
         </article>
       ))}
     </div>
