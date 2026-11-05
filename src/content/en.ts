@@ -1,86 +1,283 @@
 import type { SiteCopy } from "./types";
 
+const WA = "+971 54 424 9757";
+
 export const en: SiteCopy = {
-  locale: "en", dir: "ltr",
-  meta: { title: "Sahl — a done-for-you WhatsApp sales system", description: "Turn WhatsApp conversations into qualified sales opportunities. We build, connect, test and run the system for you." },
+  locale: "en",
+  dir: "ltr",
+  meta: {
+    title: "Sahl — Never miss a WhatsApp message, even at 2 a.m.",
+    description: "We set up an Arabic AI assistant that answers your customers on WhatsApp, saves their details and follows up. And we run it for you.",
+  },
+  ctas: {
+    demo: "Try the demo",
+    whatsapp: "Chat on WhatsApp",
+  },
   nav: {
-    links: [{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#fit",label:"Is it a fit?"}],
-    cta:{label:"Try Sahl",source:"nav"}, switchTo:{href:"/ar",label:"العربية",hrefLang:"ar"}, skipToContent:"Skip to content"
-  },
-  hero:{
-    h1:"Turn WhatsApp enquiries into sales opportunities. Sahl replies, qualifies and follows up — and we set up and run the system for you.",
-    sub:"AI agent, shared WhatsApp inbox, CRM, automation and follow-ups in one managed service. All core tools included.",
-    cta:{label:"Ask how Sahl fits your business",source:"hero"},
-    trust:["Done for you","Built for Arabic","Ongoing management & improvement"]
-  },
-  video:{eyebrow:"From message to opportunity",title:"A fast reply is only the beginning",placeholder:"7 connected stages move a customer from an inbound message to structured data, a sales opportunity and managed follow-up."},
-  problem:{title:"The problem isn't only response speed",lines:["A lead gets a reply — but nobody determines whether they're serious.","The chat ends — and the customer's context and intent disappear with it.","They don't buy today — and there is no structured follow-up to bring them back."]},
-  whatYouGet:{
-    eyebrow:"A sales system, not just a bot",title:"We do the work — we don't hand you a tool",
-    intro:"We don't give you a dashboard and leave you to build everything. We learn how your company sells and configure the system around that journey.",
-    items:["Connect WhatsApp and configure the agent around your services, prices and rules.","Build qualification questions, fields and tags for your business.","Organize contacts, opportunities and pipeline stages so your team knows what is happening.","Build follow-up and human handoff, then test the journey before launch.","Understand Arabic voice notes and feed them into the same customer journey.","Monitor, update and improve the existing system after launch."],
-    closer:"You explain how you sell. We turn it into a working system for your team."
-  },
-  howItWorks:{
-    eyebrow:"Implementation",title:"From understanding your business to a working system",
-    steps:[
-      {day:"1",title:"Map the sales journey",body:"We review your services, FAQs, qualification process, team and human handoff points."},
-      {day:"2",title:"Build the system",body:"We configure knowledge, agent behavior, fields, qualification, pipeline and follow-up for your business.",highlight:true},
-      {day:"3",title:"Connect and test",body:"We test real scenarios and tune responses and handoffs before customers use it."},
-      {day:"4",title:"Run and improve",body:"After launch we monitor the system, update knowledge and improve the existing sales journey."}
+    links: [
+      { href: "/en#how", label: "How it works" },
+      { href: "/en#fit", label: "Is it a fit?" },
+      { href: "/en#pricing", label: "Pricing" },
+      { href: "/en#faq", label: "FAQ" },
     ],
-    guarantee:"You don't need to learn another system to get started — we implement it with you.",
-    cta:{label:"Discuss your business",source:"how-it-works"}
+    switchTo: { href: "/ar", label: "العربية", hrefLang: "ar" },
+    skipToContent: "Skip to content",
+    menu: "Menu",
+    menuLabel: "Main navigation",
   },
-  costs:{eyebrow:"External costs",title:"WhatsApp and third-party fees are separate",disclaimer:"Meta or other provider fees may apply depending on usage. We keep those costs separate from Sahl implementation and management.",columns:{category:"Service",perMessage:"Fee",aed:"Note"},rows:[],freeTier:"",freeLabel:"",footnote:"We explain any applicable external costs before launch."},
-  pricing:{
-    eyebrow:"Pricing",
-    title:"Clear packages for every stage of your business",
-    intro:"Every package includes us setting up and running Sahl for you. Prices in AED.",
-    currencyNote:"Same prices in SAR",
-    currency:"AED",
-    perMonth:"AED / month",
-    fromLabel:"From",
-    popularBadge:"Most popular",
-    plans:[
-      {id:"start",name:"Start",price:"990",setup:"+ AED 1,500 one-time setup",
-        features:["One WhatsApp number","AI assistant that replies to your customers","Shared team inbox","Automatic follow-ups","Simple lead pipeline","2 users"],
-        cta:"Start with Start"},
-      {id:"growth",name:"Growth",price:"1,990",setup:"+ AED 3,500 one-time setup",highlight:true,
-        features:["Everything in Start","Voice-note understanding","Full pipeline and deals","WhatsApp broadcasts","Mobile app with alerts","5 users","Monthly report"],
-        cta:"Start with Growth"},
-      {id:"pro",name:"Pro",price:"4,500",from:true,note:"Final price after a short call",
-        features:["Everything in Growth","Multiple branches or WhatsApp numbers","Custom flows for your business","Priority support"],
-        cta:"Talk to us"}
+  hero: {
+    badge: "WhatsApp AI assistant + customer follow-up",
+    h1: "Never miss a WhatsApp message, even at 2 a.m.",
+    sub: "We set up an AI assistant that answers your customers in Arabic, saves their details and follows up. And we run it for you.",
+    trust: ["Replies in seconds, day and night", "Understands Arabic and voice notes", "We set it up and run it for you"],
+    example: {
+      label: "Example",
+      time: "2:07 AM",
+      customer: "Hi, do you have any appointments next week?",
+      reply: "Hi! Yes. Which service are you interested in? I'll send you the booking link so you can pick a time.",
+    },
+  },
+  demoSection: {
+    eyebrow: "Try it yourself",
+    title: "Write like a customer and see how it replies",
+    sub: "Pick a clinic, real estate or a coach. In real estate and coaching, a card at the end shows what your team receives.",
+  },
+  problem: {
+    eyebrow: "Does this sound familiar?",
+    title: "The message arrives… then what?",
+    cards: [
+      { title: "Replies come late", body: "Customers ask in the evening or on weekends. If the reply is slow, they go to someone faster." },
+      { title: "The same questions every day", body: "Price? Location? Availability? Your team repeats the same answers." },
+      { title: "Details get lost in chats", body: "The customer's name, needs and budget sit somewhere in dozens of messages." },
+      { title: "Nobody follows up", body: "An interested customer doesn't buy today, and nobody remembers to get back to them." },
     ],
-    includedTitle:"Every package includes",
-    included:["WhatsApp connection and workspace setup","AI knowledge base and behavior setup","Conversation testing before launch","Team onboarding"],
-    notes:["Meta WhatsApp messaging fees are billed at cost.","Pay annually: 2 months free."],
-    offer:{line:"Special offer for our first 5 clients — book a 15-minute call to hear it",cta:"Book a 15-minute call"},
-    passthrough:"New integrations and custom automations outside the core scope are quoted separately. Prices exclude applicable taxes."
+    closer: "Sahl handles the repetitive work, so your team can focus on customers who are ready.",
   },
-  faq:{
-    eyebrow:"FAQ",title:"Before we start",
-    items:[
-      {q:"Is Sahl just a WhatsApp reply bot?",a:"No. Replying is one part. The goal is to turn a conversation into structured data, qualification, a sales opportunity, follow-up and human handoff when needed."},
-      {q:"Do I need to learn AI and automation setup?",a:"No. That is the point of the service: we design, connect, test and implement the system for you, then manage and improve it."},
-      {q:"Do I own my business data?",a:"Yes. Your business data remains yours and your company's data is isolated from other accounts. We explain the applicable access and export process during implementation."},
-      {q:"Does it understand Arabic and voice notes?",a:"It is built for Arabic and can transcribe Arabic voice notes so they enter the same understanding, qualification and automation journey."},
-      {q:"How much does Sahl cost?",a:"Three packages: Start at AED 990/month + AED 1,500 setup, Growth at AED 1,990/month + AED 3,500 setup, and Pro from AED 4,500/month. Same prices in SAR. Every package includes setup, operation and support within the agreed scope. Meta messaging fees are billed at cost; custom integrations are extra."},
-      {q:"Can you build automation outside WhatsApp?",a:"Yes. Custom Automation covers projects that connect systems, APIs, databases or multi-stage internal workflows and is priced by scope."}
-    ]
+  howItWorks: {
+    eyebrow: "How it works",
+    title: "What happens when a customer sends a message?",
+    steps: [
+      { title: "Replies in seconds", body: "In Arabic, using your services and prices. Text or voice note." },
+      { title: "Asks the right questions", body: "What the customer needs, their budget, and when they want to start." },
+      { title: "Saves the details", body: "Every customer gets a clear card: name, request, and where they stand." },
+      { title: "Follows up automatically", body: "Gets back to interested customers at the right time, without anyone having to remember." },
+      { title: "Hands over to your team", body: "When the customer is ready, it sends your own booking link or passes them to a teammate." },
+    ],
   },
-  finalCta:{line:"Every customer message can be an opportunity. The key is not losing it between reply and follow-up.",cta:{label:"Discuss your system",source:"final-cta"}},
-  footer:{
-    tagline:"A done-for-you WhatsApp sales system.",
-    links:[{href:"#system",label:"How it works"},{href:"#capabilities",label:"Capabilities"},{href:"#crm",label:"CRM & automation"},{href:"#pricing",label:"Pricing"}],
-    whatsappLabel:"Have a question? WhatsApp",legal:"WhatsApp is a trademark of Meta. Sahl is not affiliated with Meta.",rights:"All rights reserved."
+  setup: {
+    eyebrow: "We set everything up",
+    title: "You tell us how your business works. We do the rest.",
+    steps: [
+      { title: "We learn your business", body: "Your services, prices and the questions your customers ask." },
+      { title: "We set up the assistant", body: "We write its replies and questions and connect it to your WhatsApp number." },
+      { title: "We test it with you", body: "We run real conversations and adjust before launch." },
+      { title: "We run and improve it", body: "We monitor it after launch and update its information when needed." },
+    ],
+    note: "You don't need to learn any new software.",
   },
-  demo:{
-    badge:"Demo",title:"See how Sahl handles a real customer conversation",sub:"Write as a customer and see how Sahl understands the enquiry, answers questions, qualifies the lead, and moves the conversation forward.",
-    tabs:[{id:"clinic",label:"Clinic"},{id:"brokerage",label:"Real estate"}],placeholder:"Type your message…",send:"Send",thinking:"Typing…",
-    limitTitle:"Want this journey for your business?",limitCta:{label:"Talk to us",source:"demo-limit"},error:"Couldn't reply just now. Try again shortly or contact us directly.",remaining:"Messages left in this demo: {n}",leadCardTitle:"What your sales team receives",languageNote:"Note: The clinic name, services, prices, property projects, availability and appointment details in this demo are fictional and provided for demonstration purposes only.",
-    opener:{clinic:"Hi, this is Sahl. How can I help you today?",brokerage: "Hi, this is the Marfa Properties assistant 🌿 How can I help you today?"}
-  }
+  useCases: {
+    eyebrow: "Who is Sahl for?",
+    title: "Any business that gets customer questions on WhatsApp",
+    cards: [
+      { title: "Clinics", body: "Answers questions about services and prices, asks what the patient needs, then sends the booking link or passes to reception." },
+      { title: "Real estate", body: "Asks about area, budget, property type and timing, then sends the broker a ready summary of the customer." },
+      { title: "Coaches and trainers", body: "Explains sessions and programs, learns the client's goal and budget, then sends the booking link." },
+      { title: "Training centers and courses", body: "Explains programs and schedules, collects student or parent details, then passes to the team." },
+    ],
+  },
+  trust: {
+    eyebrow: "Trust & control",
+    title: "The assistant works by your rules",
+    cards: [
+      { title: "Your data is yours", body: "Each business's data is kept separate. You can ask for a copy or for deletion at any time." },
+      { title: "Your team steps in any time", body: "When the assistant doesn't know the answer or the customer needs a person, it hands the chat to your team." },
+      { title: "Built for Arabic", body: "Understands Arabic conversations and voice notes. Not a translation layer on a foreign product." },
+    ],
+    privacyLink: "Read our privacy policy",
+  },
+  fit: {
+    eyebrow: "Is it worth a conversation?",
+    title: "Sahl is not for every business — and that's a good thing",
+    yesTitle: "Likely a fit if…",
+    yes: [
+      "Your business receives a steady flow of WhatsApp enquiries",
+      "Your team repeats replies, sorting and follow-up every day",
+      "You want to know where every customer stands and what happens next",
+      "You want it done for you rather than setting up tools yourself",
+    ],
+    noTitle: "Probably not what you need if…",
+    no: [
+      "You only want a cheap FAQ bot",
+      "You don't yet have enough conversations or a clear way of selling",
+      "Your only goal is bulk messaging",
+      "You prefer to set everything up yourself on a ready-made platform",
+    ],
+  },
+  pricing: {
+    eyebrow: "Pricing",
+    title: "Clear packages for every size of business",
+    intro: "Every package includes us setting up and running Sahl for you. Prices in AED.",
+    currencyNote: "Same prices in SAR",
+    perMonth: "AED / month",
+    fromLabel: "From",
+    popularBadge: "Most popular",
+    roi: "One extra client a month covers the subscription",
+    plans: [
+      {
+        id: "start",
+        name: "Start",
+        price: "990",
+        setup: "+ AED 1,500 one-time setup",
+        features: [
+          "One WhatsApp number",
+          "AI assistant that replies to your customers",
+          "All chats in one place for your team",
+          "Automatic follow-ups",
+          "Simple follow-up for every customer until they buy",
+          "2 users",
+        ],
+      },
+      {
+        id: "growth",
+        name: "Growth",
+        price: "1,990",
+        setup: "+ AED 3,500 one-time setup",
+        highlight: true,
+        features: [
+          "Everything in Start",
+          "Voice-note understanding",
+          "Full follow-up for every customer and deal until they buy",
+          "Bulk messages to your customers",
+          "Mobile app with alerts",
+          "5 users",
+          "Monthly report",
+        ],
+      },
+      {
+        id: "pro",
+        name: "Pro",
+        price: "4,500",
+        from: true,
+        note: "Final price after a short call",
+        features: [
+          "Everything in Growth",
+          "Multiple branches or WhatsApp numbers",
+          "Follow-up steps tailored to your business",
+          "Priority support",
+        ],
+      },
+    ],
+    includedTitle: "Every package includes",
+    included: [
+      "WhatsApp connection and account setup",
+      "Setting up the assistant's information and tone",
+      "Conversation testing before launch",
+      "Training for your team",
+    ],
+    notes: ["Meta WhatsApp messaging fees are billed at cost.", "Pay annually: 2 months free."],
+    offerLine: "Special offer for our first 5 clients — book a 15-minute call to hear it",
+    passthrough: "New integrations outside the core service are quoted separately. Prices exclude applicable taxes.",
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Common questions",
+    items: [
+      { q: "Does the assistant book appointments?", a: "Sahl has no built-in calendar. The assistant sends the customer your own booking link, or hands the chat to your team to confirm the appointment." },
+      { q: "Is it just a bot that answers questions?", a: "No. It replies, asks the right questions, saves the customer's details, follows up, and hands them to your team when they're ready." },
+      { q: "Do I need to learn new software?", a: "No. We set everything up and run it for you. Your team sees the chats and receives customers who are ready." },
+      { q: "Does it understand Arabic and voice notes?", a: "Yes. It's built for Arabic and turns voice notes into text so it can understand and reply (voice notes are included from the Growth package)." },
+      { q: "What if the assistant doesn't know the answer?", a: "It hands the chat to your team instead of making something up. Your team can step into any chat." },
+      { q: "Do I own my data?", a: "Yes. Each business's data is kept separate, you own it, and you can ask for a copy or for deletion at any time." },
+      { q: "How much does it cost?", a: "Start: AED 990/month + AED 1,500 setup. Growth: AED 1,990/month + AED 3,500 setup. Pro: from AED 4,500/month. Same prices in SAR. Meta fees are billed at cost, and paying annually gives you 2 months free." },
+    ],
+  },
+  finalCta: {
+    line: "See for yourself how it answers your customers",
+    sub: "The demo takes two minutes. For any question, we're on WhatsApp.",
+  },
+  footer: {
+    tagline: "An Arabic WhatsApp AI assistant, set up and run for you.",
+    links: [
+      { href: "/en#how", label: "How it works" },
+      { href: "/en#fit", label: "Is it a fit?" },
+      { href: "/en#pricing", label: "Pricing" },
+      { href: "/en#faq", label: "FAQ" },
+    ],
+    legalLinks: [
+      { href: "/en/privacy", label: "Privacy policy" },
+      { href: "/en/terms", label: "Terms" },
+    ],
+    whatsappLabel: "Have a question? WhatsApp",
+    legal: "WhatsApp is a trademark of Meta. Sahl is not affiliated with Meta.",
+    rights: "All rights reserved.",
+  },
+  legal: {
+    backHome: "Back to the home page",
+    updatedLabel: "Last updated:",
+    privacy: {
+      title: "Privacy policy",
+      description: "How Sahl Flow handles data, in plain words.",
+      updated: "4 November 2026",
+      intro: "This page explains in plain words what data we handle and how we protect it.",
+      sections: [
+        { heading: "Who we are", paragraphs: ["Sahl Flow is a service based in the United Arab Emirates. We set up an AI assistant on WhatsApp and a customer follow-up system for businesses, and we run it on their behalf."] },
+        {
+          heading: "What data we handle",
+          paragraphs: [
+            "When your business uses Sahl, we process your business's WhatsApp conversations on your behalf: text and voice messages, customers' names and numbers, and the information they share in the chat.",
+            "When you try the demo on this website, what you type is sent to an AI provider to generate the reply and kept temporarily in server memory to continue the conversation. We don't store demo messages in a database, and the demo doesn't ask for personal data.",
+          ],
+        },
+        { heading: "Why we use it", paragraphs: ["Only to provide the service to your business: replying to customers, saving their details, following up and handing them to your team. We don't sell data or use it for advertising."] },
+        { heading: "Each business is kept separate", paragraphs: ["Each business's data is isolated from other businesses. Your team can access it, and our team accesses it only when needed to run and support the service."] },
+        { heading: "You own your data", paragraphs: ["Your business and customer data belongs to you. You can ask for a copy or for deletion at any time, and we carry out the request after confirming it comes from you."] },
+        { heading: "Service providers", paragraphs: ["To run the service we use third-party providers, such as Meta's WhatsApp Business Platform and hosting and AI providers. We send them only what is needed to run the service."] },
+        { heading: "Your customers", paragraphs: ["Your business is responsible for telling its customers that it uses an AI assistant on WhatsApp. We can help you write a welcome message that says so."] },
+        { heading: "Contact", paragraphs: [`For any question or request about your data, message us on WhatsApp: ${WA}.`] },
+        { heading: "Changes to this page", paragraphs: ["We may update this page. When we do, we change the last-updated date at the top."] },
+      ],
+    },
+    terms: {
+      title: "Terms",
+      description: "General terms for using the Sahl Flow website and services.",
+      updated: "4 November 2026",
+      intro: "These are the general terms for using the Sahl Flow website and services. The details of each subscription (package, price and scope) are agreed with you in writing before we start.",
+      sections: [
+        { heading: "The service", paragraphs: ["Sahl Flow is a service based in the United Arab Emirates. We set up an AI assistant on WhatsApp and a customer follow-up system for your business, and run it within the scope of the agreed package."] },
+        { heading: "Prices and payment", paragraphs: ["Prices on the website are in AED, the same figures in SAR, and exclude applicable taxes. Setup fees are paid once. Meta WhatsApp messaging fees are billed at cost. New integrations outside the scope are quoted separately."] },
+        { heading: "Your responsibilities", paragraphs: ["You give us accurate information about your services and prices, use WhatsApp in line with Meta's policies, and don't use the service to send spam or unlawful messages."] },
+        { heading: "Limits of the AI assistant", paragraphs: ["The assistant answers from the information we set up with you and can sometimes make mistakes. That's why we set up handover points to your team, and your team can step into any chat. The assistant does not give medical, legal or financial advice."] },
+        { heading: "Bookings", paragraphs: ["The assistant does not book appointments itself. It sends the customer your own booking link, or hands the chat to your team to confirm the appointment."] },
+        { heading: "Data", paragraphs: ["Your data belongs to you. We handle it as described in our privacy policy."] },
+        { heading: "Stopping your subscription", paragraphs: ["You can stop your subscription by giving us notice as agreed when you subscribe. When you stop, you can ask for a copy of your data or for its deletion."] },
+        { heading: "WhatsApp and Meta", paragraphs: ["WhatsApp is a trademark of Meta, and Sahl Flow is not affiliated with Meta. The service also depends on the WhatsApp Business Platform and its policies."] },
+        { heading: "Contact", paragraphs: [`For any question about these terms, message us on WhatsApp: ${WA}.`] },
+      ],
+    },
+  },
+  demo: {
+    badge: "Live demo",
+    title: "Demo conversation",
+    sub: "Write as a customer and see the reply.",
+    languageNote: "The agent replies in the language you write in. Names, services and prices in this demo are fictional.",
+    tabs: [
+      { id: "clinic", label: "Clinic" },
+      { id: "brokerage", label: "Real estate" },
+      { id: "coach", label: "Coach" },
+    ],
+    placeholder: "Type your message…",
+    send: "Send",
+    thinking: "Typing…",
+    limitTitle: "Want the same assistant for your business?",
+    limitSource: "demo-limit",
+    error: "Couldn't reply just now. Try again shortly or contact us directly.",
+    remaining: "Messages left in this demo: {n}",
+    leadCardTitle: "What your team receives",
+    opener: {
+      clinic: "Hi, this is Sahl. How can I help you today?",
+      brokerage: "Hi, this is the Marfa Properties assistant 🌿 How can I help you today?",
+      coach: "Hi, this is the Masar Coaching assistant 🌱 How can I help you today?",
+    },
+  },
 };
 export default en;

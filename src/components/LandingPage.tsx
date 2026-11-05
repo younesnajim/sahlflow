@@ -1,5 +1,5 @@
 import { Nav } from "./Nav";
-import { Capabilities, Pricing, CostOfManualWork, CrmAutomation, Faq, FitVsNotFit, FinalCta, Footer, Hero, HowItWorks, LiveDemo, Qualification, SalesJourney, TrustAndData, UseCases } from "./sections";
+import { CaseStudy, Faq, FinalCta, FitVsNotFit, Footer, Founder, Hero, HowItWorks, LiveDemo, Pricing, Problem, Setup, Trust, UseCases } from "./sections";
 import type { SiteCopy } from "@/content/types";
 
 export function LandingPage({ copy }: { copy: SiteCopy }) {
@@ -10,18 +10,16 @@ export function LandingPage({ copy }: { copy: SiteCopy }) {
       <main id="main">
         <Hero copy={copy} />
         <LiveDemo copy={copy} />
-        <CostOfManualWork copy={copy} />
-        <SalesJourney copy={copy} />
-        <div className="section-rule" />
-        <Capabilities copy={copy} />
-        <div className="section-rule" />
-        <CrmAutomation copy={copy} />
-        <UseCases copy={copy} />
+        <Problem copy={copy} />
         <HowItWorks copy={copy} />
-        <div className="section-rule" />
-        <TrustAndData copy={copy} />
+        <Setup copy={copy} />
+        <UseCases copy={copy} />
+        {/* TODO(case-study): hidden until copy.caseStudy is set (Rasha, with permission). */}
+        <CaseStudy copy={copy} />
+        <Trust copy={copy} />
         <FitVsNotFit copy={copy} />
-        <Qualification copy={copy} />
+        {/* TODO(founder): hidden until copy.founder is set (photo + two lines). */}
+        <Founder copy={copy} />
         <Pricing copy={copy} />
         <Faq copy={copy} />
         <FinalCta copy={copy} />
