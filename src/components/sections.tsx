@@ -132,6 +132,26 @@ export function Outcomes({ copy }: { copy: SiteCopy }) {
   );
 }
 
+/* ────────────────────────────── results ────────────────────────────── */
+
+/** Real first-week numbers from a live client. Data only — no client details. */
+export function Results({ copy }: { copy: SiteCopy }) {
+  const { results } = copy;
+  return (
+    <Section id="results" tone="muted">
+      <SectionTitle>{results.title}</SectionTitle>
+      <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {results.items.map((item) => (
+          <li key={item.value + item.label} className="rounded-card border border-line bg-surface p-4 sm:p-5">
+            <span className="block text-h2 font-extrabold text-primary">{item.value}</span>{" "}
+            <span className="mt-1 block text-body font-bold">{item.label}</span>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  );
+}
+
 /* ────────────────────────────── setup ──────────────────────────────── */
 
 export function Setup({ copy }: { copy: SiteCopy }) {

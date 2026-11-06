@@ -30,6 +30,12 @@ export interface Card {
   screenshot?: Screenshot;
 }
 
+/** One line of the real-results block: the figure, then the rest of the sentence. */
+export interface ResultItem {
+  value: string;
+  label: string;
+}
+
 export interface FaqItem {
   q: string;
   a: string;
@@ -102,6 +108,13 @@ export interface SiteCopy {
 
   /** What changes for the business once Sahl is live. Exactly 4 outcome cards. */
   outcomes: { eyebrow: string; title: string; cards: Card[] };
+
+  /**
+   * Real numbers from a live client's first week (data only: no client name,
+   * niche or details). Exactly these figures, as approved — never invent or
+   * round them up.
+   */
+  results: { title: string; items: ResultItem[] };
 
   setup: { eyebrow: string; title: string; steps: Card[]; note: string };
 

@@ -76,6 +76,15 @@ export const en: SiteCopy = {
       { title: "Win back past customers", body: "A personalized message to your customer list via approved WhatsApp templates.", note: "On the Growth plan" },
     ],
   },
+  results: {
+    title: "Real results — a services client's first week",
+    items: [
+      { value: "17", label: "interested customers got in touch" },
+      { value: "16", label: "got a reply within 5 seconds" },
+      { value: "40", label: "follow-up messages sent automatically" },
+      { value: "7", label: "said they were ready to buy, and their names reached the team instantly" },
+    ],
+  },
   setup: {
     eyebrow: "We set everything up",
     title: "You tell us how your business works. We do the rest.",
