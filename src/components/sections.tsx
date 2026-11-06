@@ -7,7 +7,6 @@ import { formatNumber } from "@/lib/format";
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
 import type { Card, ScreenId, SiteCopy } from "@/content/types";
 import chatAiPrices from "@/assets/screens/chat-ai-prices.webp";
-import chatHandoff from "@/assets/screens/chat-handoff.webp";
 import pushAlerts from "@/assets/screens/push-alerts.webp";
 
 /**
@@ -58,7 +57,7 @@ export function Hero({ copy }: { copy: SiteCopy }) {
  * are already cropped and sized (~2x their display width, 12–33 KB), so they
  * are served as-is rather than through the runtime image optimizer.
  */
-const SCREENS: Record<ScreenId, StaticImageData> = { chatAiPrices, chatHandoff, pushAlerts };
+const SCREENS: Record<ScreenId, StaticImageData> = { chatAiPrices, pushAlerts };
 
 function RealScreen({ id, alt, caption, eager = false, className = "" }: { id: ScreenId; alt: string; caption: string; eager?: boolean; className?: string }) {
   return (
