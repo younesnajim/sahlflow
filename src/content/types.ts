@@ -13,7 +13,7 @@ export interface NavLink {
 }
 
 /** Real app screenshots (demo workspace, test data) under src/assets/screens. */
-export type ScreenId = "chatAiPrices" | "chatHandoff" | "pushAlerts";
+export type ScreenId = "chatAiPrices" | "pushAlerts";
 
 export interface Screenshot {
   id: ScreenId;
@@ -74,7 +74,7 @@ export interface SiteCopy {
    */
   ctas: { demo: string; whatsapp: string };
 
-  /** Small caption under every real app screenshot (says it is test data). */
+  /** Small caption under every real app screenshot ("From inside the app"). */
   screenshotCaption: string;
 
   nav: {

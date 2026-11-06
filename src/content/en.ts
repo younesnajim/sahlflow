@@ -13,7 +13,7 @@ export const en: SiteCopy = {
     demo: "Try the demo",
     whatsapp: "Chat on WhatsApp",
   },
-  screenshotCaption: "Real screenshot from the app — test data",
+  screenshotCaption: "From inside the app",
   nav: {
     links: [
       { href: "/en#how", label: "How it works" },
@@ -68,9 +68,7 @@ export const en: SiteCopy = {
     title: "What changes once it's live",
     cards: [
       { title: "Your whole team on one number", body: "A shared inbox, chats assigned to each staff member, and internal notes." },
-      { title: "Take over a chat in one tap", body: "The assistant answers from your prices and info. When a customer needs a person, it hands the chat to you with their last message, and one button gives it back to the assistant.",
-        screenshot: { id: "chatHandoff", alt: "Chat screenshot: the customer asks to speak to someone at the clinic, the assistant pauses with the notice \"AI assistant paused here\", and a button resumes the AI assistant" },
-      },
+      { title: "Take over a chat in one tap", body: "The assistant answers from your prices and info. When a customer needs a person, it hands the chat to you with their last message, and one button gives it back to the assistant." },
       { title: "An alert on your phone when a customer is interested", body: "A home-screen app on your phone. You choose: my chats only, all messages, or interested customers only.",
         note: "On the Growth plan",
         screenshot: { id: "pushAlerts", alt: "Screenshot of the phone alert settings: which messages to be notified about, with the options all messages, chats assigned to me only, and interested leads only" },
