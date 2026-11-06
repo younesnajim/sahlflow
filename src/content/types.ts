@@ -12,11 +12,22 @@ export interface NavLink {
   label: string;
 }
 
+/** Real app screenshots (demo workspace, test data) under src/assets/screens. */
+export type ScreenId = "chatAiPrices" | "chatHandoff" | "pushAlerts";
+
+export interface Screenshot {
+  id: ScreenId;
+  /** Describes what the screenshot shows, in the page's language. */
+  alt: string;
+}
+
 export interface Card {
   title: string;
   body: string;
   /** Optional small muted line under the body, e.g. which plan includes it. */
   note?: string;
+  /** Optional real app screenshot shown under the card text. */
+  screenshot?: Screenshot;
 }
 
 export interface FaqItem {
@@ -63,6 +74,9 @@ export interface SiteCopy {
    */
   ctas: { demo: string; whatsapp: string };
 
+  /** Small caption under every real app screenshot (says it is test data). */
+  screenshotCaption: string;
+
   nav: {
     links: NavLink[];
     switchTo: { href: string; label: string; hrefLang: string };
@@ -76,13 +90,8 @@ export interface SiteCopy {
     h1: string;
     sub: string;
     trust: string[];
-    /** A static, clearly labelled example chat — not a live counter. */
-    example: {
-      label: string;
-      time: string;
-      customer: string;
-      reply: string;
-    };
+    /** A real app screenshot (demo clinic, test data) instead of an illustration. */
+    screenshot: Screenshot;
   };
 
   demoSection: { eyebrow: string; title: string; sub: string };

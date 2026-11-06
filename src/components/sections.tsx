@@ -1,10 +1,14 @@
+import Image, { type StaticImageData } from "next/image";
 import { PricingCard } from "./PricingCard";
 import { Container, DemoCta, Eyebrow, Section, SectionTitle, WhatsAppCta } from "./ui";
 import { DemoWidget } from "./DemoWidget";
 import { Logo } from "./Logo";
 import { formatNumber } from "@/lib/format";
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
-import type { Card, SiteCopy } from "@/content/types";
+import type { Card, ScreenId, SiteCopy } from "@/content/types";
+import chatAiPrices from "@/assets/screens/chat-ai-prices.webp";
+import chatHandoff from "@/assets/screens/chat-handoff.webp";
+import pushAlerts from "@/assets/screens/push-alerts.webp";
 
 /**
  * Landing-page sections. Layout only — every visible word comes from
@@ -35,25 +39,38 @@ export function Hero({ copy }: { copy: SiteCopy }) {
             ))}
           </ul>
         </div>
-        <ExampleChat copy={copy} />
+        <RealScreen
+          id={hero.screenshot.id}
+          alt={hero.screenshot.alt}
+          caption={copy.screenshotCaption}
+          eager
+          className="mx-auto mt-9 max-w-[20rem]"
+        />
       </Container>
     </section>
   );
 }
 
-/** A static, labelled example of a late-night exchange. Not live data. */
-function ExampleChat({ copy }: { copy: SiteCopy }) {
-  const { example } = copy.hero;
+/**
+ * Real app screenshots, cropped to the chat/content area only (no sidebar,
+ * header or account details). Taken from the demo clinic workspace: every
+ * name and message is test data, and the caption says so. The WebP files
+ * are already cropped and sized (~2x their display width, 12–33 KB), so they
+ * are served as-is rather than through the runtime image optimizer.
+ */
+const SCREENS: Record<ScreenId, StaticImageData> = { chatAiPrices, chatHandoff, pushAlerts };
+
+function RealScreen({ id, alt, caption, eager = false, className = "" }: { id: ScreenId; alt: string; caption: string; eager?: boolean; className?: string }) {
   return (
-    <figure className="mx-auto mt-9 max-w-md rounded-card border border-line bg-surface-muted p-4 shadow-sm" aria-label={example.label}>
-      <figcaption className="mb-3 flex items-center justify-between text-label text-muted">
-        <span className="font-bold">{example.label}</span>
-        <span className="numeric">{example.time}</span>
-      </figcaption>
-      <div className="flex flex-col gap-2 text-body">
-        <p className="max-w-[85%] self-start rounded-2xl rounded-ss-sm border border-line bg-surface px-4 py-2.5">{example.customer}</p>
-        <p className="max-w-[85%] self-end rounded-2xl rounded-se-sm bg-tint px-4 py-2.5 text-on-tint">{example.reply}</p>
-      </div>
+    <figure className={className}>
+      <Image
+        src={SCREENS[id]}
+        alt={alt}
+        unoptimized
+        loading={eager ? "eager" : "lazy"}
+        className="h-auto w-full rounded-xl border border-line bg-surface shadow-sm"
+      />
+      <figcaption className="mt-2 text-center text-label text-muted">{caption}</figcaption>
     </figure>
   );
 }
@@ -111,7 +128,7 @@ export function Outcomes({ copy }: { copy: SiteCopy }) {
     <Section id="outcomes">
       <Eyebrow>{outcomes.eyebrow}</Eyebrow>
       <SectionTitle>{outcomes.title}</SectionTitle>
-      <CardGrid cards={outcomes.cards} columns="lg:grid-cols-4" inlineCheck />
+      <CardGrid cards={outcomes.cards} columns="lg:grid-cols-4" inlineCheck screenshotCaption={copy.screenshotCaption} />
     </Section>
   );
 }
@@ -352,11 +369,11 @@ export function Footer({ copy }: { copy: SiteCopy }) {
 
 /* ───────────────────────────── helpers ─────────────────────────────── */
 
-function CardGrid({ cards, columns, check = false, inlineCheck = false }: { cards: Card[]; columns: string; check?: boolean; inlineCheck?: boolean }) {
+function CardGrid({ cards, columns, check = false, inlineCheck = false, screenshotCaption }: { cards: Card[]; columns: string; check?: boolean; inlineCheck?: boolean; screenshotCaption?: string }) {
   return (
     <div className={`mt-7 grid gap-3 sm:grid-cols-2 sm:gap-4 ${columns}`}>
       {cards.map((card) => (
-        <article key={card.title} className="lift-card rounded-card border border-line bg-surface p-4 sm:p-5">
+        <article key={card.title} className={`lift-card rounded-card border border-line bg-surface p-4 sm:p-5${card.screenshot ? " flex flex-col" : ""}`}>
           {inlineCheck ? (
             <h3 className="flex items-start gap-2 text-h3 font-extrabold"><CheckMark /><span>{card.title}</span></h3>
           ) : (
@@ -367,7 +384,15 @@ function CardGrid({ cards, columns, check = false, inlineCheck = false }: { card
           )}
           <p className="mt-2 text-body text-muted">{card.body}</p>
           {card.note ? (
-            <p className="mt-3 inline-flex rounded-full bg-surface-muted px-3 py-1 text-label font-bold text-muted">{card.note}</p>
+            <p className="mt-3 inline-flex self-start rounded-full bg-surface-muted px-3 py-1 text-label font-bold text-muted">{card.note}</p>
+          ) : null}
+          {card.screenshot && screenshotCaption ? (
+            <RealScreen
+              id={card.screenshot.id}
+              alt={card.screenshot.alt}
+              caption={screenshotCaption}
+              className="mt-4 lg:mt-auto lg:pt-4"
+            />
           ) : null}
         </article>
       ))}
