@@ -8,6 +8,8 @@ import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
 import type { Card, ScreenId, SiteCopy } from "@/content/types";
 import chatAiPrices from "@/assets/screens/chat-ai-prices.webp";
 import pushAlerts from "@/assets/screens/push-alerts.webp";
+import chatAiPricesEn from "@/assets/screens/chat-ai-prices-en.webp";
+import pushAlertsEn from "@/assets/screens/push-alerts-en.webp";
 
 /**
  * Landing-page sections. Layout only — every visible word comes from
@@ -56,8 +58,10 @@ export function Hero({ copy }: { copy: SiteCopy }) {
  * name and message is test data, and the caption says so. The WebP files
  * are already cropped and sized (~2x their display width, 12–33 KB), so they
  * are served as-is rather than through the runtime image optimizer.
+ * The `…En` files are the same screens with the app UI in English (customer
+ * messages stay Arabic), used on /en.
  */
-const SCREENS: Record<ScreenId, StaticImageData> = { chatAiPrices, pushAlerts };
+const SCREENS: Record<ScreenId, StaticImageData> = { chatAiPrices, pushAlerts, chatAiPricesEn, pushAlertsEn };
 
 function RealScreen({ id, alt, caption, eager = false, className = "" }: { id: ScreenId; alt: string; caption: string; eager?: boolean; className?: string }) {
   return (

@@ -13,7 +13,8 @@ export interface NavLink {
 }
 
 /** Real app screenshots (demo workspace, test data) under src/assets/screens. */
-export type ScreenId = "chatAiPrices" | "pushAlerts";
+/** `…En` ids are the same screens shot with the app UI in English, for /en. */
+export type ScreenId = "chatAiPrices" | "pushAlerts" | "chatAiPricesEn" | "pushAlertsEn";
 
 export interface Screenshot {
   id: ScreenId;
