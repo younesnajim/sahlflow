@@ -32,7 +32,7 @@ export const en: SiteCopy = {
     sub: "We set up an AI assistant that answers your customers in Arabic, saves their details and follows up. And we run it for you.",
     trust: ["Replies in seconds, day and night", "Understands Arabic and voice notes", "We set it up and run it for you"],
     screenshot: {
-      id: "chatAiPrices",
+      id: "chatAiPricesEn",
       alt: "Inbox screenshot: a customer asks about filler prices, and the AI assistant replies with the clinic's price and sends the booking link",
     },
   },
@@ -71,9 +71,18 @@ export const en: SiteCopy = {
       { title: "Take over a chat in one tap", body: "The assistant answers from your prices and info. When a customer needs a person, it hands the chat to you with their last message, and one button gives it back to the assistant." },
       { title: "An alert on your phone when a customer is interested", body: "A home-screen app on your phone. You choose: my chats only, all messages, or interested customers only.",
         note: "On the Growth plan",
-        screenshot: { id: "pushAlerts", alt: "Screenshot of the phone alert settings: which messages to be notified about, with the options all messages, chats assigned to me only, and interested leads only" },
+        screenshot: { id: "pushAlertsEn", alt: "Screenshot of the phone alert settings: “What should notify me?” with the options Assigned to me only, All messages, and Hot leads only" },
       },
       { title: "Win back past customers", body: "A personalized message to your customer list via approved WhatsApp templates.", note: "On the Growth plan" },
+    ],
+  },
+  results: {
+    title: "Real results — a services client's first week",
+    items: [
+      { value: "17", label: "interested customers got in touch" },
+      { value: "16", label: "got a reply within 5 seconds" },
+      { value: "40", label: "follow-up messages sent automatically" },
+      { value: "7", label: "said they were ready to buy, and their names reached the team instantly" },
     ],
   },
   setup: {
