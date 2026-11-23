@@ -97,6 +97,9 @@ export interface SiteCopy {
     h1: string;
     sub: string;
     trust: string[];
+    primaryCta?: string;
+    secondaryCta?: string;
+    supportLine?: string;
     /** A real app screenshot (demo clinic, test data) instead of an illustration. */
     screenshot: Screenshot;
   };
