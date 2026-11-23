@@ -31,14 +31,36 @@ export function Hero({ copy }: { copy: SiteCopy }) {
           <h1 className="text-h1 font-extrabold text-balance">{hero.h1}</h1>
           <p className="mx-auto mt-5 max-w-2xl text-lead text-muted">{hero.sub}</p>
           <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-            <DemoCta label={copy.ctas.demo} locale={copy.locale} />
-            <WhatsAppCta label={copy.ctas.whatsapp} source="hero" locale={copy.locale} />
+            {hero.primaryCta ? (
+              <>
+                <a
+                  href={whatsappLink("hero", copy.locale)}
+                  className="inline-flex items-center justify-center rounded-full border-2 border-primary bg-primary px-6 py-3 text-body font-bold whitespace-nowrap text-on-primary transition-colors hover:border-primary-deep hover:bg-primary-deep"
+                >
+                  {hero.primaryCta}
+                </a>
+                <a
+                  href={`/${copy.locale}#demo`}
+                  className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-body font-bold whitespace-nowrap text-primary transition-colors hover:bg-surface-muted"
+                >
+                  {hero.secondaryCta}
+                </a>
+              </>
+            ) : (
+              <>
+                <DemoCta label={copy.ctas.demo} locale={copy.locale} />
+                <WhatsAppCta label={copy.ctas.whatsapp} source="hero" locale={copy.locale} />
+              </>
+            )}
           </div>
           <ul className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-label font-bold text-muted">
             {hero.trust.map((item) => (
               <li key={item}>✓ {item}</li>
             ))}
           </ul>
+          {hero.supportLine && (
+            <p className="mx-auto mt-5 max-w-2xl text-body text-muted">{hero.supportLine}</p>
+          )}
         </div>
         <RealScreen
           id={hero.screenshot.id}
