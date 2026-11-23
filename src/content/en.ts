@@ -27,10 +27,13 @@ export const en: SiteCopy = {
     menuLabel: "Main navigation",
   },
   hero: {
-    badge: "WhatsApp AI assistant + customer follow-up",
-    h1: "Never miss a WhatsApp message, even at 2 a.m.",
-    sub: "We set up an AI assistant that answers your customers in Arabic, saves their details and follows up. And we run it for you.",
-    trust: ["Replies in seconds, day and night", "Understands Arabic and voice notes", "We set it up and run it for you"],
+    badge: "A WhatsApp employee for your business. We set it up and run it for you.",
+    h1: "A WhatsApp employee that answers every message, all day, every day",
+    sub: "Meet Sahl, your tireless WhatsApp employee. It handles incoming inquiries, no matter how many arrive, and gives each customer a tailored answer based on your business information and prices.",
+    trust: ["Replies in seconds, day and night", "Answers tailored to each customer, not the same reply for everyone", "Set up for your business and managed by us"],
+    primaryCta: "Request a trial for your business",
+    secondaryCta: "Try the chat as a customer",
+    supportLine: "Your team takes over only when the conversation is ready for them, with every customer's details organized in a clear contact card.",
     screenshot: {
       id: "chatAiPricesEn",
       alt: "Inbox screenshot: a customer asks about filler prices, and the AI assistant replies with the clinic's price and sends the booking link",
